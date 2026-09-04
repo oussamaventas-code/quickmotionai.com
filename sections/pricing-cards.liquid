@@ -1,0 +1,244 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Packs.
+
+  · Los precios salen de los productos de Shopify, así que Shopify Markets ya
+    sirve € o $ según el mercado del visitante. Aquí no se convierte nada.
+  · Si el producto tiene planes de suscripción (Shopify Subscriptions), los
+    radios se llaman `selling_plan` y se envían tal cual: sin JS de por medio.
+    El único JS de la sección intercambia el precio mostrado al cambiar de plan.
+  · El formulario envía a /cart/add con return_to: del clic al checkout, sin
+    pasar por el carrito.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign checkout_target = '/checkout'
+  if s.go_to_cart
+    assign checkout_target = routes.cart_url
+  endif
+-%}
+
+<section class="section pricing">
+  <span class="halo halo--tr" style="--halo-color: var(--c-violet); --halo-opacity: 0.2;" aria-hidden="true"></span>
+
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="pricing__grid pricing__grid--{{ section.blocks.size }}" data-stagger="90">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign product = block.settings.product
+          assign variant = product.selected_or_first_available_variant
+          assign allocations = variant.selling_plan_allocations
+          assign has_plans = false
+          if allocations.size > 0
+            assign has_plans = true
+          endif
+          assign features = block.settings.features | newline_to_br | split: '<br />'
+        -%}
+
+        <article
+          class="pcard{% if block.settings.featured %} pcard--featured{% endif %}"
+          {{ block.shopify_attributes }}
+          data-reveal
+          data-pcard
+        >
+          {%- if block.settings.featured and block.settings.badge != blank -%}
+            <span class="pcard__badge">{{ block.settings.badge }}</span>
+          {%- endif -%}
+
+          <header class="pcard__head">
+            <h3 class="pcard__name">{{ block.settings.name | default: product.title }}</h3>
+            {%- if block.settings.pitch != blank -%}
+              <p class="pcard__pitch">{{ block.settings.pitch }}</p>
+            {%- endif -%}
+          </header>
+
+          <div class="pcard__price">
+            {%- if product != blank -%}
+              {%- liquid
+                assign display_price = variant.price
+                if has_plans
+                  assign display_price = allocations.first.price
+                endif
+              -%}
+              <span class="pcard__amount" data-price-display>{{ display_price | money }}</span>
+              <span class="pcard__period">{{ block.settings.period }}</span>
+
+              {%- if variant.compare_at_price > display_price -%}
+                <span class="pcard__compare">{{ variant.compare_at_price | money }}</span>
+              {%- endif -%}
+            {%- else -%}
+              <span class="pcard__amount">[Precio]</span>
+              <span class="pcard__period">{{ block.settings.period }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.price_note != blank -%}
+            <p class="pcard__price-note">{{ block.settings.price_note }}</p>
+          {%- endif -%}
+
+          {%- comment -%} Selector de plan de suscripción {%- endcomment -%}
+          {%- if has_plans and s.show_plan_picker and allocations.size > 1 -%}
+            <fieldset class="pcard__plans">
+              <legend class="visually-hidden">{{ 'products.product.choose_plan' | t }}</legend>
+              {%- for allocation in allocations -%}
+                <label class="plan-option">
+                  <input
+                    type="radio"
+                    name="selling_plan"
+                    form="pack-form-{{ block.id }}"
+                    value="{{ allocation.selling_plan.id }}"
+                    data-price="{{ allocation.price | money }}"
+                    {% if forloop.first %}checked{% endif %}
+                  >
+                  <span class="plan-option__name">{{ allocation.selling_plan.name }}</span>
+                  {%- if allocation.compare_at_price > allocation.price -%}
+                    <span class="plan-option__save">
+                      {{- allocation.compare_at_price | minus: allocation.price | times: 100.0 | divided_by: allocation.compare_at_price | round -}}%
+                    </span>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            </fieldset>
+          {%- endif -%}
+
+          {%- comment -%} Qué incluye {%- endcomment -%}
+          {%- if block.settings.features != blank -%}
+            <ul class="pcard__features">
+              {%- for feature in features -%}
+                {%- assign clean = feature | strip_html | strip -%}
+                {%- if clean != blank -%}
+                  <li>
+                    <span class="tick tick--yes" aria-hidden="true">{% render 'icon', name: 'check', size: 10 %}</span>
+                    {{ clean }}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          <div class="pcard__foot">
+            {%- if product != blank and variant.available -%}
+              <form
+                method="post"
+                action="{{ routes.cart_add_url }}"
+                id="pack-form-{{ block.id }}"
+                class="pcard__form"
+              >
+                <input type="hidden" name="form_type" value="product">
+                <input type="hidden" name="utf8" value="✓">
+                <input type="hidden" name="id" value="{{ variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="return_to" value="{{ checkout_target }}">
+                {%- if has_plans and allocations.size == 1 -%}
+                  <input type="hidden" name="selling_plan" value="{{ allocations.first.selling_plan.id }}">
+                {%- endif -%}
+                <button type="submit" class="btn btn--full {% if block.settings.featured %}btn--primary{% else %}btn--ghost{% endif %}">
+                  {{ block.settings.cta_label | default: 'Empezar' }}
+                  {% render 'icon', name: 'arrow-right', size: 15 %}
+                </button>
+              </form>
+            {%- elsif product != blank -%}
+              <button type="button" class="btn btn--ghost btn--full" disabled>
+                {{ 'products.product.sold_out' | t }}
+              </button>
+            {%- else -%}
+              <a href="{{ block.settings.fallback_url | default: '#' }}" class="btn btn--ghost btn--full">
+                {{ block.settings.cta_label | default: 'Empezar' }}
+              </a>
+            {%- endif -%}
+
+            {%- if block.settings.foot_note != blank -%}
+              <p class="pcard__foot-note">{{ block.settings.foot_note }}</p>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.footer_note != blank -%}
+      <p class="pricing__note t-sm t-dim" data-reveal="fade">{{ s.footer_note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  // Intercambia el precio visible al cambiar de plan. Lo que se envía al carrito
+  // lo decide el propio radio (name="selling_plan"), no este script.
+  (function () {
+    document.querySelectorAll('[data-pcard]').forEach(function (card) {
+      var display = card.querySelector('[data-price-display]');
+      if (!display) return;
+      card.querySelectorAll('input[name="selling_plan"]').forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          if (radio.dataset.price) display.textContent = radio.dataset.price;
+        });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Packs y precios",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Precios" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Elige tu volumen" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "de producción" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Sin permanencia, sin coste de setup. Cancela cuando quieras.]" },
+    { "type": "checkbox", "id": "show_plan_picker", "label": "Mostrar selector de plan de suscripción", "default": true, "info": "Aparece sólo si el producto tiene más de un plan en Shopify Subscriptions." },
+    { "type": "checkbox", "id": "go_to_cart", "label": "Enviar al carrito en vez de al checkout", "default": false, "info": "Por defecto el botón lleva directo al checkout." },
+    { "type": "text", "id": "footer_note", "label": "Nota bajo los packs", "default": "[Ej. Todos los packs incluyen 2 rondas de revisión y entrega en 72 h.]" }
+  ],
+  "blocks": [
+    {
+      "type": "pack",
+      "name": "Pack",
+      "limit": 4,
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto", "info": "Marca el producto como digital (sin envío) en el panel de Shopify." },
+        { "type": "text", "id": "name", "label": "Nombre visible", "info": "Si lo dejas vacío se usa el título del producto." },
+        { "type": "text", "id": "pitch", "label": "Descripción corta", "default": "[Para quién es este pack, en una línea]" },
+        { "type": "text", "id": "period", "label": "Periodicidad", "default": "/mes" },
+        { "type": "text", "id": "price_note", "label": "Nota bajo el precio", "default": "[ej. IVA no incluido]" },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Qué incluye",
+          "info": "Una línea por punto.",
+          "default": "[5 vídeos-anuncio al mes]\n[Formatos 9:16, 4:5 y 1:1]\n[2 rondas de revisión]\n[Entrega en 72 h]"
+        },
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar" },
+        { "type": "url", "id": "fallback_url", "label": "Enlace alternativo", "info": "Se usa si aún no has asignado producto." },
+        { "type": "text", "id": "foot_note", "label": "Nota bajo el botón", "default": "[Cancela cuando quieras]" },
+        { "type": "header", "content": "Destacado" },
+        { "type": "checkbox", "id": "featured", "label": "Destacar este pack", "default": false },
+        { "type": "text", "id": "badge", "label": "Etiqueta del destacado", "default": "Más elegido" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Packs y precios",
+      "blocks": [
+        { "type": "pack" },
+        { "type": "pack", "settings": { "featured": true } },
+        { "type": "pack" }
+      ]
+    }
+  ]
+}
+{% endschema %}

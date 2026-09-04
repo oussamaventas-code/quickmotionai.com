@@ -1,0 +1,94 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Enter using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "password_placeholder": "Password",
+      "login_form_submit": "Enter",
+      "enter_password": "Enter",
+      "login_form_error": "Wrong password.",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "We'll email you as soon as we launch."
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "404",
+      "link": "Back to home"
+    },
+    "pagination": {
+      "page": "Page",
+      "next": "Next",
+      "previous": "Previous"
+    },
+    "share": {
+      "success_message": "Link copied"
+    },
+    "continue_shopping": "Keep browsing packs",
+    "back": "Back",
+    "choose": "Choose an option",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window."
+    }
+  },
+  "localization": {
+    "country_label": "Country / region",
+    "market_label": "Market",
+    "country_results_count": "{{ count }} countries found"
+  },
+  "templates": {
+    "cart": {
+      "cart": "Cart"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Main menu",
+      "cart_count": "{{ count }} items in cart"
+    },
+    "footer": {
+      "legal": "Legal",
+      "payment": "Payment methods"
+    },
+    "cart": {
+      "cart_error": "There was a problem updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
+      "empty": "Your cart is empty right now.",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove_title": "Remove",
+      "digital_note": "Digital service: no shipping cost or address to fill in."
+    },
+    "portfolio": {
+      "placeholder": "Video coming soon",
+      "watch_full": "Watch the full video",
+      "toggle_sound": "Toggle sound"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "value_unavailable": "{{ option_value }} unavailable",
+      "choose_plan": "Choose your plan",
+      "quantity": {
+        "label": "Quantity",
+        "increase": "Increase quantity of {{ product }}",
+        "decrease": "Decrease quantity of {{ product }}"
+      }
+    }
+  },
+  "contact": {
+    "form": {
+      "required": "This field is required."
+    }
+  }
+}

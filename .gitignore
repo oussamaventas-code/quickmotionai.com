@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+.shopifyignore
+.theme-check.yml
+node_modules/

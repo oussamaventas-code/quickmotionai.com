@@ -1,0 +1,103 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Proceso en pasos. La línea que une los pasos se dibuja al entrar en viewport
+  (transform: scaleX, sin repintados) y en móvil pasa a vertical.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section steps">
+  <div class="wrap">
+    <div class="section-head{% if s.align == 'center' %} section-head--center{% endif %}">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <ol class="steps__list steps__list--{{ section.blocks.size }}" data-stagger="120">
+      <span class="steps__rail" aria-hidden="true" data-draw></span>
+
+      {%- for block in section.blocks -%}
+        <li class="steps__item" {{ block.shopify_attributes }} data-reveal>
+          <span class="steps__node" aria-hidden="true">
+            <span class="steps__node-dot"></span>
+          </span>
+          <p class="steps__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+          <h3 class="steps__title">{{ block.settings.title }}</h3>
+          <div class="steps__body rte t-sm">{{ block.settings.body }}</div>
+          {%- if block.settings.meta != blank -%}
+            <p class="steps__meta">
+              {% render 'icon', name: 'clock', size: 13 %}
+              {{ block.settings.meta }}
+            </p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- if s.cta_label != blank -%}
+      <div class="steps__cta" data-reveal="fade">
+        <a href="{{ s.cta_url }}" class="btn btn--primary btn--lg">
+          {{ s.cta_label }}
+          {% render 'icon', name: 'arrow-right', size: 16 %}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cómo funciona",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "El proceso" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "De tu brief a los creativos" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "en 72 horas" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Describe el proceso sin jerga. El objetivo de esta sección es eliminar la duda de \"y esto cómo va\".]" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alineación de la cabecera",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "center"
+    },
+    { "type": "header", "content": "Llamada a la acción" },
+    { "type": "text", "id": "cta_label", "label": "Botón", "default": "Empezar ahora" },
+    { "type": "url", "id": "cta_url", "label": "Enlace" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "[Nombre del paso]" },
+        { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>[Qué pasa en este paso y qué tiene que hacer el cliente, si es que tiene que hacer algo.]</p>" },
+        { "type": "text", "id": "meta", "label": "Plazo", "default": "[ej. 10 minutos]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cómo funciona",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Rellenas el brief", "meta": "10 minutos" } },
+        { "type": "step", "settings": { "title": "Producimos los creativos", "meta": "72 horas" } },
+        { "type": "step", "settings": { "title": "Revisas y lanzas", "meta": "2 rondas incluidas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

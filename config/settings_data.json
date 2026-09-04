@@ -1,0 +1,9 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "brand_accent": "#7B61FF",
+      "market_shortcuts": "es|ES|€|Español\nen|US|$|English"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Cifras agregadas. El número se anima al entrar en viewport (motion.js) usando
+  data-count-to; el prefijo y el sufijo se mantienen fuera para que el formateo
+  numérico siga la configuración regional del visitante.
+{%- endcomment -%}
+
+<section class="section section--tight metrics">
+  <div class="wrap">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-head section-head--center">
+        <h2 class="t-h3" data-reveal>{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="metrics__grid metrics__grid--{{ section.blocks.size }}" data-stagger="90">
+      {%- for block in section.blocks -%}
+        <div class="metrics__item" {{ block.shopify_attributes }} data-reveal>
+          <p class="t-metric metrics__value metrics__value--{{ block.settings.color }}">
+            {%- if block.settings.prefix != blank -%}<span class="metrics__affix">{{ block.settings.prefix }}</span>{%- endif -%}
+            {%- if block.settings.animate and block.settings.number != blank -%}
+              <span data-count-to="{{ block.settings.number }}" data-count-decimals="{{ block.settings.decimals }}">0</span>
+            {%- else -%}
+              {{ block.settings.number }}
+            {%- endif -%}
+            {%- if block.settings.suffix != blank -%}<span class="metrics__affix">{{ block.settings.suffix }}</span>{%- endif -%}
+          </p>
+          <p class="metrics__label">{{ block.settings.label }}</p>
+          {%- if block.settings.note != blank -%}
+            <p class="metrics__note">{{ block.settings.note }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="metrics__disclaimer t-sm" data-reveal="fade">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cifras",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titular", "default": "" },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Nota al pie",
+      "info": "Importante para que las cifras sean verificables: di de dónde salen.",
+      "default": "[Datos agregados de campañas reales de clientes entre [fecha] y [fecha]. Disponibles bajo petición.]"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Cifra",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "prefix", "label": "Prefijo", "default": "" },
+        { "type": "text", "id": "number", "label": "Número", "default": "7.4" },
+        { "type": "text", "id": "suffix", "label": "Sufijo", "default": "%" },
+        { "type": "checkbox", "id": "animate", "label": "Animar el conteo", "default": true },
+        { "type": "range", "id": "decimals", "label": "Decimales", "min": 0, "max": 2, "step": 1, "default": 1 },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "[CTR medio]" },
+        { "type": "text", "id": "note", "label": "Nota", "default": "" },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Color",
+          "options": [
+            { "value": "green", "label": "Verde" },
+            { "value": "cyan", "label": "Cian" },
+            { "value": "violet", "label": "Violeta" },
+            { "value": "plain", "label": "Blanco" }
+          ],
+          "default": "plain"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cifras",
+      "blocks": [
+        { "type": "metric", "settings": { "color": "green" } },
+        { "type": "metric", "settings": { "color": "cyan", "number": "38", "suffix": "%", "decimals": 0, "label": "[Bajada de CPA]" } },
+        { "type": "metric", "settings": { "color": "violet", "number": "72", "suffix": " h", "decimals": 0, "label": "[Plazo de entrega]" } },
+        { "type": "metric", "settings": { "color": "plain", "number": "240", "suffix": "+", "decimals": 0, "label": "[Creativos producidos]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

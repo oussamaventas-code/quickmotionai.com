@@ -1,0 +1,130 @@
+{%- comment -%}
+  Marco de vídeo del tema. Un solo sitio donde se decide cómo se carga el vídeo.
+
+  Nada se descarga hasta que el marco se acerca al viewport: preload="none" y la
+  URL vive en data-src hasta que video-player.js la promociona. El póster es una
+  imagen responsive normal, así que el LCP nunca depende del vídeo.
+
+  Parámetros
+    video        objeto Video de Shopify (recomendado: CDN + varias alturas)
+    video_url    URL .mp4 externa (alternativa a `video`)
+    poster       objeto Image (si falta y hay `video`, se usa su preview)
+    ratio        '9-16' (por defecto) | '4-5' | '1-1' | '16-9'
+    max_height   altura máxima de la fuente de vídeo a servir. 720 por defecto.
+    poster_max / poster_widths / sizes   controlan el srcset del póster.
+                 Usa poster_max: 1600 y sizes: '100vw' para fondos a pantalla completa.
+    eager        true para el hero: carga sin esperar al observer
+    autoplay     false para dejarlo en póster hasta que el usuario pulse
+    sound        true → botón de silencio en la tarjeta
+    lightbox     true → botón que abre el creativo a pantalla completa con sonido
+    caption      texto sobre el degradado inferior
+    m1_value/m1_label, m2_value/m2_label   métricas (p. ej. "7,4%" / "CTR")
+    m_color      green | cyan | violet
+    class        clases extra para el marco
+    loading      'eager' | 'lazy' para el póster
+{%- endcomment -%}
+
+{%- liquid
+  assign ratio = ratio | default: '9-16'
+  assign cap = max_height | default: 720
+  assign frame_class = class | default: ''
+  assign poster_loading = loading | default: 'lazy'
+  assign metric_color = m_color | default: 'green'
+
+  assign src = video_url
+  if video != blank
+    assign mp4s = video.sources | where: 'format', 'mp4'
+    for source in mp4s
+      assign src = source.url
+      if source.height >= cap
+        break
+      endif
+    endfor
+  endif
+
+  assign poster_image = poster
+  if poster_image == blank and video != blank
+    assign poster_image = video.preview_image
+  endif
+
+  assign has_media = false
+  if src != blank or poster_image != blank
+    assign has_media = true
+  endif
+-%}
+
+<div class="vframe vframe--{{ ratio }} {{ frame_class }}{% if src == blank %} vframe--static{% endif %}">
+  {%- if poster_image != blank -%}
+    {{
+      poster_image
+      | image_url: width: poster_max | default: 900
+      | image_tag:
+        loading: poster_loading,
+        decoding: 'async',
+        widths: poster_widths | default: '320, 480, 640, 900',
+        sizes: sizes | default: '(max-width: 749px) 78vw, 320px',
+        class: 'vframe__poster',
+        alt: poster_image.alt | default: caption | default: ''
+    }}
+  {%- elsif has_media == false -%}
+    {%- comment -%} Marcador de posición hasta que cargues el creativo real {%- endcomment -%}
+    <div class="vframe__placeholder" aria-hidden="true">
+      {% render 'icon', name: 'video', size: 28 %}
+      <span>{{ 'sections.portfolio.placeholder' | t }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if src != blank -%}
+    <video
+      data-lazy-video
+      {% if eager %}data-eager="true"{% endif %}
+      {% if autoplay == false %}data-autoplay="false"{% endif %}
+      preload="none"
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+      disablepictureinpicture
+      tabindex="-1"
+      aria-hidden="true"
+      {% if poster_image != blank %}poster="{{ poster_image | image_url: width: 640 }}"{% endif %}
+    >
+      <source data-src="{{ src }}" type="video/mp4">
+    </video>
+
+    <div class="vframe__spinner" aria-hidden="true"><span></span></div>
+  {%- endif -%}
+
+  {%- if caption != blank or m1_value != blank or m2_value != blank -%}
+    <div class="vframe__scrim" aria-hidden="true"></div>
+    <div class="vframe__meta">
+      {%- if caption != blank -%}
+        <p class="vframe__caption">{{ caption }}</p>
+      {%- endif -%}
+      {%- if m1_value != blank -%}
+        {% render 'metric-chip', value: m1_value, label: m1_label, color: metric_color %}
+      {%- endif -%}
+      {%- if m2_value != blank -%}
+        {% render 'metric-chip', value: m2_value, label: m2_label, color: 'cyan' %}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if lightbox and src != blank -%}
+    <button
+      type="button"
+      class="vframe__action"
+      data-video-open="{{ src }}"
+      {% if poster_image != blank %}data-video-poster="{{ poster_image | image_url: width: 640 }}"{% endif %}
+    >
+      {% render 'icon', name: 'expand', size: 15 %}
+      <span class="visually-hidden">{{ 'sections.portfolio.watch_full' | t }}</span>
+    </button>
+  {%- elsif sound and src != blank -%}
+    <button type="button" class="vframe__action" data-video-sound aria-pressed="false">
+      <span data-icon-off>{% render 'icon', name: 'sound-off', size: 15 %}</span>
+      <span data-icon-on class="hidden">{% render 'icon', name: 'sound-on', size: 15 %}</span>
+      <span class="visually-hidden">{{ 'sections.portfolio.toggle_sound' | t }}</span>
+    </button>
+  {%- endif -%}
+</div>

@@ -1,0 +1,61 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+<section class="section section--tight logos">
+  <div class="wrap">
+    {%- if section.settings.title != blank -%}
+      <p class="t-label t-label--plain logos__title" data-reveal="fade">{{ section.settings.title }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="marquee logos__marquee" style="--marquee-duration: {{ section.settings.speed }}s;" data-reveal="fade">
+    <div class="marquee__track">
+      {%- for block in section.blocks -%}
+        <div class="marquee__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            {{
+              block.settings.logo
+              | image_url: width: 240
+              | image_tag:
+                loading: 'lazy',
+                widths: '120, 180, 240',
+                sizes: '120px',
+                alt: block.settings.name | default: ''
+            }}
+          {%- else -%}
+            <span>{{ block.settings.name | default: 'Cliente' }}</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquesina de logos",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "[Agencias que ya producen con nosotros]" },
+    { "type": "range", "id": "speed", "label": "Duración del bucle", "min": 20, "max": 80, "step": 2, "unit": "s", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo", "label": "Logotipo", "info": "PNG/SVG monocromo. Se invierte a blanco automáticamente." },
+        { "type": "text", "id": "name", "label": "Nombre", "info": "Se muestra como texto si no subes logotipo.", "default": "[Cliente]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquesina de logos",
+      "blocks": [
+        { "type": "logo" }, { "type": "logo" }, { "type": "logo" },
+        { "type": "logo" }, { "type": "logo" }, { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

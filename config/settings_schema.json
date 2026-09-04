@@ -1,0 +1,52 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Cinematic Ads",
+    "theme_version": "1.0.0",
+    "theme_author": "Estudio interno",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_email": "hola@tudominio.com"
+  },
+  {
+    "name": "Marca",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Se recomienda 32×32 px, PNG."
+      },
+      {
+        "type": "color",
+        "id": "brand_accent",
+        "label": "Acento de marca",
+        "default": "#7B61FF",
+        "info": "Sustituye el violeta eléctrico en todo el tema. Úsalo sólo si cambias de paleta."
+      }
+    ]
+  },
+  {
+    "name": "Mercados",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Configura los mercados reales en Ajustes → Mercados. Esto sólo define los atajos que aparecen arriba del todo en el selector."
+      },
+      {
+        "type": "textarea",
+        "id": "market_shortcuts",
+        "label": "Atajos de mercado",
+        "info": "Uno por línea, formato: idioma|país|símbolo|nombre",
+        "default": "es|ES|€|Español\nen|US|$|English"
+      }
+    ]
+  },
+  {
+    "name": "Redes sociales",
+    "settings": [
+      { "type": "text", "id": "social_twitter_link", "label": "X / Twitter", "info": "URL completa del perfil." },
+      { "type": "text", "id": "social_instagram_link", "label": "Instagram" },
+      { "type": "text", "id": "social_linkedin_link", "label": "LinkedIn" }
+    ]
+  }
+]

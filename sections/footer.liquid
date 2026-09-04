@@ -1,0 +1,109 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="footer-top">
+      <div class="footer-brand" data-reveal>
+        <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name }}">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '140px', alt: shop.name }}
+          {%- else -%}
+            <span class="brand__mark" aria-hidden="true">{{ shop.name | slice: 0 }}</span>
+            <span>{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+        {%- if section.settings.tagline != blank -%}
+          <p class="footer-brand__text">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+        {%- if section.settings.show_market_selector -%}
+          <div style="margin-top: var(--s-5);">{% render 'market-selector', id: 'footer' %}</div>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            <div class="footer-col" {{ block.shopify_attributes }} data-reveal style="--reveal-delay: {{ forloop.index0 | times: 60 }}ms">
+              {%- if block.settings.title != blank -%}
+                <p class="footer-col__title">{{ block.settings.title }}</p>
+              {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <nav aria-label="{{ block.settings.title | default: 'Footer' }}">
+                  {%- for link in linklists[block.settings.menu].links -%}
+                    <a href="{{ link.url }}" class="footer-col__link">{{ link.title }}</a>
+                  {%- endfor -%}
+                </nav>
+              {%- endif -%}
+            </div>
+
+          {%- when 'text' -%}
+            <div class="footer-col" {{ block.shopify_attributes }} data-reveal style="--reveal-delay: {{ forloop.index0 | times: 60 }}ms">
+              {%- if block.settings.title != blank -%}
+                <p class="footer-col__title">{{ block.settings.title }}</p>
+              {%- endif -%}
+              <div class="rte t-sm">{{ block.settings.body }}</div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.rights }}</p>
+
+      {%- if section.settings.legal_menu != blank -%}
+        <nav class="footer-legal" aria-label="{{ 'sections.footer.legal' | t }}">
+          {%- for link in linklists[section.settings.legal_menu].links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <div class="payment-icons" role="list" aria-label="{{ 'sections.footer.payment' | t }}">
+          {%- for type in shop.enabled_payment_types -%}
+            <span role="listitem">{{ type | payment_type_svg_tag: class: 'payment-icon' }}</span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.watermark != blank -%}
+      <p class="footer-watermark" aria-hidden="true">{{ section.settings.watermark }}</p>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logotipo" },
+    { "type": "text", "id": "tagline", "label": "Descriptor", "default": "Vídeos-anuncio producidos con IA para agencias. Del brief a los creativos listos para lanzar." },
+    { "type": "checkbox", "id": "show_market_selector", "label": "Selector de mercado", "default": true },
+    { "type": "header", "content": "Parte inferior" },
+    { "type": "text", "id": "rights", "label": "Aviso de derechos", "default": "Todos los derechos reservados." },
+    { "type": "link_list", "id": "legal_menu", "label": "Menú legal", "info": "Aviso legal, privacidad, términos, reembolsos." },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Iconos de pago", "default": true },
+    { "type": "text", "id": "watermark", "label": "Marca de agua", "info": "Texto grande y muy tenue al final de la página. Deja vacío para ocultarlo." }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Columna de menú",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Servicio" },
+        { "type": "link_list", "id": "menu", "label": "Menú" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Columna de texto",
+      "limit": 2,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Contacto" },
+        { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>hola@tudominio.com<br>Respuesta en menos de 24 h laborables.</p>" }
+      ]
+    }
+  ],
+  "enabled_on": { "groups": ["footer"] }
+}
+{% endschema %}

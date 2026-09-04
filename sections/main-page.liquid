@@ -1,0 +1,28 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Página de contenido genérica (legal, aviso de privacidad, términos...).
+  Se mantiene sobria a propósito: aquí no hace falta la escenografía del resto
+  del tema, sólo que el texto legal se lea bien.
+{%- endcomment -%}
+
+<section class="section page-content">
+  <div class="wrap wrap--narrow">
+    <h1 class="t-h2 page-content__title" data-reveal>{{ page.title }}</h1>
+    <div class="rte page-content__body" data-reveal="fade" style="--reveal-delay: 80ms">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-content { padding-top: calc(var(--header-h) + var(--s-8)); }
+  .page-content__title { margin-bottom: var(--s-7); }
+</style>
+
+{% schema %}
+{
+  "name": "Página",
+  "tag": "div"
+}
+{% endschema %}

@@ -1,0 +1,155 @@
+{%- liquid
+  assign menu = section.settings.menu
+  assign cart_count = cart.item_count
+-%}
+
+<header
+  class="site-header{% if section.settings.static_header %} is-static{% endif %}"
+  data-header
+  {% if section.settings.static_header %}data-header-static{% endif %}
+>
+  <div class="wrap site-header__inner">
+    {%- comment -%} Marca {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{
+          section.settings.logo
+          | image_url: width: 320
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '120, 180, 240, 320',
+            sizes: '160px',
+            alt: shop.name,
+            style: '--brand-h: 26px;'
+        }}
+      {%- else -%}
+        <span class="brand__mark" aria-hidden="true">{{ shop.name | slice: 0 }}</span>
+        <span>{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Navegación de escritorio {%- endcomment -%}
+    {%- if menu != blank -%}
+      <nav class="nav" aria-label="{{ 'sections.header.menu' | t }}">
+        {%- for link in linklists[menu].links -%}
+          <a
+            href="{{ link.url }}"
+            class="nav__link"
+            {% if link.current or link.child_active %}aria-current="page"{% endif %}
+          >{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="site-header__actions">
+      {%- if section.settings.show_market_selector -%}
+        <div class="hide-mobile">{% render 'market-selector', id: 'header' %}</div>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url | default: routes.root_url }}" class="btn btn--primary btn--sm hide-mobile">
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.show_cart -%}
+        <a href="{{ routes.cart_url }}" class="cart-link" aria-label="{{ 'templates.cart.cart' | t }}">
+          {% render 'icon', name: 'cart', size: 19 %}
+          {%- if cart_count > 0 -%}
+            <span class="cart-link__count">{{ cart_count }}</span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+
+      <button
+        type="button"
+        class="burger"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="{{ 'sections.header.menu' | t }}"
+        data-burger
+      >
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Menú móvil {%- endcomment -%}
+<div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+  {%- if menu != blank -%}
+    <nav aria-label="{{ 'sections.header.menu' | t }}">
+      {%- for link in linklists[menu].links -%}
+        <a href="{{ link.url }}" class="mobile-nav__link" style="transition-delay: {{ forloop.index0 | times: 45 }}ms">
+          {{ link.title }}
+          {% render 'icon', name: 'arrow-up-right', size: 15 %}
+        </a>
+      {%- endfor -%}
+    </nav>
+  {%- endif -%}
+
+  <div class="mobile-nav__footer">
+    {%- if section.settings.cta_label != blank -%}
+      <a href="{{ section.settings.cta_url | default: routes.root_url }}" class="btn btn--primary btn--full">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+    {%- if section.settings.show_market_selector -%}
+      {% render 'market-selector', id: 'mobile' %}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var burger = document.querySelector('[data-burger]');
+    var nav = document.querySelector('[data-mobile-nav]');
+    if (!burger || !nav) return;
+
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', String(open));
+      if (open) nav.hidden = false;
+      requestAnimationFrame(function () { nav.classList.toggle('is-open', open); });
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (!open) {
+        // Espera a que termine la transición antes de sacarlo del árbol de foco
+        setTimeout(function () { if (!nav.classList.contains('is-open')) nav.hidden = true; }, 320);
+      }
+    }
+
+    burger.addEventListener('click', function () {
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        burger.focus();
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 990 && burger.getAttribute('aria-expanded') === 'true') setOpen(false);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cabecera",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logotipo", "info": "SVG o PNG con fondo transparente. Si lo dejas vacío se usa el nombre de la tienda." },
+    { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" },
+    { "type": "header", "content": "Acciones" },
+    { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Ver precios" },
+    { "type": "url", "id": "cta_url", "label": "Enlace del botón" },
+    { "type": "checkbox", "id": "show_market_selector", "label": "Mostrar selector de mercado", "default": true },
+    { "type": "checkbox", "id": "show_cart", "label": "Mostrar icono de carrito", "default": true },
+    { "type": "header", "content": "Comportamiento" },
+    { "type": "checkbox", "id": "static_header", "label": "Cabecera siempre visible", "default": false, "info": "Por defecto la cabecera se oculta al bajar y reaparece al subir." }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

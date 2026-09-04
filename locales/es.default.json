@@ -1,0 +1,94 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Entrar con la contraseña de la tienda",
+      "login_form_password_label": "Contraseña",
+      "login_form_password_placeholder": "Tu contraseña",
+      "password_placeholder": "Contraseña",
+      "login_form_submit": "Entrar",
+      "enter_password": "Entrar",
+      "login_form_error": "Contraseña incorrecta.",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "Te avisaremos por email en cuanto abramos."
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "404",
+      "link": "Volver al inicio"
+    },
+    "pagination": {
+      "page": "Página",
+      "next": "Siguiente",
+      "previous": "Anterior"
+    },
+    "share": {
+      "success_message": "Enlace copiado"
+    },
+    "continue_shopping": "Seguir viendo packs",
+    "back": "Atrás",
+    "choose": "Elige una opción",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "accessibility": {
+    "skip_to_text": "Ir directamente al contenido",
+    "close": "Cerrar",
+    "refresh_page": "Al seleccionar una opción, la página se recarga entera.",
+    "link_messages": {
+      "new_window": "Se abre en una ventana nueva."
+    }
+  },
+  "localization": {
+    "country_label": "País / región",
+    "market_label": "Mercado",
+    "country_results_count": "{{ count }} países encontrados"
+  },
+  "templates": {
+    "cart": {
+      "cart": "Carrito"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menú principal",
+      "cart_count": "{{ count }} artículos en el carrito"
+    },
+    "footer": {
+      "legal": "Legal",
+      "payment": "Métodos de pago"
+    },
+    "cart": {
+      "cart_error": "Hubo un problema al actualizar el carrito. Inténtalo de nuevo.",
+      "cart_quantity_error_html": "Sólo puedes añadir {{ quantity }} unidades de este producto al carrito.",
+      "empty": "Tu carrito está vacío por ahora.",
+      "subtotal": "Subtotal",
+      "checkout": "Ir al pago",
+      "remove_title": "Eliminar",
+      "digital_note": "Servicio digital: sin gastos de envío ni dirección que rellenar."
+    },
+    "portfolio": {
+      "placeholder": "Vídeo pendiente de subir",
+      "watch_full": "Ver el vídeo completo",
+      "toggle_sound": "Activar o silenciar el sonido"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Añadir",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "value_unavailable": "{{ option_value }} no disponible",
+      "choose_plan": "Elige tu plan",
+      "quantity": {
+        "label": "Cantidad",
+        "increase": "Aumentar cantidad de {{ product }}",
+        "decrease": "Reducir cantidad de {{ product }}"
+      }
+    }
+  },
+  "contact": {
+    "form": {
+      "required": "Este campo es obligatorio."
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+  assign video_blocks = section.blocks | where: 'type', 'video'
+-%}
+
+<section
+  class="hero hero--{{ s.layout }}{% if s.show_gridlines %} gridlines{% endif %}"
+  style="--hero-min: {{ s.height }}svh;"
+>
+  {%- comment -%} Atmósfera de fondo {%- endcomment -%}
+  <div class="hero__bg" aria-hidden="true">
+    <span class="halo halo--tl" style="--halo-color: var(--c-violet); --halo-opacity: {{ s.glow_intensity | divided_by: 100.0 }};"></span>
+    <span class="halo halo--tr" style="--halo-color: var(--c-cyan); --halo-opacity: {{ s.glow_intensity | divided_by: 160.0 }};"></span>
+
+    {%- if s.layout == 'bg-video' and s.bg_video != blank -%}
+      <div class="hero__bg-video" data-parallax="0.08">
+        <div>
+          {% render 'video-embed',
+            video: s.bg_video,
+            ratio: '16-9',
+            max_height: 1080,
+            eager: true,
+            class: 'vframe--bare',
+            loading: 'eager',
+            poster_max: 1800,
+            poster_widths: '640, 1024, 1440, 1800',
+            sizes: '100vw'
+          %}
+        </div>
+      </div>
+      <div class="hero__bg-mask"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      {%- if s.eyebrow != blank -%}
+        <p class="chip chip--violet hero__eyebrow" data-reveal="fade">
+          <span class="chip__dot chip__dot--pulse" aria-hidden="true"></span>
+          {{ s.eyebrow }}
+        </p>
+      {%- endif -%}
+
+      <h1 class="t-mega hero__title" data-reveal style="--reveal-delay: 60ms">
+        {{ s.heading }}
+        {%- if s.heading_accent != blank -%}
+          <span class="t-grad">{{ s.heading_accent }}</span>
+        {%- endif -%}
+      </h1>
+
+      {%- if s.body != blank -%}
+        <p class="t-lead hero__body" data-reveal style="--reveal-delay: 140ms">{{ s.body }}</p>
+      {%- endif -%}
+
+      <div class="btn-row hero__ctas" data-reveal style="--reveal-delay: 220ms">
+        {%- if s.cta_primary_label != blank -%}
+          <a href="{{ s.cta_primary_url | default: routes.all_products_collection_url }}" class="btn btn--primary btn--lg">
+            {{ s.cta_primary_label }}
+            {% render 'icon', name: 'arrow-right', size: 16 %}
+          </a>
+        {%- endif -%}
+        {%- if s.cta_secondary_label != blank -%}
+          <a href="{{ s.cta_secondary_url }}" class="btn btn--ghost btn--lg">
+            {% render 'icon', name: 'play', size: 13 %}
+            {{ s.cta_secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if s.proof != blank -%}
+        <div class="hero__proof" data-reveal style="--reveal-delay: 300ms">
+          <span class="live-dot" aria-hidden="true"></span>
+          <p class="t-sm t-dim">{{ s.proof }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}
+      Pila de creativos. En escritorio se escalonan en vertical con parallax;
+      en móvil se convierten en una tira con scroll y ajuste por tarjeta.
+    {%- endcomment -%}
+    {%- if s.layout == 'split' and video_blocks.size > 0 -%}
+      <div class="hero__stack" data-stagger="90">
+        {%- for block in video_blocks -%}
+          {%- liquid
+            assign poster_loading = 'lazy'
+            if forloop.first
+              assign poster_loading = 'eager'
+            endif
+          -%}
+          <div
+            class="hero__stack-item hero__stack-item--{{ forloop.index }}"
+            data-parallax="{{ forloop.index | times: 4 | plus: 4 | divided_by: 100.0 }}"
+            {{ block.shopify_attributes }}
+          >
+            <div data-reveal="scale">
+              {% render 'video-embed',
+                video: block.settings.video,
+                video_url: block.settings.video_url,
+                poster: block.settings.poster,
+                ratio: '9-16',
+                eager: forloop.first,
+                loading: poster_loading,
+                lightbox: true,
+                caption: block.settings.caption,
+                m1_value: block.settings.metric_value,
+                m1_label: block.settings.metric_label,
+                m_color: block.settings.metric_color,
+                class: 'vframe--lift',
+                sizes: '(max-width: 989px) 62vw, 230px'
+              %}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if s.show_scroll_cue -%}
+    <div class="hero__cue" aria-hidden="true">
+      <span class="hero__cue-line"></span>
+      <span class="t-label t-label--plain">{{ s.scroll_label }}</span>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Composición",
+      "options": [
+        { "value": "split", "label": "Texto + pila de creativos" },
+        { "value": "bg-video", "label": "Vídeo de fondo a pantalla completa" },
+        { "value": "center", "label": "Texto centrado" }
+      ],
+      "default": "split"
+    },
+    { "type": "range", "id": "height", "label": "Altura", "min": 70, "max": 100, "step": 2, "unit": "vh", "default": 92 },
+    { "type": "header", "content": "Contenido" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "[Prueba social · ej. 40 agencias ya producen aquí]" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Creativos de vídeo que" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada del titular", "info": "Se pinta con el degradado de marca.", "default": "rinden desde el día uno" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Explica en una frase qué entregas, en cuánto tiempo y para quién. Ej.: cinco vídeos-anuncio listos para Meta y TikTok cada mes, producidos con IA, entregados en 72 horas.]" },
+    { "type": "text", "id": "proof", "label": "Línea de refuerzo", "default": "[Ej. Producción activa · próxima entrega en 72 h]" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta_primary_label", "label": "Botón principal", "default": "Ver precios" },
+    { "type": "url", "id": "cta_primary_url", "label": "Enlace principal" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Botón secundario", "default": "Ver creativos" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Enlace secundario" },
+    { "type": "header", "content": "Fondo" },
+    { "type": "video", "id": "bg_video", "label": "Vídeo de fondo", "info": "Sólo para la composición de vídeo a pantalla completa." },
+    { "type": "range", "id": "glow_intensity", "label": "Intensidad del resplandor", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 45 },
+    { "type": "checkbox", "id": "show_gridlines", "label": "Rejilla de fondo", "default": true },
+    { "type": "header", "content": "Indicador de scroll" },
+    { "type": "checkbox", "id": "show_scroll_cue", "label": "Mostrar indicador", "default": true },
+    { "type": "text", "id": "scroll_label", "label": "Texto del indicador", "default": "Desliza" }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Creativo",
+      "limit": 3,
+      "settings": [
+        { "type": "video", "id": "video", "label": "Vídeo", "info": "Súbelo a Shopify: sirve varias resoluciones automáticamente." },
+        { "type": "text", "id": "video_url", "label": "URL de vídeo externo (.mp4)", "info": "Alternativa si alojas los vídeos fuera de Shopify." },
+        { "type": "image_picker", "id": "poster", "label": "Póster", "info": "Primer fotograma. Es lo que se ve antes de que cargue el vídeo." },
+        { "type": "text", "id": "caption", "label": "Pie", "default": "[Cliente · sector]" },
+        { "type": "text", "id": "metric_value", "label": "Métrica", "default": "7,4%" },
+        { "type": "text", "id": "metric_label", "label": "Etiqueta de la métrica", "default": "CTR" },
+        {
+          "type": "select",
+          "id": "metric_color",
+          "label": "Color de la métrica",
+          "options": [
+            { "value": "green", "label": "Verde" },
+            { "value": "cyan", "label": "Cian" },
+            { "value": "violet", "label": "Violeta" }
+          ],
+          "default": "green"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [{ "type": "video" }, { "type": "video" }, { "type": "video" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "blocks": {
+        "pl1": { "type": "pill", "settings": { "text": "[Sin permanencia]" } },
+        "pl2": { "type": "pill", "settings": { "text": "[Cancela cuando quieras]" } },
+        "pl3": { "type": "pill", "settings": { "text": "[Entrega en 72 h]" } }
+      },
+      "block_order": ["pl1", "pl2", "pl3"],
+      "settings": {
+        "eyebrow": "Precios",
+        "heading": "Elige tu volumen",
+        "heading_accent": "de producción",
+        "body": "[Precios en tu moneda local. Todos los packs son un servicio digital: sin envío, sin coste de setup.]"
+      }
+    },
+    "pricing": {
+      "type": "pricing-cards",
+      "blocks": {
+        "pk1": {
+          "type": "pack",
+          "settings": {
+            "pitch": "[Para probar el servicio]",
+            "features": "[3 vídeos-anuncio al mes]\n[Formatos 9:16 y 4:5]\n[1 ronda de revisión]\n[Entrega en 72 h]"
+          }
+        },
+        "pk2": {
+          "type": "pack",
+          "settings": {
+            "featured": true,
+            "badge": "Más elegido",
+            "pitch": "[Para escalar cuentas activas]",
+            "features": "[5 vídeos-anuncio al mes]\n[Formatos 9:16, 4:5 y 1:1]\n[2 rondas de revisión]\n[Entrega en 72 h]"
+          }
+        },
+        "pk3": {
+          "type": "pack",
+          "settings": {
+            "pitch": "[Para agencias con varias cuentas]",
+            "features": "[10 vídeos-anuncio al mes]\n[Todos los formatos]\n[3 rondas de revisión]\n[Entrega en 48 h]\n[Gestor de cuenta dedicado]"
+          }
+        }
+      },
+      "block_order": ["pk1", "pk2", "pk3"],
+      "settings": { "eyebrow": "", "heading": "Los tres packs", "heading_accent": "" }
+    },
+    "includes": {
+      "type": "comparison-table",
+      "settings": {
+        "eyebrow": "Qué incluye cada uno",
+        "heading": "Compara los packs",
+        "heading_accent": "en detalle",
+        "columns": "Starter, Growth, Scale",
+        "highlight_index": 1
+      },
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Vídeos al mes", "values": "3, 5, 10" } },
+        "r2": { "type": "row", "settings": { "label": "Formatos", "values": "9:16 y 4:5, Todos, Todos" } },
+        "r3": { "type": "row", "settings": { "label": "Revisiones incluidas", "values": "1, 2, 3" } },
+        "r4": { "type": "row", "settings": { "label": "Plazo de entrega", "values": "72 h, 72 h, 48 h" } },
+        "r5": { "type": "row", "settings": { "label": "Gestor de cuenta dedicado", "values": "no, no, si" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "¿Los precios incluyen IVA?" } },
+        "f2": { "type": "faq", "settings": { "question": "¿Puedo cambiar de pack a mitad de mes?" } },
+        "f3": { "type": "faq", "settings": { "question": "¿Cómo se factura la suscripción?" } }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": { "layout": "stack" }
+    },
+    "guarantee": { "type": "guarantee-band" }
+  },
+  "order": ["hero", "pricing", "includes", "faq", "guarantee"]
+}

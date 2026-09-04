@@ -1,0 +1,11 @@
+{%- comment -%}
+  Métrica flotante: {% render 'metric-chip', value: '7,4%', label: 'CTR', color: 'green' %}
+  `count: true` anima el número al entrar en viewport (sólo si es numérico puro).
+{%- endcomment -%}
+{%- liquid
+  assign c = color | default: 'green'
+-%}
+<span class="metric-chip metric-chip--{{ c }}">
+  <span class="metric-chip__value"{% if count_to != blank %} data-count-to="{{ count_to }}" data-count-decimals="{{ decimals | default: 0 }}"{% endif %}>{{ value }}</span>
+  {%- if label != blank -%}<span class="metric-chip__label">{{ label }}</span>{%- endif -%}
+</span>

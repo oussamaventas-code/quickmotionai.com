@@ -1,0 +1,31 @@
+{
+  "name": "Pie de página",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu-1": {
+          "type": "menu",
+          "settings": { "title": "Servicio", "menu": "footer" }
+        },
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "title": "Contacto",
+            "body": "<p>hola@tudominio.com<br>Respuesta en menos de 24 h laborables.</p>"
+          }
+        }
+      },
+      "block_order": ["menu-1", "text-1"],
+      "settings": {
+        "tagline": "Vídeos-anuncio producidos con IA para agencias. Del brief a los creativos listos para lanzar.",
+        "show_market_selector": true,
+        "rights": "Todos los derechos reservados.",
+        "show_payment_icons": true,
+        "watermark": ""
+      }
+    }
+  },
+  "order": ["footer"]
+}

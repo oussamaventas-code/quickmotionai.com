@@ -1,0 +1,98 @@
+{%- comment -%}
+  Contenido reemplazable del carrito. Vive aparte de main-cart.liquid para que
+  cart.js pueda pedir sólo esto tras cada cambio de cantidad (?sections=main-cart)
+  y sustituir el HTML sin recargar la página.
+{%- endcomment -%}
+
+<p class="field__error cart-page__error" data-cart-error hidden role="alert"></p>
+
+{%- if cart == empty -%}
+  <div class="cart-page__empty" data-reveal="fade">
+    <p class="t-lead">{{ 'sections.cart.empty' | t }}</p>
+    <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btn btn--primary btn--lg">
+      {{ 'general.continue_shopping' | t }}
+      {% render 'icon', name: 'arrow-right', size: 16 %}
+    </a>
+  </div>
+{%- else -%}
+  <ul class="cart-lines" role="list">
+    {%- for item in cart.items -%}
+      <li class="cart-line" data-cart-line>
+        <div class="cart-line__media">
+          {%- if item.image != blank -%}
+            {{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 120, 160', sizes: '64px', alt: item.title }}
+          {%- else -%}
+            <span class="cart-line__media-fallback" aria-hidden="true">{% render 'icon', name: 'video', size: 20 %}</span>
+          {%- endif -%}
+        </div>
+
+        <div class="cart-line__info">
+          <a href="{{ item.url }}" class="cart-line__title">{{ item.product.title }}</a>
+          {%- if item.variant.title != 'Default Title' -%}
+            <p class="cart-line__variant">{{ item.variant.title }}</p>
+          {%- endif -%}
+          {%- if item.selling_plan_allocation != blank -%}
+            <p class="cart-line__plan">
+              {% render 'icon', name: 'refresh', size: 12 %}
+              {{ item.selling_plan_allocation.selling_plan.name }}
+            </p>
+          {%- endif -%}
+
+          <button type="button" class="cart-line__remove" data-line-remove="{{ forloop.index }}">
+            {{ 'sections.cart.remove_title' | t }}
+          </button>
+        </div>
+
+        <div class="cart-line__qty">
+          <div class="qty-stepper">
+            <button type="button" class="qty-stepper__btn" data-qty-decrease data-line="{{ forloop.index }}" aria-label="{{ 'products.product.quantity.decrease' | t: product: item.title }}">
+              {% render 'icon', name: 'minus', size: 12 %}
+            </button>
+            <input
+              type="number"
+              class="qty-stepper__input"
+              min="0"
+              value="{{ item.quantity }}"
+              data-qty-input
+              data-line="{{ forloop.index }}"
+              aria-label="{{ 'products.product.quantity.label' | t }}"
+            >
+            <button type="button" class="qty-stepper__btn" data-qty-increase data-line="{{ forloop.index }}" aria-label="{{ 'products.product.quantity.increase' | t: product: item.title }}">
+              {% render 'icon', name: 'plus', size: 12 %}
+            </button>
+          </div>
+        </div>
+
+        <div class="cart-line__price">
+          {%- if item.original_line_price != item.final_line_price -%}
+            <span class="cart-line__price-compare">{{ item.original_line_price | money }}</span>
+          {%- endif -%}
+          <span>{{ item.final_line_price | money }}</span>
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <div class="cart-page__foot">
+    <div class="cart-page__totals">
+      <div class="cart-page__totals-row">
+        <span>{{ 'sections.cart.subtotal' | t }}</span>
+        <span class="t-h4">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="cart-page__note t-sm t-dim">
+        {% render 'icon', name: 'shield', size: 13 %}
+        {{ 'sections.cart.digital_note' | t }}
+      </p>
+    </div>
+
+    <form action="{{ routes.cart_url }}" method="post" class="cart-page__checkout-form">
+      <button type="submit" name="checkout" class="btn btn--primary btn--lg btn--full">
+        {{ 'sections.cart.checkout' | t }}
+        {% render 'icon', name: 'arrow-right', size: 16 %}
+      </button>
+      <a href="{{ routes.all_products_collection_url | default: routes.root_url }}" class="btn btn--text cart-page__continue">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+    </form>
+  </div>
+{%- endif -%}

@@ -1,0 +1,24 @@
+{%- comment -%}
+  Contenedor genérico para bloques de apps de Shopify (reseñas, upsells, etc.).
+  Los blocks de tipo @app se estilan solos; esto sólo les da el ancho del tema.
+{%- endcomment -%}
+
+<div class="section{% unless section.settings.include_margins %} section--flush{% endunless %}">
+  <div class="{% if section.settings.include_margins %}wrap{% endif %}" data-stagger="60">
+    {%- for block in section.blocks -%}
+      <div data-reveal="fade" {{ block.shopify_attributes }}>{% render block %}</div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Apps",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "include_margins", "label": "Ajustar al ancho del tema", "default": true }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Apps" }]
+}
+{% endschema %}

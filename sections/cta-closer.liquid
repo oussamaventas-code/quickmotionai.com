@@ -1,0 +1,64 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section closer">
+  <span class="halo halo--bc" style="--halo-color: var(--c-violet); --halo-opacity: 0.28;" aria-hidden="true"></span>
+  {%- if s.show_gridlines -%}<span class="closer__grid gridlines" aria-hidden="true"></span>{%- endif -%}
+
+  <div class="wrap wrap--narrow closer__inner">
+    {%- if s.eyebrow != blank -%}
+      <p class="chip chip--violet" data-reveal="fade">
+        <span class="chip__dot chip__dot--pulse" aria-hidden="true"></span>
+        {{ s.eyebrow }}
+      </p>
+    {%- endif -%}
+
+    <h2 class="t-h1 closer__title" data-reveal style="--reveal-delay: 60ms">
+      {{ s.heading }}
+      {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+    </h2>
+
+    {%- if s.body != blank -%}
+      <p class="t-lead closer__body" data-reveal style="--reveal-delay: 120ms">{{ s.body }}</p>
+    {%- endif -%}
+
+    <div class="btn-row closer__ctas" data-reveal style="--reveal-delay: 200ms">
+      {%- if s.cta_primary_label != blank -%}
+        <a href="{{ s.cta_primary_url }}" class="btn btn--primary btn--lg">
+          {{ s.cta_primary_label }}
+          {% render 'icon', name: 'arrow-right', size: 16 %}
+        </a>
+      {%- endif -%}
+      {%- if s.cta_secondary_label != blank -%}
+        <a href="{{ s.cta_secondary_url }}" class="btn btn--ghost btn--lg">{{ s.cta_secondary_label }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if s.note != blank -%}
+      <p class="t-sm t-dim closer__note" data-reveal="fade" style="--reveal-delay: 260ms">{{ s.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cierre",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "[Plazas limitadas este mes]" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Tu próximo lote de creativos" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "puede estar listo el viernes" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Cierra con la promesa concreta y el siguiente paso, no con un eslogan.]" },
+    { "type": "text", "id": "cta_primary_label", "label": "Botón principal", "default": "Ver precios" },
+    { "type": "url", "id": "cta_primary_url", "label": "Enlace principal" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Botón secundario", "default": "Hablar con nosotros" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Enlace secundario" },
+    { "type": "text", "id": "note", "label": "Nota final", "default": "[Ej. Sin permanencia · Cancela en un clic]" },
+    { "type": "checkbox", "id": "show_gridlines", "label": "Rejilla de fondo", "default": true }
+  ],
+  "presets": [{ "name": "Cierre" }]
+}
+{% endschema %}

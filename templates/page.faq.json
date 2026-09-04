@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "eyebrow": "Garantía y dudas",
+        "heading": "Todo lo que necesitas saber",
+        "heading_accent": "antes de empezar",
+        "body": "[Plazos de entrega, revisiones incluidas, cómo funciona el brief y nuestra garantía de devolución.]"
+      }
+    },
+    "guarantee": { "type": "guarantee-band" },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "c1": { "type": "category", "settings": { "title": "Plazos de entrega" } },
+        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar el primer lote?" } },
+        "f2": { "type": "faq", "settings": { "question": "¿Qué pasa si necesito los vídeos con más urgencia?" } },
+        "c2": { "type": "category", "settings": { "title": "Revisiones" } },
+        "f3": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?" } },
+        "f4": { "type": "faq", "settings": { "question": "¿Qué pasa si pido una revisión que no está en el alcance?" } },
+        "c3": { "type": "category", "settings": { "title": "El brief" } },
+        "f5": { "type": "faq", "settings": { "question": "¿Cómo funciona el formulario de brief?" } },
+        "f6": { "type": "faq", "settings": { "question": "¿Puedo enviar mis propios anuncios de referencia?" } },
+        "c4": { "type": "category", "settings": { "title": "Pagos y cancelación" } },
+        "f7": { "type": "faq", "settings": { "question": "¿Cómo se cobra la suscripción?" } },
+        "f8": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?" } },
+        "c5": { "type": "category", "settings": { "title": "Garantía" } },
+        "f9": { "type": "faq", "settings": { "question": "¿Cómo reclamo la garantía de devolución?" } }
+      },
+      "block_order": ["c1", "f1", "f2", "c2", "f3", "f4", "c3", "f5", "f6", "c4", "f7", "f8", "c5", "f9"],
+      "settings": { "layout": "stack", "single_open": true, "contact_label": "" }
+    },
+    "closer": {
+      "type": "cta-closer",
+      "settings": { "eyebrow": "", "heading": "¿Sigues con dudas?", "heading_accent": "Hablemos", "cta_secondary_label": "" }
+    }
+  },
+  "order": ["hero", "guarantee", "faq", "closer"]
+}

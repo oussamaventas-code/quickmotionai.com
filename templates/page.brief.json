@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "brief": {
+      "type": "brief-form",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "title": "Tus datos",
+            "hint": "Para vincular el brief con tu pedido",
+            "fields": "email* | Email | tu@agencia.com\ntext* | Numero de pedido | #1001\ntext | Marca o cliente final | "
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "title": "El producto",
+            "hint": "Qué vamos a anunciar",
+            "fields": "text* | Producto | \nurl | URL del producto | https://\ntextarea* | Que hace y por que es mejor | Tres frases bastan"
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "title": "El ángulo",
+            "hint": "A quién le hablamos y cómo",
+            "fields": "textarea* | Publico objetivo | Edad, contexto, que le preocupa\ntextarea* | Angulo de venta | El argumento principal que quieres probar\npills | Tono | Directo; Aspiracional; Humor; Testimonial; Educativo\ntext | Llamada a la accion | Compra ahora"
+          }
+        },
+        "step4": {
+          "type": "step",
+          "settings": {
+            "title": "Referencias y assets",
+            "hint": "Enlaces, no archivos",
+            "fields": "textarea | Anuncios de referencia | Pega aqui los enlaces, uno por linea\nurl | Carpeta con tus assets | https://drive.google.com/...\ntextarea | Restricciones | Palabras prohibidas, claims que no podemos hacer, guia de marca"
+          }
+        }
+      },
+      "block_order": ["step1", "step2", "step3", "step4"],
+      "settings": {
+        "eyebrow": "Ya casi está",
+        "heading": "Vamos a producir",
+        "heading_accent": "tus primeros vídeos",
+        "body": "[Rellena el brief para arrancar la producción. 10 minutos.]"
+      }
+    }
+  },
+  "order": ["brief"]
+}

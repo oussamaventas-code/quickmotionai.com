@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Pack mensual" } },
+        "title": { "type": "title" },
+        "price": { "type": "price" },
+        "description": { "type": "description" },
+        "features": { "type": "features" },
+        "buy": { "type": "buy" },
+        "trust": { "type": "trust" }
+      },
+      "block_order": ["eyebrow", "title", "price", "description", "features", "buy", "trust"]
+    },
+    "closer": {
+      "type": "cta-closer",
+      "settings": { "eyebrow": "", "heading": "¿Tienes dudas antes", "heading_accent": "de empezar?", "cta_primary_label": "Ver garantía y FAQ", "cta_primary_url": "/pages/garantia", "cta_secondary_label": "" }
+    }
+  },
+  "order": ["main", "closer"]
+}

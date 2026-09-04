@@ -1,0 +1,137 @@
+/* ==========================================================================
+   TOKENS — capa 0 del sistema de diseño
+   Todo lo demás consume estas variables. No usar valores literales fuera.
+   ========================================================================== */
+
+/* ---------- Tipografía self-hosted (variable, 1 archivo por familia) ---------- */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('satoshi-variable.woff2') format('woff2-variations'),
+       url('satoshi-variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Display';
+  src: url('clash-display-variable.woff2') format('woff2-variations'),
+       url('clash-display-variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- Color: fondos ---------- */
+  --c-void:        #050508;   /* fondo base */
+  --c-bg:          #050508;
+  --c-elev-1:      #0a0a11;   /* superficie elevada sutil */
+  --c-elev-2:      #10101a;   /* cards */
+  --c-elev-3:      #17172480; /* hover / glass */
+
+  /* ---------- Color: texto ---------- */
+  --c-text:        #f4f4f8;
+  --c-text-soft:   #b4b4c4;
+  --c-text-dim:    #7a7a8f;
+  --c-text-faint:  #4a4a5c;
+
+  /* ---------- Color: acentos (uso quirúrgico) ---------- */
+  --c-violet:      #7b61ff;
+  --c-green:       #00ff94;
+  --c-cyan:        #00cfff;
+  --c-violet-soft: #7b61ff26;
+  --c-green-soft:  #00ff9420;
+  --c-cyan-soft:   #00cfff20;
+
+  /* ---------- Bordes y líneas ---------- */
+  --c-line:        rgba(255, 255, 255, 0.07);
+  --c-line-strong: rgba(255, 255, 255, 0.14);
+  --c-line-accent: rgba(123, 97, 255, 0.35);
+
+  /* ---------- Gradientes ---------- */
+  --g-accent:      linear-gradient(115deg, var(--c-violet) 0%, var(--c-cyan) 100%);
+  --g-accent-tri:  linear-gradient(115deg, var(--c-violet) 0%, var(--c-cyan) 55%, var(--c-green) 100%);
+  --g-text:        linear-gradient(100deg, #ffffff 0%, #cfc7ff 40%, #8ee9ff 100%);
+  --g-fade-top:    linear-gradient(to bottom, var(--c-void) 0%, transparent 100%);
+  --g-fade-bottom: linear-gradient(to top, var(--c-void) 0%, transparent 100%);
+
+  /* ---------- Glows ---------- */
+  --glow-violet:   0 0 0 1px var(--c-line-accent), 0 8px 40px -8px rgba(123, 97, 255, 0.45);
+  --glow-green:    0 0 0 1px rgba(0, 255, 148, 0.3), 0 8px 40px -8px rgba(0, 255, 148, 0.28);
+  --glow-cyan:     0 0 0 1px rgba(0, 207, 255, 0.3), 0 8px 40px -8px rgba(0, 207, 255, 0.3);
+  --shadow-card:   0 1px 0 0 rgba(255,255,255,0.04) inset, 0 24px 60px -24px rgba(0,0,0,0.9);
+  --shadow-lift:   0 40px 80px -32px rgba(0, 0, 0, 0.95);
+
+  /* ---------- Familias ---------- */
+  --f-display: 'Clash Display', 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-body:    'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --f-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* ---------- Escala tipográfica fluida (min 360px → max 1440px) ---------- */
+  --t-mega:   clamp(3.25rem, 1.6rem + 7.3vw, 7.5rem);
+  --t-h1:     clamp(2.5rem, 1.45rem + 4.7vw, 5.25rem);
+  --t-h2:     clamp(2rem, 1.35rem + 2.9vw, 3.5rem);
+  --t-h3:     clamp(1.5rem, 1.2rem + 1.35vw, 2.25rem);
+  --t-h4:     clamp(1.175rem, 1.06rem + 0.5vw, 1.5rem);
+  --t-lead:   clamp(1.0625rem, 0.99rem + 0.33vw, 1.3125rem);
+  --t-body:   clamp(0.9375rem, 0.91rem + 0.13vw, 1.0625rem);
+  --t-sm:     0.875rem;
+  --t-xs:     0.8125rem;
+  --t-micro:  0.6875rem;
+
+  /* ---------- Tracking / leading ---------- */
+  --tr-mega:  -0.045em;
+  --tr-h1:    -0.035em;
+  --tr-h2:    -0.028em;
+  --tr-h3:    -0.02em;
+  --tr-body:  -0.005em;
+  --tr-label: 0.16em;
+
+  --lh-mega:  0.92;
+  --lh-h1:    0.98;
+  --lh-h2:    1.06;
+  --lh-h3:    1.18;
+  --lh-body:  1.62;
+
+  /* ---------- Espaciado (base 4) ---------- */
+  --s-1:  0.25rem;  --s-2:  0.5rem;   --s-3:  0.75rem;  --s-4:  1rem;
+  --s-5:  1.5rem;   --s-6:  2rem;     --s-7:  2.5rem;   --s-8:  3rem;
+  --s-9:  4rem;     --s-10: 5rem;     --s-11: 6.5rem;   --s-12: 8rem;
+
+  /* Ritmo vertical de sección: respira mucho más en desktop */
+  --section-y:      clamp(4.5rem, 3rem + 6.4vw, 9.5rem);
+  --section-y-tight: clamp(3rem, 2.2rem + 3.4vw, 5.5rem);
+
+  /* ---------- Layout ---------- */
+  --page-max:   1320px;
+  --page-narrow: 780px;
+  --page-pad:   clamp(1.25rem, 0.7rem + 2.4vw, 3.5rem);
+  --gutter:     clamp(1rem, 0.6rem + 1.6vw, 2rem);
+
+  /* ---------- Radios ---------- */
+  --r-xs: 6px;  --r-sm: 10px;  --r-md: 16px;  --r-lg: 24px;  --r-xl: 32px;  --r-pill: 999px;
+
+  /* ---------- Movimiento ---------- */
+  --e-out:    cubic-bezier(0.16, 1, 0.3, 1);       /* expo-out: el ease del tema */
+  --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --d-fast:   180ms;
+  --d-base:   320ms;
+  --d-slow:   620ms;
+  --d-reveal: 900ms;
+
+  /* ---------- Chrome ---------- */
+  --header-h: 68px;
+  --z-header: 60;
+  --z-drawer: 80;
+  --z-modal:  90;
+}
+
+@media screen and (min-width: 990px) {
+  :root { --header-h: 80px; }
+}
+
+/* Respeta la preferencia del sistema: sin excepciones */
+@media (prefers-reduced-motion: reduce) {
+  :root { --d-fast: 1ms; --d-base: 1ms; --d-slow: 1ms; --d-reveal: 1ms; }
+}

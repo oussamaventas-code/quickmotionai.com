@@ -1,0 +1,22 @@
+{%- comment -%}
+  Liquid/HTML libre para lo que no cubre ninguna otra sección (embeds,
+  scripts de terceros, bloques puntuales de una campaña).
+{%- endcomment -%}
+
+<div class="section{% if section.settings.tight %} section--tight{% endif %}">
+  <div class="wrap">
+    {{ section.settings.custom_liquid }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Liquid personalizado",
+  "tag": "section",
+  "settings": [
+    { "type": "liquid", "id": "custom_liquid", "label": "Código", "info": "HTML, Liquid y JS. Se renderiza tal cual, sin sanear." },
+    { "type": "checkbox", "id": "tight", "label": "Espaciado reducido", "default": false }
+  ],
+  "presets": [{ "name": "Liquid personalizado" }]
+}
+{% endschema %}

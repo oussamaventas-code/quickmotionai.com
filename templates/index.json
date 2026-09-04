@@ -1,0 +1,128 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-cinematic",
+      "blocks": {
+        "v1": { "type": "video", "settings": { "caption": "[Cliente · sector]", "metric_value": "7,4%", "metric_label": "CTR", "metric_color": "green" } },
+        "v2": { "type": "video", "settings": { "caption": "[Cliente · sector]", "metric_value": "2,1x", "metric_label": "ROAS", "metric_color": "cyan" } },
+        "v3": { "type": "video", "settings": { "caption": "[Cliente · sector]", "metric_value": "-31%", "metric_label": "CPA", "metric_color": "violet" } }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {
+        "layout": "split",
+        "eyebrow": "[Prueba social · ej. 40 agencias ya producen aquí]",
+        "heading": "Creativos de vídeo que",
+        "heading_accent": "rinden desde el día uno",
+        "body": "[Cinco vídeos-anuncio listos para Meta y TikTok cada mes, producidos con IA, entregados en 72 horas.]",
+        "proof": "[Producción activa · próxima entrega en 72 h]",
+        "cta_primary_label": "Ver precios",
+        "cta_primary_url": "/pages/precios",
+        "cta_secondary_label": "Ver creativos",
+        "cta_secondary_url": "/pages/portfolio"
+      }
+    },
+    "logos": {
+      "type": "logo-marquee",
+      "blocks": {
+        "l1": { "type": "logo", "settings": { "name": "[Agencia]" } },
+        "l2": { "type": "logo", "settings": { "name": "[Agencia]" } },
+        "l3": { "type": "logo", "settings": { "name": "[Agencia]" } },
+        "l4": { "type": "logo", "settings": { "name": "[Agencia]" } },
+        "l5": { "type": "logo", "settings": { "name": "[Agencia]" } },
+        "l6": { "type": "logo", "settings": { "name": "[Agencia]" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"]
+    },
+    "value-props": {
+      "type": "value-props",
+      "blocks": {
+        "p1": { "type": "prop", "settings": { "icon": "bolt", "icon_color": "violet", "title": "[Velocidad]", "body": "<p>[Del brief al creativo en 72 h, no en 3 semanas.]</p>" } },
+        "p2": { "type": "prop", "settings": { "icon": "target", "icon_color": "cyan", "title": "[Volumen fijo]", "body": "<p>[Sabes exactamente cuántos vídeos vas a tener cada mes.]</p>" } },
+        "p3": { "type": "prop", "settings": { "icon": "refresh", "icon_color": "green", "title": "[Sin permanencia]", "body": "<p>[Cancela cuando quieras, sin penalización.]</p>" } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "showcase": {
+      "type": "video-showcase",
+      "blocks": {
+        "s1": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "7,4%", "metric_1_label": "CTR", "metric_color": "green" } },
+        "s2": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "2,1x", "metric_1_label": "ROAS", "metric_color": "cyan" } },
+        "s3": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "-31%", "metric_1_label": "CPA", "metric_color": "violet" } },
+        "s4": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "3,8%", "metric_1_label": "CTR", "metric_color": "green" } },
+        "s5": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "1,9x", "metric_1_label": "ROAS", "metric_color": "cyan" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"],
+      "settings": { "layout": "strip", "link_label": "Ver todo el portfolio", "link_url": "/pages/portfolio" }
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "blocks": {
+        "st1": { "type": "step", "settings": { "title": "Rellenas el brief", "body": "<p>[Producto, ángulo de venta y referencias. 10 minutos.]</p>", "meta": "10 minutos" } },
+        "st2": { "type": "step", "settings": { "title": "Producimos los creativos", "body": "<p>[Guion, IA generativa y montaje.]</p>", "meta": "72 horas" } },
+        "st3": { "type": "step", "settings": { "title": "Revisas y lanzas", "body": "<p>[Dos rondas de revisión incluidas.]</p>", "meta": "2 rondas incluidas" } }
+      },
+      "block_order": ["st1", "st2", "st3"]
+    },
+    "pricing": {
+      "type": "pricing-cards",
+      "blocks": {
+        "pk1": {
+          "type": "pack",
+          "settings": {
+            "pitch": "[Para probar el servicio]",
+            "features": "[3 vídeos-anuncio al mes]\n[Formatos 9:16 y 4:5]\n[1 ronda de revisión]\n[Entrega en 72 h]"
+          }
+        },
+        "pk2": {
+          "type": "pack",
+          "settings": {
+            "featured": true,
+            "badge": "Más elegido",
+            "pitch": "[Para escalar cuentas activas]",
+            "features": "[5 vídeos-anuncio al mes]\n[Formatos 9:16, 4:5 y 1:1]\n[2 rondas de revisión]\n[Entrega en 72 h]"
+          }
+        },
+        "pk3": {
+          "type": "pack",
+          "settings": {
+            "pitch": "[Para agencias con varias cuentas]",
+            "features": "[10 vídeos-anuncio al mes]\n[Todos los formatos]\n[3 rondas de revisión]\n[Entrega en 48 h]\n[Gestor de cuenta dedicado]"
+          }
+        }
+      },
+      "block_order": ["pk1", "pk2", "pk3"]
+    },
+    "compare": { "type": "comparison-table" },
+    "quotes": {
+      "type": "testimonials",
+      "blocks": {
+        "q1": { "type": "quote" },
+        "q2": { "type": "quote" },
+        "q3": { "type": "quote" }
+      },
+      "block_order": ["q1", "q2", "q3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar?" } },
+        "f2": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?" } },
+        "f3": { "type": "faq", "settings": { "question": "¿Cómo funciona el brief?" } },
+        "f4": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?" } },
+        "f5": { "type": "faq", "settings": { "question": "¿Qué pasa si no me gusta el resultado?" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    },
+    "guarantee": {
+      "type": "guarantee-band",
+      "blocks": {
+        "gp1": { "type": "point", "settings": { "text": "[Sin permanencia]" } },
+        "gp2": { "type": "point", "settings": { "text": "[Revisiones incluidas]" } },
+        "gp3": { "type": "point", "settings": { "text": "[Soporte en 24 h]" } }
+      },
+      "block_order": ["gp1", "gp2", "gp3"]
+    },
+    "closer": { "type": "cta-closer" }
+  },
+  "order": ["hero", "logos", "value-props", "showcase", "how-it-works", "pricing", "compare", "quotes", "faq", "guarantee", "closer"]
+}

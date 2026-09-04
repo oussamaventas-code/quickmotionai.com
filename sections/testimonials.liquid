@@ -1,0 +1,93 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section quotes">
+  <div class="wrap">
+    <div class="section-head{% if s.align == 'center' %} section-head--center{% endif %}">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+    </div>
+
+    <div class="quotes__grid" data-stagger="90">
+      {%- for block in section.blocks -%}
+        <figure class="card card--glow quote" {{ block.shopify_attributes }} data-reveal>
+          {%- if block.settings.result != blank -%}
+            <p class="quote__result">
+              <span class="t-metric quote__result-value">{{ block.settings.result }}</span>
+              <span class="quote__result-label">{{ block.settings.result_label }}</span>
+            </p>
+          {%- endif -%}
+
+          <blockquote class="quote__text">{{ block.settings.quote }}</blockquote>
+
+          <figcaption class="quote__by">
+            {%- if block.settings.avatar != blank -%}
+              {{
+                block.settings.avatar
+                | image_url: width: 96
+                | image_tag: loading: 'lazy', widths: '48, 72, 96', sizes: '40px', class: 'quote__avatar', alt: block.settings.name
+              }}
+            {%- else -%}
+              <span class="quote__avatar quote__avatar--initial" aria-hidden="true">{{ block.settings.name | slice: 0 }}</span>
+            {%- endif -%}
+            <span>
+              <span class="quote__name">{{ block.settings.name }}</span>
+              <span class="quote__role">{{ block.settings.role }}</span>
+            </span>
+          </figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonios",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Lo que dicen" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Agencias que dejaron de" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "producir a mano" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alineación de la cabecera",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonio",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "result", "label": "Resultado", "info": "Un número corto. Ej.: -38%", "default": "[-38%]" },
+        { "type": "text", "id": "result_label", "label": "Etiqueta del resultado", "default": "[CPA]" },
+        { "type": "textarea", "id": "quote", "label": "Cita", "default": "[Cita real del cliente. Cuanto más concreta y menos publicitaria, más creíble.]" },
+        { "type": "image_picker", "id": "avatar", "label": "Foto" },
+        { "type": "text", "id": "name", "label": "Nombre", "default": "[Nombre]" },
+        { "type": "text", "id": "role", "label": "Cargo y empresa", "default": "[Cargo · Agencia]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonios",
+      "blocks": [{ "type": "quote" }, { "type": "quote" }, { "type": "quote" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Contenedor único del lightbox. Vive en el layout: las tarjetas sólo pasan la URL.
+{%- endcomment -%}
+<div id="video-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="{{ 'sections.portfolio.watch_full' | t }}">
+  <div class="lightbox__inner">
+    <button type="button" class="lightbox__close" data-lightbox-close>
+      {% render 'icon', name: 'close', size: 15 %}
+      <span class="visually-hidden">{{ 'accessibility.close' | t }}</span>
+    </button>
+    <video class="lightbox__video" playsinline controls preload="none"></video>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  FAQ. Sirve tanto para la home (5 objeciones) como para la página de garantía
+  (lista larga con categorías). Marcado semántico + aria-expanded; el panel se
+  anima con grid-template-rows, así que no hay medición de alturas en JS.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section faq faq--{{ s.layout }}">
+  <div class="wrap">
+    <div class="faq__inner">
+      <div class="faq__aside">
+        <div class="section-head">
+          {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+          {%- if s.heading != blank -%}
+            <h2 class="t-h2" data-reveal>
+              {{ s.heading }}
+              {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+            </h2>
+          {%- endif -%}
+          {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+
+          {%- if s.contact_label != blank -%}
+            <a href="{{ s.contact_url }}" class="btn btn--text" data-reveal="fade" style="--reveal-delay: 140ms">
+              {% render 'icon', name: 'chat', size: 15 %}
+              {{ s.contact_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="faq__list acc" data-acc="{% if s.single_open %}single{% else %}multi{% endif %}" data-reveal="fade">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' -%}
+            <p class="faq__category t-label t-label--plain">{{ block.settings.title }}</p>
+          {%- else -%}
+            <div class="acc__item" {{ block.shopify_attributes }}>
+              <h3>
+                <button
+                  type="button"
+                  class="acc__trigger"
+                  aria-expanded="false"
+                  aria-controls="faq-{{ block.id }}"
+                  id="faq-t-{{ block.id }}"
+                >
+                  <span>{{ block.settings.question }}</span>
+                  <span class="acc__sign" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="acc__panel" id="faq-{{ block.id }}" role="region" aria-labelledby="faq-t-{{ block.id }}">
+                <div>
+                  <div class="acc__body rte">{{ block.settings.answer }}</div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Preguntas frecuentes",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Composición",
+      "options": [
+        { "value": "split", "label": "Cabecera a la izquierda" },
+        { "value": "stack", "label": "Cabecera arriba" }
+      ],
+      "default": "split"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Dudas" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Lo que preguntan" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "antes de contratar" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "" },
+    { "type": "text", "id": "contact_label", "label": "Enlace de contacto", "default": "¿Otra duda? Escríbenos" },
+    { "type": "url", "id": "contact_url", "label": "URL de contacto" },
+    { "type": "checkbox", "id": "single_open", "label": "Abrir sólo una respuesta a la vez", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "[Objeción real del cliente]" },
+        { "type": "richtext", "id": "answer", "label": "Respuesta", "default": "<p>[Respuesta concreta. Da cifras y plazos: es lo que desactiva la objeción.]</p>" }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Separador de categoría",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "[Categoría]" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Preguntas frecuentes",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar?" } },
+        { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?" } },
+        { "type": "faq", "settings": { "question": "¿Cómo funciona el brief?" } },
+        { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?" } },
+        { "type": "faq", "settings": { "question": "¿Qué pasa si no me gusta el resultado?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

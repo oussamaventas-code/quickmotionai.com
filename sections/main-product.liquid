@@ -1,0 +1,246 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Ficha de pack.
+
+  Producto digital: no hay selector de cantidad ni estimador de envío. El botón
+  envía a /cart/add con return_to=/checkout, así que de la ficha se pasa directo
+  al pago. Los planes de suscripción se envían con el propio radio, sin JS.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign variant = product.selected_or_first_available_variant
+  assign allocations = variant.selling_plan_allocations
+  assign has_plans = false
+  if allocations.size > 0
+    assign has_plans = true
+  endif
+  assign checkout_target = '/checkout'
+  if s.go_to_cart
+    assign checkout_target = routes.cart_url
+  endif
+  assign first_video = product.media | where: 'media_type', 'video' | first
+-%}
+
+<section class="section product-page">
+  <span class="halo halo--tl" style="--halo-color: var(--c-violet); --halo-opacity: 0.24;" aria-hidden="true"></span>
+
+  <div class="wrap product-page__inner">
+    {%- comment -%} Media {%- endcomment -%}
+    <div class="product-page__media" data-reveal="scale">
+      {%- if first_video != blank -%}
+        {% render 'video-embed',
+          video: first_video,
+          ratio: '9-16',
+          eager: true,
+          loading: 'eager',
+          sound: true,
+          max_height: 1080,
+          class: 'vframe--lift',
+          sizes: '(max-width: 989px) 84vw, 420px'
+        %}
+      {%- elsif product.featured_media != blank -%}
+        <div class="vframe vframe--4-5">
+          {{
+            product.featured_media
+            | image_url: width: 1000
+            | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400, 600, 800, 1000', sizes: '(max-width: 989px) 84vw, 460px', alt: product.title
+          }}
+        </div>
+      {%- else -%}
+        <div class="vframe vframe--4-5">
+          <div class="vframe__placeholder" aria-hidden="true">
+            {% render 'icon', name: 'video', size: 28 %}
+            <span>{{ 'sections.portfolio.placeholder' | t }}</span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Información y compra {%- endcomment -%}
+    <div class="product-page__info">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'eyebrow' -%}
+            <p class="t-label" {{ block.shopify_attributes }} data-reveal="fade">{{ block.settings.text }}</p>
+
+          {%- when 'title' -%}
+            <h1 class="t-h2 product-page__title" {{ block.shopify_attributes }} data-reveal>{{ product.title }}</h1>
+
+          {%- when 'price' -%}
+            <div class="product-page__price" {{ block.shopify_attributes }} data-reveal="fade">
+              {%- liquid
+                assign display_price = variant.price
+                if has_plans
+                  assign display_price = allocations.first.price
+                endif
+              -%}
+              <span class="pcard__amount" data-price-display>{{ display_price | money }}</span>
+              <span class="pcard__period">{{ block.settings.period }}</span>
+              {%- if variant.compare_at_price > display_price -%}
+                <span class="pcard__compare">{{ variant.compare_at_price | money }}</span>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.note != blank -%}
+              <p class="pcard__price-note">{{ block.settings.note }}</p>
+            {%- endif -%}
+
+          {%- when 'description' -%}
+            <div class="rte product-page__desc" {{ block.shopify_attributes }} data-reveal="fade">
+              {{ product.description }}
+            </div>
+
+          {%- when 'features' -%}
+            <ul class="pcard__features product-page__features" {{ block.shopify_attributes }} data-reveal="fade">
+              {%- assign items = block.settings.items | newline_to_br | split: '<br />' -%}
+              {%- for item in items -%}
+                {%- assign clean = item | strip_html | strip -%}
+                {%- if clean != blank -%}
+                  <li>
+                    <span class="tick tick--yes" aria-hidden="true">{% render 'icon', name: 'check', size: 10 %}</span>
+                    {{ clean }}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+
+          {%- when 'buy' -%}
+            <div class="product-page__buy" {{ block.shopify_attributes }} data-reveal="fade">
+              {%- if has_plans and allocations.size > 1 -%}
+                <fieldset class="pcard__plans">
+                  <legend class="visually-hidden">{{ 'products.product.choose_plan' | t }}</legend>
+                  {%- for allocation in allocations -%}
+                    <label class="plan-option">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        form="product-form-{{ section.id }}"
+                        value="{{ allocation.selling_plan.id }}"
+                        data-price="{{ allocation.price | money }}"
+                        {% if forloop.first %}checked{% endif %}
+                      >
+                      <span class="plan-option__name">{{ allocation.selling_plan.name }}</span>
+                      {%- if allocation.compare_at_price > allocation.price -%}
+                        <span class="plan-option__save">
+                          {{- allocation.compare_at_price | minus: allocation.price | times: 100.0 | divided_by: allocation.compare_at_price | round -}}%
+                        </span>
+                      {%- endif -%}
+                    </label>
+                  {%- endfor -%}
+                </fieldset>
+              {%- endif -%}
+
+              {%- if variant.available -%}
+                <form method="post" action="{{ routes.cart_add_url }}" id="product-form-{{ section.id }}">
+                  <input type="hidden" name="form_type" value="product">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <input type="hidden" name="return_to" value="{{ checkout_target }}">
+                  {%- if has_plans and allocations.size == 1 -%}
+                    <input type="hidden" name="selling_plan" value="{{ allocations.first.selling_plan.id }}">
+                  {%- endif -%}
+                  <button type="submit" class="btn btn--primary btn--lg btn--full">
+                    {{ block.settings.cta_label | default: 'Empezar ahora' }}
+                    {% render 'icon', name: 'arrow-right', size: 16 %}
+                  </button>
+                </form>
+              {%- else -%}
+                <button type="button" class="btn btn--ghost btn--lg btn--full" disabled>
+                  {{ 'products.product.sold_out' | t }}
+                </button>
+              {%- endif -%}
+
+              {%- if block.settings.note != blank -%}
+                <p class="pcard__foot-note">{{ block.settings.note }}</p>
+              {%- endif -%}
+            </div>
+
+          {%- when 'trust' -%}
+            <ul class="product-page__trust" {{ block.shopify_attributes }} data-reveal="fade">
+              {%- assign items = block.settings.items | split: ',' -%}
+              {%- for item in items -%}
+                <li>
+                  {% render 'icon', name: 'shield', size: 14 %}
+                  {{ item | strip }}
+                </li>
+              {%- endfor -%}
+            </ul>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var display = document.querySelector('.product-page__price [data-price-display]');
+    if (!display) return;
+    document.querySelectorAll('.product-page__buy input[name="selling_plan"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        if (radio.dataset.price) display.textContent = radio.dataset.price;
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Ficha de pack",
+  "tag": "div",
+  "settings": [
+    { "type": "checkbox", "id": "go_to_cart", "label": "Enviar al carrito en vez de al checkout", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Etiqueta",
+      "limit": 1,
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Pack mensual" }]
+    },
+    { "type": "title", "name": "Título", "limit": 1 },
+    {
+      "type": "price",
+      "name": "Precio",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "period", "label": "Periodicidad", "default": "/mes" },
+        { "type": "text", "id": "note", "label": "Nota", "default": "[IVA no incluido]" }
+      ]
+    },
+    { "type": "description", "name": "Descripción", "limit": 1 },
+    {
+      "type": "features",
+      "name": "Qué incluye",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "items",
+          "label": "Puntos",
+          "info": "Una línea por punto.",
+          "default": "[5 vídeos-anuncio al mes]\n[Formatos 9:16, 4:5 y 1:1]\n[2 rondas de revisión por vídeo]\n[Entrega en 72 h desde el brief]"
+        }
+      ]
+    },
+    {
+      "type": "buy",
+      "name": "Compra",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar ahora" },
+        { "type": "text", "id": "note", "label": "Nota bajo el botón", "default": "[Cancela cuando quieras · Sin permanencia]" }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Refuerzos",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "items", "label": "Puntos", "info": "Separados por comas.", "default": "[Pago seguro], [Producto digital: sin envío], [Garantía de devolución]" }
+      ]
+    }
+  ]
+}
+{% endschema %}

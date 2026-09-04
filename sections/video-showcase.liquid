@@ -1,0 +1,184 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Escaparate de creativos. Es la sección que más pesa visualmente, así que sólo
+  se cargan los vídeos que entran en pantalla (ver video-embed / video-player.js).
+
+  Tres composiciones:
+    strip   tira horizontal con ajuste por tarjeta (home)
+    grid    rejilla de 3-4 columnas (portfolio)
+    stagger rejilla escalonada, las pares bajan medio módulo (portfolio, más editorial)
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign layout = s.layout
+  assign per_row = s.columns | default: 3
+-%}
+
+<section class="section showcase showcase--{{ layout }}">
+  {%- if s.show_halo -%}
+    <span class="halo halo--bc" style="--halo-color: var(--c-violet); --halo-opacity: 0.16;" aria-hidden="true"></span>
+  {%- endif -%}
+
+  <div class="wrap">
+    <div class="showcase__head section-head{% if s.align == 'center' %} section-head--center{% endif %}">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+
+      {%- if s.link_label != blank -%}
+        <a href="{{ s.link_url }}" class="btn btn--text showcase__head-link" data-reveal="fade" style="--reveal-delay: 140ms">
+          {{ s.link_label }}
+          <span class="btn__arrow">{% render 'icon', name: 'arrow-right', size: 15 %}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if layout == 'strip' -%}
+    <div class="hscroll showcase__strip" data-stagger="70">
+      {%- for block in section.blocks -%}
+        <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
+          {% render 'video-embed',
+            video: block.settings.video,
+            video_url: block.settings.video_url,
+            poster: block.settings.poster,
+            ratio: '9-16',
+            lightbox: true,
+            caption: block.settings.caption,
+            m1_value: block.settings.metric_1_value,
+            m1_label: block.settings.metric_1_label,
+            m2_value: block.settings.metric_2_value,
+            m2_label: block.settings.metric_2_label,
+            m_color: block.settings.metric_color,
+            class: 'vframe--lift vframe--hoverzoom',
+            sizes: '(max-width: 749px) 66vw, 280px'
+          %}
+          {%- if block.settings.note != blank -%}
+            <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="wrap">
+      <div class="showcase__grid showcase__grid--{{ per_row }}" data-stagger="80">
+        {%- for block in section.blocks -%}
+          <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
+            {% render 'video-embed',
+              video: block.settings.video,
+              video_url: block.settings.video_url,
+              poster: block.settings.poster,
+              ratio: '9-16',
+              lightbox: true,
+              caption: block.settings.caption,
+              m1_value: block.settings.metric_1_value,
+              m1_label: block.settings.metric_1_label,
+              m2_value: block.settings.metric_2_value,
+              m2_label: block.settings.metric_2_label,
+              m_color: block.settings.metric_color,
+              class: 'vframe--lift vframe--hoverzoom',
+              sizes: '(max-width: 749px) 88vw, (max-width: 989px) 44vw, 300px'
+            %}
+            {%- if block.settings.note != blank -%}
+              <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Escaparate de creativos",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Composición",
+      "options": [
+        { "value": "strip", "label": "Tira horizontal" },
+        { "value": "grid", "label": "Rejilla" },
+        { "value": "stagger", "label": "Rejilla escalonada" }
+      ],
+      "default": "strip"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columnas (sólo rejilla)",
+      "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    { "type": "header", "content": "Cabecera" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Trabajo real" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Creativos que" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "ya están gastando presupuesto" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Una frase que enmarque las métricas: en qué cuenta, con qué presupuesto, en qué periodo.]" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alineación de la cabecera",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "left"
+    },
+    { "type": "text", "id": "link_label", "label": "Enlace de la cabecera", "default": "Ver todo el portfolio" },
+    { "type": "url", "id": "link_url", "label": "URL del enlace" },
+    { "type": "checkbox", "id": "show_halo", "label": "Resplandor de fondo", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "creative",
+      "name": "Creativo",
+      "limit": 12,
+      "settings": [
+        { "type": "video", "id": "video", "label": "Vídeo" },
+        { "type": "text", "id": "video_url", "label": "URL de vídeo externo (.mp4)" },
+        { "type": "image_picker", "id": "poster", "label": "Póster" },
+        { "type": "text", "id": "caption", "label": "Pie sobre el vídeo", "default": "[Cliente · sector]" },
+        { "type": "header", "content": "Métricas" },
+        { "type": "text", "id": "metric_1_value", "label": "Métrica 1", "default": "7,4%" },
+        { "type": "text", "id": "metric_1_label", "label": "Etiqueta 1", "default": "CTR" },
+        { "type": "text", "id": "metric_2_value", "label": "Métrica 2", "default": "" },
+        { "type": "text", "id": "metric_2_label", "label": "Etiqueta 2", "default": "" },
+        {
+          "type": "select",
+          "id": "metric_color",
+          "label": "Color",
+          "options": [
+            { "value": "green", "label": "Verde" },
+            { "value": "cyan", "label": "Cian" },
+            { "value": "violet", "label": "Violeta" }
+          ],
+          "default": "green"
+        },
+        { "type": "text", "id": "note", "label": "Nota bajo el vídeo", "info": "Contexto corto. Ej.: 30 días · Meta Advantage+", "default": "" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Escaparate de creativos",
+      "blocks": [
+        { "type": "creative" }, { "type": "creative" }, { "type": "creative" },
+        { "type": "creative" }, { "type": "creative" }
+      ]
+    }
+  ]
+}
+{% endschema %}

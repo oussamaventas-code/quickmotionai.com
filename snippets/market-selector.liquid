@@ -1,0 +1,91 @@
+{%- comment -%}
+  Selector de mercado (Shopify Markets).
+
+  Envía el formulario nativo `localization`, así que la moneda y el idioma los
+  resuelve Shopify: aquí no hay conversión de divisa ni traducción hechas a mano.
+
+  · Atajos: los pares idioma+país que definas en Ajustes del tema → Mercados
+    ("es|ES", "en|US"). Un clic cambia idioma y moneda a la vez.
+  · Debajo, la lista completa de países por si el visitante viene de otro sitio.
+
+  Parámetros: id (obligatorio y único por instancia), placement ('header'|'mobile'|'footer')
+{%- endcomment -%}
+
+{%- liquid
+  assign has_langs = false
+  assign has_countries = false
+  if localization.available_languages.size > 1
+    assign has_langs = true
+  endif
+  if localization.available_countries.size > 1
+    assign has_countries = true
+  endif
+
+  assign shortcuts = settings.market_shortcuts | newline_to_br | split: '<br />'
+  assign current_symbol = cart.currency.symbol
+-%}
+
+{%- if has_langs or has_countries -%}
+  <div class="market" data-market>
+    <details class="market__details" id="market-{{ id }}">
+      <summary class="market__toggle" aria-label="{{ 'localization.country_label' | t }}">
+        {% render 'icon', name: 'globe', size: 13 %}
+        <span>{{ request.locale.iso_code | upcase }}</span>
+        <span class="market__sep" aria-hidden="true"></span>
+        <span>{{ current_symbol }}</span>
+        {% render 'icon', name: 'chevron-down', size: 10 %}
+      </summary>
+
+      <div class="market__panel" role="group">
+        {%- comment -%} Atajos de mercado {%- endcomment -%}
+        {%- if shortcuts.size > 0 -%}
+          <p class="market__panel-title">{{ 'localization.market_label' | t }}</p>
+          {%- for shortcut in shortcuts -%}
+            {%- liquid
+              assign parts = shortcut | strip | split: '|'
+              assign s_locale = parts[0]
+              assign s_country = parts[1]
+              assign s_symbol = parts[2]
+              assign s_name = parts[3]
+              assign is_current = false
+              if request.locale.iso_code == s_locale
+                assign is_current = true
+              endif
+            -%}
+            {%- form 'localization', class: 'market__form' -%}
+              <input type="hidden" name="locale_code" value="{{ s_locale }}">
+              <input type="hidden" name="country_code" value="{{ s_country }}">
+              <button type="submit" class="market__option" aria-current="{{ is_current }}">
+                <span>{{ s_name }}</span>
+                <span class="market__option-meta">{{ s_symbol }} · {{ s_locale | upcase }}</span>
+              </button>
+            {%- endform -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- comment -%} Lista completa de países: la moneda la fija el mercado {%- endcomment -%}
+        {%- if has_countries -%}
+          <div class="market__divider" aria-hidden="true"></div>
+          <p class="market__panel-title">{{ 'localization.country_label' | t }}</p>
+          <div class="market__scroll">
+            {%- form 'localization', class: 'market__form' -%}
+              <input type="hidden" name="locale_code" value="{{ request.locale.iso_code }}">
+              {%- for country in localization.available_countries -%}
+                <button
+                  type="submit"
+                  name="country_code"
+                  value="{{ country.iso_code }}"
+                  class="market__option"
+                  aria-current="{% if country.iso_code == localization.country.iso_code %}true{% else %}false{% endif %}"
+                >
+                  <span>{{ country.name }}</span>
+                  <span class="market__option-meta">{{ country.currency.iso_code }}</span>
+                </button>
+              {%- endfor -%}
+            {%- endform -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </details>
+  </div>
+{%- endif -%}

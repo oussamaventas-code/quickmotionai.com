@@ -1,0 +1,25 @@
+{%- if section.settings.text != blank -%}
+  <div class="announce">
+    {%- if section.settings.url != blank -%}
+      <a href="{{ section.settings.url }}">{{ section.settings.text }}</a>
+    {%- else -%}
+      {{ section.settings.text }}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barra de anuncio",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<strong>Plazas limitadas</strong> — quedan 3 huecos de producción este mes"
+    },
+    { "type": "url", "id": "url", "label": "Enlace" }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

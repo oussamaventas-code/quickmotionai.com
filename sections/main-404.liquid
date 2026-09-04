@@ -1,0 +1,30 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+<section class="section closer" style="min-height: 70svh; display: flex; align-items: center;">
+  <span class="halo halo--bc" style="--halo-color: var(--c-violet); --halo-opacity: 0.24;" aria-hidden="true"></span>
+
+  <div class="wrap wrap--narrow closer__inner">
+    <p class="t-label t-label--plain" style="justify-content:center;">{{ 'general.404.title' | t }}</p>
+    <h1 class="t-h1 closer__title" data-reveal>
+      {{ section.settings.heading }}
+    </h1>
+    <p class="t-lead closer__body" data-reveal>{{ section.settings.body }}</p>
+    <div class="btn-row closer__ctas" data-reveal>
+      <a href="{{ routes.root_url }}" class="btn btn--primary btn--lg">
+        {{ 'general.404.link' | t }}
+        {% render 'icon', name: 'arrow-right', size: 16 %}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Página 404",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Esta página no existe" },
+    { "type": "text", "id": "body", "label": "Texto", "default": "El enlace puede estar roto o la página se ha movido." }
+  ]
+}
+{% endschema %}

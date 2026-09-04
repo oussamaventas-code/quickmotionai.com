@@ -1,0 +1,24 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Carrito. Productos digitales: sin estimador de envío ni notas de regalo.
+  El id="CartItems" es lo que cart.js reemplaza tras cada cambio de cantidad.
+{%- endcomment -%}
+
+<section class="section cart-page">
+  <div class="wrap wrap--narrow">
+    <h1 class="t-h2 cart-page__title" data-reveal>{{ 'templates.cart.cart' | t }}</h1>
+
+    <div id="CartItems" data-cart-root>
+      {% render 'cart-items-inner' %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Carrito",
+  "tag": "div"
+}
+{% endschema %}
