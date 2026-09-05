@@ -13,6 +13,7 @@
       "settings": {
         "menu": "main-menu",
         "cta_label": "Ver precios",
+        "cta_url": "/pages/precios",
         "show_market_selector": true,
         "show_cart": true,
         "static_header": false
