@@ -49,7 +49,69 @@
   }
 
   /* ---------------------------------------------------------------
-     Observer: dentro del viewport → carga y reproduce; fuera → pausa
+     Presupuesto de reproducción simultánea
+
+     Un móvil no aguanta varios 9:16 decodificando a la vez: se calienta,
+     tira de datos y acaba dejando los vídeos congelados. Así que no se
+     reproduce "todo lo visible", sino sólo los N más visibles; el resto
+     espera en póster. En móvil N = 1 (el vídeo que el usuario está
+     mirando de verdad), en escritorio N = 4.
+     --------------------------------------------------------------- */
+  function budget() {
+    return window.innerWidth < 750 ? 1 : 4;
+  }
+
+  var visible = new Map(); // video -> ratio de visibilidad
+  var rebalanceQueued = false;
+
+  function queueRebalance() {
+    if (rebalanceQueued) return;
+    rebalanceQueued = true;
+    requestAnimationFrame(function () {
+      rebalanceQueued = false;
+      rebalance();
+    });
+  }
+
+  function rebalance() {
+    if (document.hidden) {
+      visible.forEach(function (ratio, video) { if (!video.paused) video.pause(); });
+      return;
+    }
+
+    // Los más visibles primero: el que ocupa más pantalla es el que interesa.
+    var ranked = Array.from(visible.entries())
+      .filter(function (entry) { return entry[1] > 0; })
+      .sort(function (a, b) { return b[1] - a[1]; })
+      .map(function (entry) { return entry[0]; });
+
+    var slots = budget();
+
+    ranked.forEach(function (video, i) {
+      if (video.dataset.autoplay === 'false') return;
+
+      if (i < slots) {
+        // Dentro del presupuesto: carga y reproduce.
+        hydrate(video);
+        if (video.paused) play(video);
+      } else if (i === slots) {
+        // El siguiente en la cola se precarga, pero no se reproduce: al
+        // seguir bajando el scroll ya está listo y no se ve el póster.
+        hydrate(video);
+        if (!video.paused) video.pause();
+      } else if (!video.paused) {
+        video.pause();
+      }
+    });
+
+    // Todo lo que ya no está visible, parado.
+    visible.forEach(function (ratio, video) {
+      if (ratio === 0 && !video.paused) video.pause();
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     Observer: alimenta el mapa de visibilidad y deja decidir al reparto
      --------------------------------------------------------------- */
   var io = null;
 
@@ -57,17 +119,33 @@
     if (io) return io;
     io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        var video = entry.target;
-        if (entry.isIntersecting) {
-          hydrate(video);
-          if (video.dataset.autoplay !== 'false') play(video);
-        } else if (!video.paused) {
-          video.pause();
-        }
+        visible.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
       });
-    }, { rootMargin: '200px 0px', threshold: 0.15 });
+      queueRebalance();
+    }, { rootMargin: '150px 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
     return io;
   }
+
+  /* ---------------------------------------------------------------
+     Rescate del autoplay
+
+     Safari/iOS y algunos Android bloquean el primer play() hasta que hay
+     una interacción, aunque el vídeo esté silenciado. En cuanto el usuario
+     toca, hace scroll o pulsa una tecla, se reintenta una sola vez.
+     --------------------------------------------------------------- */
+  var rescued = false;
+  function rescueAutoplay() {
+    if (rescued) return;
+    rescued = true;
+    queueRebalance();
+  }
+
+  ['touchstart', 'pointerdown', 'keydown', 'scroll'].forEach(function (evt) {
+    window.addEventListener(evt, rescueAutoplay, { once: true, passive: true });
+  });
+
+  document.addEventListener('visibilitychange', queueRebalance);
+  window.addEventListener('resize', queueRebalance, { passive: true });
 
   function initVideos(root) {
     (root || document).querySelectorAll('video[data-lazy-video]').forEach(function (video) {

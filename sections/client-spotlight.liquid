@@ -107,6 +107,15 @@
       var dots = wrap ? wrap.querySelectorAll('[data-spotlight-dot]') : [];
       var index = 0;
       var userMuted = true;
+      var onScreen = false;
+      var loaded = false;
+
+      // Mismas reglas que el resto de vídeos del tema: si el usuario pide
+      // menos animación o tiene ahorro de datos, se queda en el póster.
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var conn = navigator.connection || {};
+      var saveData = conn.saveData === true || /^(slow-)?2g$/.test(conn.effectiveType || '');
+      var canPlay = !reduced && !saveData;
 
       function setDots() {
         dots.forEach(function (dot, i) {
@@ -122,13 +131,20 @@
         source.src = clip.src;
         if (clip.poster) video.setAttribute('poster', clip.poster);
         video.load();
+        loaded = true;
         setDots();
-        if (autoplay !== false) {
+        if (autoplay !== false && onScreen && canPlay) {
           video.play().catch(function () {});
         }
       }
 
-      video.addEventListener('ended', function () { load(index + 1); });
+      // Sólo se pasa al siguiente clip si el marco está en pantalla. Si no,
+      // se queda parado: nada de ir descargando los 4 vídeos mientras el
+      // usuario está leyendo los precios tres secciones más abajo.
+      video.addEventListener('ended', function () {
+        if (onScreen) load(index + 1);
+      });
+
       dots.forEach(function (dot) {
         dot.addEventListener('click', function () {
           load(parseInt(dot.dataset.spotlightDot, 10));
@@ -146,21 +162,38 @@
         });
       }
 
-      // Solo se carga el primer clip cuando el marco entra en pantalla, para
-      // no descargar vídeo de más en móviles con conexión lenta.
+      // El clip se carga cuando el marco entra en pantalla, y se pausa en
+      // cuanto sale: ni datos ni batería mientras no se está viendo.
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              load(0);
-              io.disconnect();
+            onScreen = entry.isIntersecting;
+            if (onScreen) {
+              if (!loaded) load(0);
+              else if (video.paused && canPlay) video.play().catch(function () {});
+            } else if (!video.paused) {
+              video.pause();
             }
           });
-        }, { rootMargin: '200px' });
+        }, { rootMargin: '100px 0px', threshold: 0.25 });
         io.observe(root);
       } else {
+        onScreen = true;
         load(0);
       }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden && !video.paused) video.pause();
+        else if (!document.hidden && onScreen && canPlay) video.play().catch(function () {});
+      });
+
+      // iOS bloquea el primer play() hasta que hay interacción: se reintenta
+      // una vez en cuanto el usuario toca o hace scroll.
+      ['touchstart', 'pointerdown', 'scroll'].forEach(function (evt) {
+        window.addEventListener(evt, function () {
+          if (onScreen && video.paused && canPlay) video.play().catch(function () {});
+        }, { once: true, passive: true });
+      });
     });
   })();
 </script>

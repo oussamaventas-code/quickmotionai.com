@@ -6,7 +6,7 @@
         "v1": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.SD-480p-1.5Mbps-93534615.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
             "caption": "Joint relief kit · pain angle"
           }
@@ -14,7 +14,7 @@
         "v2": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
             "caption": "Joint relief kit · comparison"
           }
@@ -22,7 +22,7 @@
         "v3": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
             "caption": "Joint relief kit · objection handling"
           }
@@ -56,10 +56,10 @@
         "metric_color": "cyan"
       },
       "blocks": {
-        "c1": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.HD-1080p-7.2Mbps-93594648.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528" } },
-        "c2": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/5aa9da7f165a486bb48b70d63f2043ce/5aa9da7f165a486bb48b70d63f2043ce.HD-1080p-7.2Mbps-93594651.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/5aa9da7f165a486bb48b70d63f2043ce.thumbnail.0000000000.jpg?v=1788636528" } },
-        "c3": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/530d18cbdb354484ad4a720bc380bf23/530d18cbdb354484ad4a720bc380bf23.HD-1080p-7.2Mbps-93594649.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/530d18cbdb354484ad4a720bc380bf23.thumbnail.0000000000.jpg?v=1788636528" } },
-        "c4": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/69dc6c0874c84941b69c16abc9569792/69dc6c0874c84941b69c16abc9569792.HD-1080p-7.2Mbps-93594650.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/69dc6c0874c84941b69c16abc9569792.thumbnail.0000000000.jpg?v=1788636528" } }
+        "c1": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.HD-720p-4.5Mbps-93594648.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c2": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/5aa9da7f165a486bb48b70d63f2043ce/5aa9da7f165a486bb48b70d63f2043ce.HD-720p-4.5Mbps-93594651.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/5aa9da7f165a486bb48b70d63f2043ce.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c3": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/530d18cbdb354484ad4a720bc380bf23/530d18cbdb354484ad4a720bc380bf23.HD-720p-4.5Mbps-93594649.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/530d18cbdb354484ad4a720bc380bf23.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c4": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/69dc6c0874c84941b69c16abc9569792/69dc6c0874c84941b69c16abc9569792.HD-720p-4.5Mbps-93594650.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/69dc6c0874c84941b69c16abc9569792.thumbnail.0000000000.jpg?v=1788636528" } }
       },
       "block_order": ["c1", "c2", "c3", "c4"]
     },
@@ -71,44 +71,6 @@
         "p3": { "type": "prop", "settings": { "icon": "refresh", "icon_color": "green", "title": "No lock-in", "body": "<p>Cancel anytime. No long contracts, no penalty for leaving.</p>" } }
       },
       "block_order": ["p1", "p2", "p3"]
-    },
-    "showcase": {
-      "type": "video-showcase",
-      "blocks": {
-        "s1": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
-            "caption": "Joint relief kit · pain angle"
-          }
-        },
-        "s2": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
-            "caption": "Joint relief kit · comparison"
-          }
-        },
-        "s3": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
-            "caption": "Joint relief kit · objection handling"
-          }
-        }
-      },
-      "block_order": ["s1", "s2", "s3"],
-      "settings": {
-        "layout": "strip",
-        "eyebrow": "Real production",
-        "heading": "Here's what the creatives",
-        "heading_accent": "coming out of production look like",
-        "link_label": "See the full portfolio",
-        "link_url": "/pages/portfolio"
-      }
     },
     "how-it-works": {
       "type": "how-it-works",
@@ -182,10 +144,23 @@
       },
       "block_order": ["gp1", "gp2", "gp3"]
     },
+    "sticky-cta": {
+      "type": "sticky-cta",
+      "settings": {
+        "cta_label": "See pricing",
+        "cta_url": "/pages/pricing",
+        "show_price": true,
+        "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
+        "price_label": "From",
+        "period": "/mo",
+        "hide_when_visible": ".pricing",
+        "show_on_desktop": false
+      }
+    },
     "closer": {
       "type": "cta-closer",
       "settings": { "eyebrow": "", "heading": "Your next batch of creatives", "heading_accent": "could be ready in 72 hours", "body": "Pick your plan and fill out the brief. No sales calls, no custom quotes.", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing", "cta_secondary_label": "", "note": "No lock-in · Cancel anytime" }
     }
   },
-  "order": ["hero", "spotlight", "value-props", "showcase", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer"]
+  "order": ["hero", "spotlight", "value-props", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer", "sticky-cta"]
 }

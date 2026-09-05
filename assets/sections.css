@@ -571,3 +571,44 @@
 }
 .spotlight__dot:hover { border-color: var(--c-line-accent); }
 .spotlight__dot.is-active { background: var(--c-cyan); border-color: var(--c-cyan); transform: scale(1.2); }
+
+/* Sticky CTA bar (mobile) */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  padding: var(--s-3) var(--s-4);
+  padding-bottom: calc(var(--s-3) + env(safe-area-inset-bottom, 0px));
+  background: rgba(10, 10, 17, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--c-line);
+  animation: sticky-cta-in var(--d-base) var(--e-out) both;
+}
+.sticky-cta[hidden] { display: none; }
+@media (min-width: 750px) {
+  .sticky-cta--mobile-only { display: none; }
+}
+
+@keyframes sticky-cta-in {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sticky-cta { animation: none; }
+}
+
+.sticky-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  max-width: 640px;
+  margin: 0 auto;
+}
+.sticky-cta__price { display: flex; flex-direction: column; line-height: 1.15; }
+.sticky-cta__price-label { font-size: var(--t-micro); color: var(--c-text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+.sticky-cta__price-amount { font-size: var(--t-body); font-weight: 700; color: var(--c-text); }
+.sticky-cta__btn { flex: 1; max-width: 220px; min-height: 48px; padding: 0.75rem 1.25rem; }

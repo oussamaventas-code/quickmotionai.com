@@ -1,0 +1,120 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Barra fija inferior para móvil.
+
+  La home es larga: entre el hero y la sección de precios hay cinco secciones
+  sin ningún botón de compra a la vista. Esta barra mantiene el precio de
+  entrada y el CTA a un toque durante todo el scroll.
+
+  · Aparece al pasar el hero, no antes (no tapa la primera impresión).
+  · Se esconde sola cuando la sección de precios está en pantalla: ahí el
+    usuario ya tiene los botones de verdad delante y la barra sólo estorba.
+  · El precio se lee del producto en Shopify, nunca se escribe a mano.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  assign product = s.product
+  if product == blank and s.product_handle != blank
+    assign product = all_products[s.product_handle]
+  endif
+  assign variant = product.selected_or_first_available_variant
+  assign allocations = variant.selling_plan_allocations
+
+  assign display_price = variant.price
+  if allocations.size > 0
+    assign display_price = allocations.first.price
+  endif
+-%}
+
+<div
+  class="sticky-cta{% unless s.show_on_desktop %} sticky-cta--mobile-only{% endunless %}"
+  data-sticky-cta
+  data-hide-selector="{{ s.hide_when_visible | escape }}"
+  hidden
+>
+  <div class="sticky-cta__inner">
+    {%- if product != blank and s.show_price -%}
+      <div class="sticky-cta__price">
+        <span class="sticky-cta__price-label">{{ s.price_label | default: 'From' }}</span>
+        <span class="sticky-cta__price-amount">{{ display_price | money }}{{ s.period }}</span>
+      </div>
+    {%- endif -%}
+
+    <a href="{{ s.cta_url | default: '/pages/pricing' }}" class="btn btn--primary sticky-cta__btn">
+      {{ s.cta_label | default: 'See pricing' }}
+      {% render 'icon', name: 'arrow-right', size: 15 %}
+    </a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var bar = document.querySelector('[data-sticky-cta]');
+    if (!bar) return;
+
+    var hideSelector = bar.dataset.hideSelector;
+    var pastHero = false;
+    var overTarget = false;
+
+    function apply() {
+      bar.hidden = !(pastHero && !overTarget);
+    }
+
+    // 1) No aparece hasta haber pasado el primer viewport.
+    var sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:90vh;height:1px;width:1px;pointer-events:none;';
+    document.body.appendChild(sentinel);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        pastHero = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
+        apply();
+      }, { threshold: 0 }).observe(sentinel);
+
+      // 2) Se aparta cuando la sección de precios (o la que se indique) está
+      //    en pantalla: ahí ya hay botones reales y la barra sólo tapa.
+      if (hideSelector) {
+        var targets = document.querySelectorAll(hideSelector);
+        if (targets.length) {
+          var seen = new Set();
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) seen.add(entry.target);
+              else seen.delete(entry.target);
+            });
+            overTarget = seen.size > 0;
+            apply();
+          }, { threshold: 0.15 });
+          targets.forEach(function (t) { io.observe(t); });
+        }
+      }
+    } else {
+      pastHero = true;
+      apply();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sticky CTA bar",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "See pricing" },
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    { "type": "header", "content": "Price shown" },
+    { "type": "checkbox", "id": "show_price", "label": "Show entry price", "default": true },
+    { "type": "product", "id": "product", "label": "Product to read the price from" },
+    { "type": "text", "id": "product_handle", "label": "Product handle (fallback)", "default": "pack-starter-3-videos-anuncio-ia-mes" },
+    { "type": "text", "id": "price_label", "label": "Label before the price", "default": "From" },
+    { "type": "text", "id": "period", "label": "Period suffix", "default": "/mo" },
+    { "type": "header", "content": "Behaviour" },
+    { "type": "text", "id": "hide_when_visible", "label": "Hide while this section is on screen", "info": "CSS selector. Leave the default to hide the bar over the pricing cards.", "default": ".pricing" },
+    { "type": "checkbox", "id": "show_on_desktop", "label": "Show on desktop too", "default": false }
+  ],
+  "presets": [{ "name": "Sticky CTA bar" }]
+}
+{% endschema %}
