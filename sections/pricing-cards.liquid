@@ -198,10 +198,10 @@
     { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Precios" },
     { "type": "text", "id": "heading", "label": "Titular", "default": "Elige tu volumen" },
     { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "de producción" },
-    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Sin permanencia, sin coste de setup. Cancela cuando quieras.]" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
     { "type": "checkbox", "id": "show_plan_picker", "label": "Mostrar selector de plan de suscripción", "default": true, "info": "Aparece sólo si el producto tiene más de un plan en Shopify Subscriptions." },
     { "type": "checkbox", "id": "go_to_cart", "label": "Enviar al carrito en vez de al checkout", "default": false, "info": "Por defecto el botón lleva directo al checkout." },
-    { "type": "text", "id": "footer_note", "label": "Nota bajo los packs", "default": "[Ej. Todos los packs incluyen 2 rondas de revisión y entrega en 72 h.]" }
+    { "type": "text", "id": "footer_note", "label": "Nota bajo los packs" }
   ],
   "blocks": [
     {
@@ -211,19 +211,19 @@
       "settings": [
         { "type": "product", "id": "product", "label": "Producto", "info": "Marca el producto como digital (sin envío) en el panel de Shopify." },
         { "type": "text", "id": "name", "label": "Nombre visible", "info": "Si lo dejas vacío se usa el título del producto." },
-        { "type": "text", "id": "pitch", "label": "Descripción corta", "default": "[Para quién es este pack, en una línea]" },
+        { "type": "text", "id": "pitch", "label": "Descripción corta" },
         { "type": "text", "id": "period", "label": "Periodicidad", "default": "/mes" },
-        { "type": "text", "id": "price_note", "label": "Nota bajo el precio", "default": "[ej. IVA no incluido]" },
+        { "type": "text", "id": "price_note", "label": "Nota bajo el precio" },
         {
           "type": "textarea",
           "id": "features",
           "label": "Qué incluye",
           "info": "Una línea por punto.",
-          "default": "[5 vídeos-anuncio al mes]\n[Formatos 9:16, 4:5 y 1:1]\n[2 rondas de revisión]\n[Entrega en 72 h]"
+          "default": ""
         },
         { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar" },
         { "type": "url", "id": "fallback_url", "label": "Enlace alternativo", "info": "Se usa si aún no has asignado producto." },
-        { "type": "text", "id": "foot_note", "label": "Nota bajo el botón", "default": "[Cancela cuando quieras]" },
+        { "type": "text", "id": "foot_note", "label": "Nota bajo el botón" },
         { "type": "header", "content": "Destacado" },
         { "type": "checkbox", "id": "featured", "label": "Destacar este pack", "default": false },
         { "type": "text", "id": "badge", "label": "Etiqueta del destacado", "default": "Más elegido" }
