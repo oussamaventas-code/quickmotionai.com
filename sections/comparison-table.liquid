@@ -1,11 +1,5 @@
 {{ 'sections.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}
-  Tabla comparativa. Cada bloque es una fila; las columnas se configuran en los
-  ajustes de la sección para que la cabecera y las filas no se puedan desincronizar.
-  En móvil la tabla hace scroll horizontal dentro de su propio contenedor.
-{%- endcomment -%}
-
 {%- liquid
   assign s = section.settings
   assign cols = s.columns | split: ','
@@ -76,39 +70,18 @@
     { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Comparativa" },
     { "type": "text", "id": "heading", "label": "Titular", "default": "Lo mismo que una agencia," },
     { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "sin los plazos ni la factura" },
-    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "" },
-    { "type": "text", "id": "row_header", "label": "Cabecera de la primera columna", "default": "" },
-    {
-      "type": "text",
-      "id": "columns",
-      "label": "Columnas",
-      "info": "Separadas por comas, en orden.",
-      "default": "Nosotros, Agencia tradicional, Freelance, Equipo interno"
-    },
-    {
-      "type": "range",
-      "id": "highlight_index",
-      "label": "Columna destacada",
-      "info": "0 = la primera columna de datos.",
-      "min": 0,
-      "max": 5,
-      "step": 1,
-      "default": 0
-    }
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    { "type": "text", "id": "row_header", "label": "Cabecera de la primera columna" },
+    { "type": "text", "id": "columns", "label": "Columnas", "info": "Separadas por comas, en orden.", "default": "Nosotros, Agencia tradicional, Freelance, Equipo interno" },
+    { "type": "range", "id": "highlight_index", "label": "Columna destacada", "info": "0 = la primera columna de datos.", "min": 0, "max": 5, "step": 1, "default": 0 }
   ],
   "blocks": [
     {
       "type": "row",
       "name": "Fila",
       "settings": [
-        { "type": "text", "id": "label", "label": "Concepto", "default": "[Concepto]" },
-        {
-          "type": "text",
-          "id": "values",
-          "label": "Valores",
-          "info": "Separados por comas, en el mismo orden que las columnas. Escribe \"si\" o \"no\" para mostrar un icono.",
-          "default": "si, no, no, no"
-        }
+        { "type": "text", "id": "label", "label": "Concepto", "default": "Concepto" },
+        { "type": "text", "id": "values", "label": "Valores", "info": "Separados por comas, en el mismo orden que las columnas. Escribe \"si\" o \"no\" para mostrar un icono.", "default": "si, no, no, no" }
       ]
     }
   ],
@@ -117,7 +90,6 @@
       "name": "Tabla comparativa",
       "blocks": [
         { "type": "row", "settings": { "label": "Plazo de entrega", "values": "72 h, 3-4 semanas, 1-2 semanas, Variable" } },
-        { "type": "row", "settings": { "label": "Coste mensual", "values": "[€], [€€€€], [€€], [€€€]" } },
         { "type": "row", "settings": { "label": "Volumen fijo garantizado", "values": "si, no, no, no" } },
         { "type": "row", "settings": { "label": "Revisiones incluidas", "values": "si, si, no, si" } },
         { "type": "row", "settings": { "label": "Sin permanencia", "values": "si, no, si, no" } }
