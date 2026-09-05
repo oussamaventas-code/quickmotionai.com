@@ -9,6 +9,8 @@
     video        objeto Video de Shopify (recomendado: CDN + varias alturas)
     video_url    URL .mp4 externa (alternativa a `video`)
     poster       objeto Image (si falta y hay `video`, se usa su preview)
+    poster_url   URL de imagen externa cruda (alternativa a `poster` cuando el
+                 vídeo viene de Contenido > Archivos y no de un producto)
     ratio        '9-16' (por defecto) | '4-5' | '1-1' | '16-9'
     max_height   altura máxima de la fuente de vídeo a servir. 720 por defecto.
     poster_max / poster_widths / sizes   controlan el srcset del póster.
@@ -48,7 +50,7 @@
   endif
 
   assign has_media = false
-  if src != blank or poster_image != blank
+  if src != blank or poster_image != blank or poster_url != blank
     assign has_media = true
   endif
 -%}
@@ -66,6 +68,14 @@
         class: 'vframe__poster',
         alt: poster_image.alt | default: caption | default: ''
     }}
+  {%- elsif poster_url != blank -%}
+    <img
+      src="{{ poster_url }}"
+      loading="{{ poster_loading }}"
+      decoding="async"
+      class="vframe__poster"
+      alt="{{ caption | default: '' }}"
+    >
   {%- elsif has_media == false -%}
     {%- comment -%} Marcador de posición hasta que cargues el creativo real {%- endcomment -%}
     <div class="vframe__placeholder" aria-hidden="true">
@@ -87,7 +97,7 @@
       disablepictureinpicture
       tabindex="-1"
       aria-hidden="true"
-      {% if poster_image != blank %}poster="{{ poster_image | image_url: width: 640 }}"{% endif %}
+      {% if poster_image != blank %}poster="{{ poster_image | image_url: width: 640 }}"{% elsif poster_url != blank %}poster="{{ poster_url }}"{% endif %}
     >
       <source data-src="{{ src }}" type="video/mp4">
     </video>
@@ -115,7 +125,7 @@
       type="button"
       class="vframe__action"
       data-video-open="{{ src }}"
-      {% if poster_image != blank %}data-video-poster="{{ poster_image | image_url: width: 640 }}"{% endif %}
+      {% if poster_image != blank %}data-video-poster="{{ poster_image | image_url: width: 640 }}"{% elsif poster_url != blank %}data-video-poster="{{ poster_url }}"{% endif %}
     >
       {% render 'icon', name: 'expand', size: 15 %}
       <span class="visually-hidden">{{ 'sections.portfolio.watch_full' | t }}</span>

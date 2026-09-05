@@ -2,8 +2,35 @@
   "sections": {
     "hero": {
       "type": "hero-cinematic",
+      "blocks": {
+        "v1": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
+            "caption": "Kit alivio articular · ángulo dolor"
+          }
+        },
+        "v2": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Kit alivio articular · comparativa"
+          }
+        },
+        "v3": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Kit alivio articular · objeción"
+          }
+        }
+      },
+      "block_order": ["v1", "v2", "v3"],
       "settings": {
-        "layout": "center",
+        "layout": "split",
         "eyebrow": "Producción de vídeo-anuncio con IA",
         "heading": "Vídeos-anuncio para tu agencia,",
         "heading_accent": "listos en 72 horas",
@@ -11,8 +38,8 @@
         "proof": "",
         "cta_primary_label": "Ver precios",
         "cta_primary_url": "/pages/precios",
-        "cta_secondary_label": "Cómo funciona",
-        "cta_secondary_url": "/pages/como-funciona",
+        "cta_secondary_label": "Ver más creativos",
+        "cta_secondary_url": "/pages/portfolio",
         "show_scroll_cue": true
       }
     },
@@ -24,6 +51,41 @@
         "p3": { "type": "prop", "settings": { "icon": "refresh", "icon_color": "green", "title": "Sin permanencia", "body": "<p>Cancela cuando quieras. Sin contratos largos ni penalización por darte de baja.</p>" } }
       },
       "block_order": ["p1", "p2", "p3"]
+    },
+    "showcase": {
+      "type": "video-showcase",
+      "blocks": {
+        "s1": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/1f13602b38694c54913bf427734f807b/1f13602b38694c54913bf427734f807b.HD-1080p-7.2Mbps-93534587.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/1f13602b38694c54913bf427734f807b.thumbnail.0000000000.jpg?v=1788555800"
+          }
+        },
+        "s2": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/92596bf50d314da3a8c362cd6066c9f9/92596bf50d314da3a8c362cd6066c9f9.HD-1080p-7.2Mbps-93534588.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/92596bf50d314da3a8c362cd6066c9f9.thumbnail.0000000000.jpg?v=1788555822"
+          }
+        },
+        "s3": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a49647e14af04066a9192cd728c13cbc/a49647e14af04066a9192cd728c13cbc.HD-1080p-7.2Mbps-93534612.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a49647e14af04066a9192cd728c13cbc.thumbnail.0000000000.jpg?v=1788555848"
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "layout": "strip",
+        "eyebrow": "Producción real",
+        "heading": "Así son los creativos",
+        "heading_accent": "que salen de producción",
+        "link_label": "Ver todo el portfolio",
+        "link_url": "/pages/portfolio"
+      }
     },
     "how-it-works": {
       "type": "how-it-works",
@@ -130,5 +192,5 @@
       }
     }
   },
-  "order": ["hero", "value-props", "how-it-works", "pricing", "compare", "faq", "guarantee", "closer"]
+  "order": ["hero", "value-props", "showcase", "how-it-works", "pricing", "compare", "faq", "guarantee", "closer"]
 }
