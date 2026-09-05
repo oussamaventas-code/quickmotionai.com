@@ -1,15 +1,5 @@
 {{ 'sections.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}
-  Escaparate de creativos. Es la sección que más pesa visualmente, así que sólo
-  se cargan los vídeos que entran en pantalla (ver video-embed / video-player.js).
-
-  Tres composiciones:
-    strip   tira horizontal con ajuste por tarjeta (home)
-    grid    rejilla de 3-4 columnas (portfolio)
-    stagger rejilla escalonada, las pares bajan medio módulo (portfolio, más editorial)
-{%- endcomment -%}
-
 {%- liquid
   assign s = section.settings
   assign layout = s.layout
@@ -45,21 +35,7 @@
     <div class="hscroll showcase__strip" data-stagger="70">
       {%- for block in section.blocks -%}
         <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
-          {% render 'video-embed',
-            video: block.settings.video,
-            video_url: block.settings.video_url,
-            poster: block.settings.poster,
-            ratio: '9-16',
-            lightbox: true,
-            caption: block.settings.caption,
-            m1_value: block.settings.metric_1_value,
-            m1_label: block.settings.metric_1_label,
-            m2_value: block.settings.metric_2_value,
-            m2_label: block.settings.metric_2_label,
-            m_color: block.settings.metric_color,
-            class: 'vframe--lift vframe--hoverzoom',
-            sizes: '(max-width: 749px) 66vw, 280px'
-          %}
+          {% render 'video-embed', video: block.settings.video, video_url: block.settings.video_url, poster: block.settings.poster, ratio: '9-16', lightbox: true, caption: block.settings.caption, m1_value: block.settings.metric_1_value, m1_label: block.settings.metric_1_label, m2_value: block.settings.metric_2_value, m2_label: block.settings.metric_2_label, m_color: block.settings.metric_color, class: 'vframe--lift vframe--hoverzoom', sizes: '(max-width: 749px) 66vw, 280px' %}
           {%- if block.settings.note != blank -%}
             <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
           {%- endif -%}
@@ -71,21 +47,7 @@
       <div class="showcase__grid showcase__grid--{{ per_row }}" data-stagger="80">
         {%- for block in section.blocks -%}
           <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
-            {% render 'video-embed',
-              video: block.settings.video,
-              video_url: block.settings.video_url,
-              poster: block.settings.poster,
-              ratio: '9-16',
-              lightbox: true,
-              caption: block.settings.caption,
-              m1_value: block.settings.metric_1_value,
-              m1_label: block.settings.metric_1_label,
-              m2_value: block.settings.metric_2_value,
-              m2_label: block.settings.metric_2_label,
-              m_color: block.settings.metric_color,
-              class: 'vframe--lift vframe--hoverzoom',
-              sizes: '(max-width: 749px) 88vw, (max-width: 989px) 44vw, 300px'
-            %}
+            {% render 'video-embed', video: block.settings.video, video_url: block.settings.video_url, poster: block.settings.poster, ratio: '9-16', lightbox: true, caption: block.settings.caption, m1_value: block.settings.metric_1_value, m1_label: block.settings.metric_1_label, m2_value: block.settings.metric_2_value, m2_label: block.settings.metric_2_label, m_color: block.settings.metric_color, class: 'vframe--lift vframe--hoverzoom', sizes: '(max-width: 749px) 88vw, (max-width: 989px) 44vw, 300px' %}
             {%- if block.settings.note != blank -%}
               <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
             {%- endif -%}
@@ -101,42 +63,14 @@
   "name": "Escaparate de creativos",
   "tag": "div",
   "settings": [
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "Composición",
-      "options": [
-        { "value": "strip", "label": "Tira horizontal" },
-        { "value": "grid", "label": "Rejilla" },
-        { "value": "stagger", "label": "Rejilla escalonada" }
-      ],
-      "default": "strip"
-    },
-    {
-      "type": "select",
-      "id": "columns",
-      "label": "Columnas (sólo rejilla)",
-      "options": [
-        { "value": "3", "label": "3" },
-        { "value": "4", "label": "4" }
-      ],
-      "default": "3"
-    },
+    { "type": "select", "id": "layout", "label": "Composición", "options": [{ "value": "strip", "label": "Tira horizontal" }, { "value": "grid", "label": "Rejilla" }, { "value": "stagger", "label": "Rejilla escalonada" }], "default": "strip" },
+    { "type": "select", "id": "columns", "label": "Columnas (sólo rejilla)", "options": [{ "value": "3", "label": "3" }, { "value": "4", "label": "4" }], "default": "3" },
     { "type": "header", "content": "Cabecera" },
     { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Trabajo real" },
     { "type": "text", "id": "heading", "label": "Titular", "default": "Creativos que" },
     { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "ya están gastando presupuesto" },
-    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "[Una frase que enmarque las métricas: en qué cuenta, con qué presupuesto, en qué periodo.]" },
-    {
-      "type": "select",
-      "id": "align",
-      "label": "Alineación de la cabecera",
-      "options": [
-        { "value": "left", "label": "Izquierda" },
-        { "value": "center", "label": "Centro" }
-      ],
-      "default": "left"
-    },
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    { "type": "select", "id": "align", "label": "Alineación de la cabecera", "options": [{ "value": "left", "label": "Izquierda" }, { "value": "center", "label": "Centro" }], "default": "left" },
     { "type": "text", "id": "link_label", "label": "Enlace de la cabecera", "default": "Ver todo el portfolio" },
     { "type": "url", "id": "link_url", "label": "URL del enlace" },
     { "type": "checkbox", "id": "show_halo", "label": "Resplandor de fondo", "default": true }
@@ -150,35 +84,17 @@
         { "type": "video", "id": "video", "label": "Vídeo" },
         { "type": "text", "id": "video_url", "label": "URL de vídeo externo (.mp4)" },
         { "type": "image_picker", "id": "poster", "label": "Póster" },
-        { "type": "text", "id": "caption", "label": "Pie sobre el vídeo", "default": "[Cliente · sector]" },
+        { "type": "text", "id": "caption", "label": "Pie sobre el vídeo" },
         { "type": "header", "content": "Métricas" },
-        { "type": "text", "id": "metric_1_value", "label": "Métrica 1", "default": "7,4%" },
-        { "type": "text", "id": "metric_1_label", "label": "Etiqueta 1", "default": "CTR" },
-        { "type": "text", "id": "metric_2_value", "label": "Métrica 2", "default": "" },
-        { "type": "text", "id": "metric_2_label", "label": "Etiqueta 2", "default": "" },
-        {
-          "type": "select",
-          "id": "metric_color",
-          "label": "Color",
-          "options": [
-            { "value": "green", "label": "Verde" },
-            { "value": "cyan", "label": "Cian" },
-            { "value": "violet", "label": "Violeta" }
-          ],
-          "default": "green"
-        },
-        { "type": "text", "id": "note", "label": "Nota bajo el vídeo", "info": "Contexto corto. Ej.: 30 días · Meta Advantage+", "default": "" }
+        { "type": "text", "id": "metric_1_value", "label": "Métrica 1" },
+        { "type": "text", "id": "metric_1_label", "label": "Etiqueta 1" },
+        { "type": "text", "id": "metric_2_value", "label": "Métrica 2" },
+        { "type": "text", "id": "metric_2_label", "label": "Etiqueta 2" },
+        { "type": "select", "id": "metric_color", "label": "Color", "options": [{ "value": "green", "label": "Verde" }, { "value": "cyan", "label": "Cian" }, { "value": "violet", "label": "Violeta" }], "default": "green" },
+        { "type": "text", "id": "note", "label": "Nota bajo el vídeo" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Escaparate de creativos",
-      "blocks": [
-        { "type": "creative" }, { "type": "creative" }, { "type": "creative" },
-        { "type": "creative" }, { "type": "creative" }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Escaparate de creativos", "blocks": [{ "type": "creative" }, { "type": "creative" }, { "type": "creative" }] }]
 }
 {% endschema %}
