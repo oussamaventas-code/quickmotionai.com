@@ -1,47 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "brief": {
       "type": "brief-form",
       "blocks": {
-        "step1": {
-          "type": "step",
-          "settings": {
-            "title": "Tus datos",
-            "hint": "Para vincular el brief con tu pedido",
-            "fields": "email* | Email | tu@agencia.com\ntext* | Numero de pedido | #1001\ntext | Marca o cliente final | "
-          }
-        },
-        "step2": {
-          "type": "step",
-          "settings": {
-            "title": "El producto",
-            "hint": "Qué vamos a anunciar",
-            "fields": "text* | Producto | \nurl | URL del producto | https://\ntextarea* | Que hace y por que es mejor | Tres frases bastan"
-          }
-        },
-        "step3": {
-          "type": "step",
-          "settings": {
-            "title": "El ángulo",
-            "hint": "A quién le hablamos y cómo",
-            "fields": "textarea* | Publico objetivo | Edad, contexto, que le preocupa\ntextarea* | Angulo de venta | El argumento principal que quieres probar\npills | Tono | Directo; Aspiracional; Humor; Testimonial; Educativo\ntext | Llamada a la accion | Compra ahora"
-          }
-        },
-        "step4": {
-          "type": "step",
-          "settings": {
-            "title": "Referencias y assets",
-            "hint": "Enlaces, no archivos",
-            "fields": "textarea | Anuncios de referencia | Pega aqui los enlaces, uno por linea\nurl | Carpeta con tus assets | https://drive.google.com/...\ntextarea | Restricciones | Palabras prohibidas, claims que no podemos hacer, guia de marca"
-          }
-        }
+        "step1": { "type": "step", "settings": { "title": "Tus datos", "hint": "Para vincular el brief con tu pedido", "fields": "email* | Email | tu@agencia.com\ntext* | Numero de pedido | #1001\ntext | Marca o cliente final | " } },
+        "step2": { "type": "step", "settings": { "title": "El producto", "hint": "Qué vamos a anunciar", "fields": "text* | Producto | \nurl | URL del producto | https://\ntextarea* | Que hace y por que es mejor | Tres frases bastan" } },
+        "step3": { "type": "step", "settings": { "title": "El ángulo", "hint": "A quién le hablamos y cómo", "fields": "textarea* | Publico objetivo | Edad, contexto, que le preocupa\ntextarea* | Angulo de venta | El argumento principal que quieres probar\npills | Tono | Directo; Aspiracional; Humor; Testimonial; Educativo\ntext | Llamada a la accion | Compra ahora" } },
+        "step4": { "type": "step", "settings": { "title": "Referencias y assets", "hint": "Enlaces, no archivos", "fields": "textarea | Anuncios de referencia | Pega aqui los enlaces, uno por linea\nurl | Carpeta con tus assets | https://drive.google.com/...\ntextarea | Restricciones | Palabras prohibidas, claims que no podemos hacer, guia de marca" } }
       },
       "block_order": ["step1", "step2", "step3", "step4"],
       "settings": {
-        "eyebrow": "Ya casi está",
-        "heading": "Vamos a producir",
-        "heading_accent": "tus primeros vídeos",
-        "body": "[Rellena el brief para arrancar la producción. 10 minutos.]"
+        "eyebrow": "Ya casi está", "heading": "Vamos a producir", "heading_accent": "tus primeros vídeos", "body": "Rellena el brief para arrancar la producción. Tarda unos 10 minutos.",
+        "next_label": "Siguiente", "submit_label": "Enviar brief", "footer_note": "Las referencias y los assets se envían como enlaces (Drive, Dropbox, WeTransfer).",
+        "success_heading": "Brief recibido", "success_body": "<p>Gracias. Empezamos a producir tu primer lote y te avisaremos por email en cuanto esté listo para revisión.</p>", "success_cta_label": "Volver al inicio", "success_cta_url": "/"
       }
     }
   },

@@ -1,46 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": {
-      "type": "page-hero",
-      "settings": {
-        "eyebrow": "Portfolio",
-        "heading": "Creativos que",
-        "heading_accent": "ya están gastando presupuesto",
-        "body": "[Una selección de los últimos vídeos-anuncio producidos, con métricas reales de campaña donde las tenemos.]"
-      }
-    },
+    "hero": { "type": "page-hero", "settings": { "eyebrow": "Portfolio", "heading": "Creativos que", "heading_accent": "estamos produciendo", "body": "Esta sección se actualiza con cada nuevo lote de creativos. Vuelve pronto o pide ejemplos directamente al contratar." } },
     "showcase": {
       "type": "video-showcase",
-      "blocks": {
-        "s1": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "7,4%", "metric_1_label": "CTR", "metric_2_value": "2,1x", "metric_2_label": "ROAS", "metric_color": "green", "note": "[30 días · Meta Advantage+]" } },
-        "s2": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "-31%", "metric_1_label": "CPA", "metric_color": "violet", "note": "[TikTok Spark Ads]" } },
-        "s3": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "3,8%", "metric_1_label": "CTR", "metric_color": "cyan", "note": "[Meta · Reels]" } },
-        "s4": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "1,9x", "metric_1_label": "ROAS", "metric_color": "green", "note": "[TikTok · Feed]" } },
-        "s5": { "type": "creative", "settings": { "caption": "[Cliente · sector]", "metric_1_value": "6,2%", "metric_1_label": "CTR", "metric_color": "cyan", "note": "[Meta · Stories]" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4", "s5"],
-      "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left" }
+      "blocks": { "s1": { "type": "creative", "settings": {} }, "s2": { "type": "creative", "settings": {} }, "s3": { "type": "creative", "settings": {} } },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left", "show_halo": false }
     },
-    "metrics": {
-      "type": "metrics-band",
-      "blocks": {
-        "m1": { "type": "metric", "settings": { "number": "7.4", "suffix": "%", "decimals": 1, "label": "[CTR medio]", "color": "green" } },
-        "m2": { "type": "metric", "settings": { "number": "38", "suffix": "%", "decimals": 0, "label": "[Bajada de CPA]", "color": "cyan" } },
-        "m3": { "type": "metric", "settings": { "number": "72", "suffix": " h", "decimals": 0, "label": "[Plazo de entrega]", "color": "violet" } },
-        "m4": { "type": "metric", "settings": { "number": "240", "suffix": "+", "decimals": 0, "label": "[Creativos producidos]", "color": "plain" } }
-      },
-      "block_order": ["m1", "m2", "m3", "m4"]
-    },
-    "closer": {
-      "type": "cta-closer",
-      "settings": {
-        "eyebrow": "",
-        "heading": "¿Quieres resultados así",
-        "heading_accent": "en tu cuenta?",
-        "cta_primary_label": "Ver precios",
-        "cta_primary_url": "/pages/precios"
-      }
-    }
+    "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "¿Quieres ser de los primeros", "heading_accent": "en ver tu marca aquí?", "cta_primary_label": "Ver precios", "cta_primary_url": "/pages/precios" } }
   },
-  "order": ["hero", "showcase", "metrics", "closer"]
+  "order": ["hero", "showcase", "closer"]
 }
