@@ -1,0 +1,217 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Spotlight de un cliente real. Un solo marco de vídeo que va rotando entre
+  varios clips (no una tira de tarjetas): cuando un clip termina, pasa al
+  siguiente y vuelve al primero al llegar al final. Puntos debajo permiten
+  saltar a un clip concreto a mano.
+
+  Pensado para clientes que no quieren su nombre/marca visible: el pie y la
+  métrica se escriben a mano en los ajustes de la sección (ej. "Estudio de
+  tatuajes · Instagram Reels"), no se leen del producto ni del cliente.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign clips = section.blocks | where: 'type', 'clip'
+-%}
+
+<section class="section spotlight">
+  <span class="halo halo--tr" style="--halo-color: var(--c-cyan); --halo-opacity: 0.2;" aria-hidden="true"></span>
+
+  <div class="wrap spotlight__inner">
+    <div class="section-head">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    {%- if clips.size > 0 -%}
+      <div class="spotlight__frame-wrap" data-reveal="scale">
+        <div class="vframe vframe--9-16 vframe--lift spotlight__frame" data-spotlight>
+          <video
+            data-spotlight-video
+            muted
+            playsinline
+            webkit-playsinline
+            disablepictureinpicture
+            autoplay
+            tabindex="-1"
+            aria-hidden="true"
+            poster="{% if clips.first.settings.poster != blank %}{{ clips.first.settings.poster | image_url: width: 640 }}{% else %}{{ clips.first.settings.poster_url }}{% endif %}"
+          >
+            <source data-spotlight-src src="" type="video/mp4">
+          </video>
+
+          <script type="application/json" data-spotlight-clips>
+            [
+              {%- for block in clips -%}
+                {%- liquid
+                  assign poster_src = block.settings.poster_url
+                  if block.settings.poster != blank
+                    assign poster_src = block.settings.poster | image_url: width: 640
+                  endif
+                -%}
+                { "src": {{ block.settings.video_url | json }}, "poster": {{ poster_src | default: '' | json }} }{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            ]
+          </script>
+
+          <div class="vframe__scrim" aria-hidden="true"></div>
+          <div class="vframe__meta">
+            {%- if s.caption != blank -%}<p class="vframe__caption">{{ s.caption }}</p>{%- endif -%}
+            {%- if s.metric_value != blank -%}
+              {% render 'metric-chip', value: s.metric_value, label: s.metric_label, color: s.metric_color | default: 'cyan' %}
+            {%- endif -%}
+          </div>
+
+          <button type="button" class="vframe__action" data-spotlight-sound aria-pressed="false">
+            <span data-icon-off>{% render 'icon', name: 'sound-off', size: 15 %}</span>
+            <span data-icon-on class="hidden">{% render 'icon', name: 'sound-on', size: 15 %}</span>
+            <span class="visually-hidden">{{ 'sections.portfolio.toggle_sound' | t }}</span>
+          </button>
+        </div>
+
+        {%- if clips.size > 1 -%}
+          <div class="spotlight__dots" role="tablist" aria-label="{{ s.dots_label | default: 'Clips' }}">
+            {%- for block in clips -%}
+              <button type="button" class="spotlight__dot{% if forloop.first %} is-active{% endif %}" data-spotlight-dot="{{ forloop.index0 }}" role="tab" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                <span class="visually-hidden">{{ forloop.index }}</span>
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-spotlight]').forEach(function (root) {
+      var video = root.querySelector('[data-spotlight-video]');
+      var source = root.querySelector('[data-spotlight-src]');
+      if (!video || !source) return;
+
+      var clipsEl = root.querySelector('[data-spotlight-clips]');
+      var clips = [];
+      try { clips = JSON.parse(clipsEl ? clipsEl.textContent : '[]'); } catch (e) { clips = []; }
+      if (!clips.length) return;
+
+      var wrap = root.closest('.spotlight__frame-wrap') || root.parentElement;
+      var dots = wrap ? wrap.querySelectorAll('[data-spotlight-dot]') : [];
+      var index = 0;
+      var userMuted = true;
+
+      function setDots() {
+        dots.forEach(function (dot, i) {
+          var active = i === index;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      }
+
+      function load(i, autoplay) {
+        index = (i + clips.length) % clips.length;
+        var clip = clips[index];
+        source.src = clip.src;
+        if (clip.poster) video.setAttribute('poster', clip.poster);
+        video.load();
+        setDots();
+        if (autoplay !== false) {
+          video.play().catch(function () {});
+        }
+      }
+
+      video.addEventListener('ended', function () { load(index + 1); });
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          load(parseInt(dot.dataset.spotlightDot, 10));
+        });
+      });
+
+      var soundBtn = root.querySelector('[data-spotlight-sound]');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', function () {
+          userMuted = !userMuted;
+          video.muted = userMuted;
+          soundBtn.setAttribute('aria-pressed', String(!userMuted));
+          soundBtn.querySelector('[data-icon-off]').classList.toggle('hidden', !userMuted);
+          soundBtn.querySelector('[data-icon-on]').classList.toggle('hidden', userMuted);
+        });
+      }
+
+      // Solo se carga el primer clip cuando el marco entra en pantalla, para
+      // no descargar vídeo de más en móviles con conexión lenta.
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              load(0);
+              io.disconnect();
+            }
+          });
+        }, { rootMargin: '200px' });
+        io.observe(root);
+      } else {
+        load(0);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Client spotlight",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Real client" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One client," },
+    { "type": "text", "id": "heading_accent", "label": "Accent part", "default": "four videos that took off" },
+    { "type": "textarea", "id": "body", "label": "Subheading" },
+    { "type": "header", "content": "Overlay (kept anonymous)" },
+    { "type": "text", "id": "caption", "label": "Caption on the video", "default": "Tattoo studio · Instagram Reels" },
+    { "type": "text", "id": "metric_value", "label": "Metric value", "default": "100K+" },
+    { "type": "text", "id": "metric_label", "label": "Metric label", "default": "views" },
+    {
+      "type": "select",
+      "id": "metric_color",
+      "label": "Metric color",
+      "options": [
+        { "value": "green", "label": "Green" },
+        { "value": "cyan", "label": "Cyan" },
+        { "value": "violet", "label": "Violet" }
+      ],
+      "default": "cyan"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "clip",
+      "name": "Clip",
+      "limit": 8,
+      "settings": [
+        { "type": "text", "id": "video_url", "label": "Video URL (.mp4)" },
+        { "type": "image_picker", "id": "poster", "label": "Poster (optional)" },
+        { "type": "text", "id": "poster_url", "label": "External poster URL (optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Client spotlight",
+      "blocks": [
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" }
+      ]
+    }
+  ]
+}
+{% endschema %}

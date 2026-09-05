@@ -43,6 +43,26 @@
         "show_scroll_cue": true
       }
     },
+    "spotlight": {
+      "type": "client-spotlight",
+      "settings": {
+        "eyebrow": "Real client",
+        "heading": "One client,",
+        "heading_accent": "four videos that took off",
+        "body": "",
+        "caption": "Tattoo studio · Instagram Reels",
+        "metric_value": "100K+",
+        "metric_label": "views",
+        "metric_color": "cyan"
+      },
+      "blocks": {
+        "c1": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.HD-1080p-7.2Mbps-93594648.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c2": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/5aa9da7f165a486bb48b70d63f2043ce/5aa9da7f165a486bb48b70d63f2043ce.HD-1080p-7.2Mbps-93594651.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/5aa9da7f165a486bb48b70d63f2043ce.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c3": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/530d18cbdb354484ad4a720bc380bf23/530d18cbdb354484ad4a720bc380bf23.HD-1080p-7.2Mbps-93594649.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/530d18cbdb354484ad4a720bc380bf23.thumbnail.0000000000.jpg?v=1788636528" } },
+        "c4": { "type": "clip", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/69dc6c0874c84941b69c16abc9569792/69dc6c0874c84941b69c16abc9569792.HD-1080p-7.2Mbps-93594650.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/69dc6c0874c84941b69c16abc9569792.thumbnail.0000000000.jpg?v=1788636528" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
     "value-props": {
       "type": "value-props",
       "blocks": {
@@ -167,5 +187,5 @@
       "settings": { "eyebrow": "", "heading": "Your next batch of creatives", "heading_accent": "could be ready in 72 hours", "body": "Pick your plan and fill out the brief. No sales calls, no custom quotes.", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing", "cta_secondary_label": "", "note": "No lock-in · Cancel anytime" }
     }
   },
-  "order": ["hero", "value-props", "showcase", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer"]
+  "order": ["hero", "spotlight", "value-props", "showcase", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer"]
 }

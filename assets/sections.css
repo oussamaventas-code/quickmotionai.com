@@ -547,3 +547,27 @@
 
 .vcalc__form { margin-top: var(--s-6); }
 .vcalc__footer-note { margin-top: var(--s-4); font-size: var(--t-xs); color: var(--c-text-dim); }
+
+/* Client spotlight — single rotating video frame */
+.spotlight__frame-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+}
+.spotlight__frame { width: min(100%, 340px); }
+
+.spotlight__dots { display: flex; gap: var(--s-3); }
+.spotlight__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--c-line-strong);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--d-base) var(--e-out), border-color var(--d-base) var(--e-out), transform var(--d-base) var(--e-out);
+}
+.spotlight__dot:hover { border-color: var(--c-line-accent); }
+.spotlight__dot.is-active { background: var(--c-cyan); border-color: var(--c-cyan); transform: scale(1.2); }
