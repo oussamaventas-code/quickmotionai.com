@@ -28,7 +28,7 @@
       "@id": "{{ shop.url }}/#organization",
       "name": {{ shop.name | json }},
       "url": "{{ shop.url }}",
-      "description": "AI-produced ad videos for ecommerce brands and agencies. Fixed monthly batches of UGC-style video ads for Meta and TikTok, delivered in 72 hours from brief, with revision rounds included and no lock-in.",
+      "description": "Ad video production without a traditional production: no cameras, no studio, no actors, no crew. A person directs the creative strategy and AI produces the footage, in fixed monthly batches of UGC-style video ads for Meta and TikTok, delivered in 72 hours from brief. For ecommerce brands and agencies that want more ad variants without an agency, production company or in-house video team.",
       "email": "hello@quickmotionai.com",
       "areaServed": { "@type": "Country", "name": "United States" }
       {%- if settings.logo != blank -%},
@@ -46,7 +46,7 @@
     {
       "@type": "Service",
       "@id": "{{ shop.url }}/#service",
-      "name": "AI ad video production",
+      "name": "Ad video production without a traditional shoot",
       "serviceType": "Video advertising production",
       "provider": { "@id": "{{ shop.url }}/#organization" },
       "areaServed": { "@type": "Country", "name": "United States" },
@@ -54,7 +54,7 @@
         "@type": "BusinessAudience",
         "name": "Ecommerce brands, DTC stores and marketing agencies running paid social ads"
       },
-      "description": "Monthly subscription that delivers a fixed number of AI-produced, UGC-style video ads for Meta and TikTok. Each batch is produced from a short brief and delivered in 72 hours (48 hours on the Scale plan), with revision rounds included. No long-term contract: cancel anytime. Single one-off videos are also available without a subscription.",
+      "description": "Monthly subscription that replaces the cost and the infrastructure of a traditional ad shoot. Instead of hiring an agency, a production company, a studio, actors or UGC creators, a person directs the sales angle, hook and edit, and the footage is produced with AI. You get a fixed number of UGC-style video ads for Meta and TikTok from a short brief, delivered in 72 hours (48 hours on the Scale plan), with revision rounds included and no long-term contract. Suited to small brands that cannot justify an agency and to larger teams that want many more creative variants without expanding their production infrastructure. Single one-off videos are also available without a subscription.",
       "termsOfService": "{{ shop.url }}/pages/terminos",
       "offers": {
         "@type": "AggregateOffer",
