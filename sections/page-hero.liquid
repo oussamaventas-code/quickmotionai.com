@@ -1,10 +1,5 @@
 {{ 'sections.css' | asset_url | stylesheet_tag }}
 
-{%- comment -%}
-  Cabecera compacta para páginas interiores (precios, portfolio, garantía, brief).
-  Misma familia visual que el hero, un tercio de altura.
-{%- endcomment -%}
-
 {%- liquid
   assign s = section.settings
 -%}
@@ -53,12 +48,7 @@
     { "type": "checkbox", "id": "show_gridlines", "label": "Rejilla de fondo", "default": true }
   ],
   "blocks": [
-    {
-      "type": "pill",
-      "name": "Pastilla",
-      "limit": 4,
-      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "[Dato de refuerzo]" }]
-    }
+    { "type": "pill", "name": "Pastilla", "limit": 4, "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Dato de refuerzo" }] }
   ],
   "presets": [{ "name": "Cabecera de página" }]
 }
