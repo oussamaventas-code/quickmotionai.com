@@ -97,9 +97,19 @@
             "name": "Perla Negra Tattoo",
             "role": "Tattoo artist"
           }
+        },
+        "q2": {
+          "type": "quote",
+          "settings": {
+            "result": "+3",
+            "result_label": "new hires in 4 months",
+            "quote": "Thanks to the videos and the website you made for us, we've had to hire more workers.",
+            "name": "ALM Electricidad",
+            "role": "Solar panel installer"
+          }
         }
       },
-      "block_order": ["q1"]
+      "block_order": ["q1", "q2"]
     },
     "pricing": {
       "type": "pricing-cards",
