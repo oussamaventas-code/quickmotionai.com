@@ -20,6 +20,16 @@
       "block_order": ["pk1", "pk2", "pk3"],
       "settings": { "eyebrow": "", "heading": "The three plans", "heading_accent": "", "footer_note": "Every plan is a digital service: no shipping, no setup fee." }
     },
+    "calculator": {
+      "type": "video-calculator",
+      "settings": { "eyebrow": "No subscription needed", "heading": "Just need a", "heading_accent": "few videos?", "body": "Buy single ad videos one at a time, no monthly plan required.", "product_handle": "single-ad-video" },
+      "blocks": {
+        "cp1": { "type": "pack", "settings": { "product_handle": "pack-starter-3-videos-anuncio-ia-mes", "name": "Starter", "videos": 3 } },
+        "cp2": { "type": "pack", "settings": { "product_handle": "pack-growth-5-videos-anuncio-ia-mes", "name": "Growth", "videos": 5 } },
+        "cp3": { "type": "pack", "settings": { "product_handle": "pack-scale-10-videos-anuncio-ia-mes", "name": "Scale", "videos": 10 } }
+      },
+      "block_order": ["cp1", "cp2", "cp3"]
+    },
     "savings": {
       "type": "savings-band",
       "settings": {
@@ -34,9 +44,9 @@
         "disclaimer": "Freelance cost assumes 2 hours of editing per video at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
       },
       "blocks": {
-        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 297 } },
-        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 497, "featured": true } },
-        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 997 } }
+        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 344.91 } },
+        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 577.17, "featured": true } },
+        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 1157.82 } }
       },
       "block_order": ["sv1", "sv2", "sv3"]
     },
@@ -73,5 +83,5 @@
       "block_order": ["gp1", "gp2", "gp3"]
     }
   },
-  "order": ["hero", "pricing", "savings", "includes", "faq", "guarantee"]
+  "order": ["hero", "pricing", "calculator", "savings", "includes", "faq", "guarantee"]
 }

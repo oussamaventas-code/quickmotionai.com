@@ -123,9 +123,9 @@
         "disclaimer": "Freelance cost assumes 2 hours of editing per video at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
       },
       "blocks": {
-        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 297 } },
-        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 497, "featured": true } },
-        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 997 } }
+        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 344.91 } },
+        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 577.17, "featured": true } },
+        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 1157.82 } }
       },
       "block_order": ["sv1", "sv2", "sv3"]
     },
