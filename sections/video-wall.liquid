@@ -1,0 +1,192 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Muro de vídeos: una columna (por defecto a la izquierda) con las miniaturas
+  de todo el trabajo real, desplazándose sola en vertical sin parar — hasta
+  que el visitante pasa el ratón, momento en el que frena suave (no en seco)
+  y vuelve a arrancar igual de suave al salir.
+
+  Decisión de rendimiento: la tira son PÓSTERS, no vídeos reproduciéndose.
+  Reproducir 8 vídeos en bucle a la vez es justo el problema de móvil que ya
+  se corrigió en el resto del tema (ver video-player.js). Al hacer clic en
+  una miniatura se abre en el lightbox existente, con audio — mismo patrón
+  que el resto de vídeos del sitio (`data-video-open`, ver video-player.js).
+
+  GSAP se carga sólo si esta sección está en la página, y sólo una vez
+  aunque Shopify la recargue en el editor de temas.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign clips = section.blocks | where: 'type', 'clip'
+  assign side = s.side | default: 'left'
+-%}
+
+<section class="section videowall">
+  <div class="wrap videowall__inner videowall__inner--{{ side }}">
+    <div class="videowall__reel" data-videowall aria-hidden="true">
+      <div class="videowall__track" data-videowall-track>
+        {%- for block in clips -%}
+          <button type="button" class="videowall__thumb" data-video-open="{{ block.settings.video_url }}" data-video-poster="{{ block.settings.poster_url }}">
+            <img src="{{ block.settings.poster_url }}" loading="lazy" decoding="async" alt="{{ block.settings.caption | default: '' }}" class="videowall__thumb-img">
+            {%- if block.settings.caption != blank -%}<span class="videowall__thumb-caption">{{ block.settings.caption }}</span>{%- endif -%}
+            <span class="videowall__thumb-play" aria-hidden="true">{% render 'icon', name: 'play', size: 13 %}</span>
+          </button>
+        {%- endfor -%}
+        {%- comment -%} Copia idéntica, oculta a lectores de pantalla, para que el bucle sea continuo (se anima -50% y nunca se nota la costura) {%- endcomment -%}
+        {%- for block in clips -%}
+          <button type="button" class="videowall__thumb" data-video-open="{{ block.settings.video_url }}" data-video-poster="{{ block.settings.poster_url }}" tabindex="-1" aria-hidden="true">
+            <img src="{{ block.settings.poster_url }}" loading="lazy" decoding="async" alt="" class="videowall__thumb-img">
+            {%- if block.settings.caption != blank -%}<span class="videowall__thumb-caption">{{ block.settings.caption }}</span>{%- endif -%}
+            <span class="videowall__thumb-play" aria-hidden="true">{% render 'icon', name: 'play', size: 13 %}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="videowall__copy">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+      {%- if s.cta_label != blank -%}
+        <a href="{{ s.cta_url | default: '/pages/portfolio' }}" class="btn btn--primary btn--lg" data-reveal style="--reveal-delay: 140ms">
+          {{ s.cta_label }}
+          {% render 'icon', name: 'arrow-right', size: 16 %}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function loadGSAP() {
+      if (window.gsap) return Promise.resolve();
+      if (window.__gsapPromise) return window.__gsapPromise;
+      window.__gsapPromise = new Promise(function (resolve) {
+        var el = document.createElement('script');
+        el.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+        el.onload = resolve;
+        el.onerror = resolve; // si falla la CDN, la tira se queda estática — no rompe la página
+        document.head.appendChild(el);
+      });
+      return window.__gsapPromise;
+    }
+
+    function initReel(reel) {
+      var track = reel.querySelector('[data-videowall-track]');
+      if (!track || track.__init) return;
+      track.__init = true;
+
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !window.gsap) return; // sin GSAP o con "menos movimiento": tira estática, clicable igual
+
+      var halfHeight = track.scrollHeight / 2;
+      var pxPerSecond = 26; // deriva ambiental, no una carrera
+      var duration = Math.max(halfHeight / pxPerSecond, 10);
+
+      var tween = window.gsap.to(track, { yPercent: -50, duration: duration, ease: 'none', repeat: -1 });
+
+      function ease(target) {
+        window.gsap.to(tween, { timeScale: target, duration: 0.5, ease: 'power2.out', overwrite: true });
+      }
+
+      reel.addEventListener('mouseenter', function () { ease(0); });
+      reel.addEventListener('mouseleave', function () { ease(1); });
+      reel.addEventListener('touchstart', function () { ease(0.15); }, { passive: true });
+      reel.addEventListener('touchend', function () { ease(1); }, { passive: true });
+      reel.addEventListener('focusin', function () { ease(0); });
+      reel.addEventListener('focusout', function () { ease(1); });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              tween.timeScale(1);
+              tween.play();
+            } else {
+              tween.pause();
+            }
+          });
+        }, { threshold: 0 }).observe(reel);
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) tween.pause();
+        else if (reel.getBoundingClientRect().top < window.innerHeight) tween.play();
+      });
+    }
+
+    function initAll(root) {
+      var reels = (root || document).querySelectorAll('[data-videowall]');
+      if (!reels.length) return;
+      loadGSAP().then(function () {
+        reels.forEach(initReel);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { initAll(document); });
+    } else {
+      initAll(document);
+    }
+    document.addEventListener('shopify:section:load', function (e) { initAll(e.target); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Video wall",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "side",
+      "label": "Reel side",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Real production" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Every one of these" },
+    { "type": "text", "id": "heading_accent", "label": "Accent part", "default": "is a real client" },
+    { "type": "textarea", "id": "body", "label": "Subheading", "default": "No stock footage, no filler clips. Click any thumbnail to watch it with sound." },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "See the full portfolio" },
+    { "type": "url", "id": "cta_url", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "clip",
+      "name": "Clip",
+      "limit": 16,
+      "settings": [
+        { "type": "text", "id": "video_url", "label": "Video URL (.mp4)" },
+        { "type": "text", "id": "poster_url", "label": "Poster URL" },
+        { "type": "text", "id": "caption", "label": "Caption" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video wall",
+      "blocks": [
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" },
+        { "type": "clip" }
+      ]
+    }
+  ]
+}
+{% endschema %}
