@@ -3,7 +3,7 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "eyebrow": { "type": "eyebrow", "settings": { "text": "Pack mensual" } },
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Monthly pack" } },
         "title": { "type": "title" },
         "price": { "type": "price" },
         "description": { "type": "description" },
@@ -15,7 +15,7 @@
     },
     "closer": {
       "type": "cta-closer",
-      "settings": { "eyebrow": "", "heading": "¿Tienes dudas antes", "heading_accent": "de empezar?", "cta_primary_label": "Ver garantía y FAQ", "cta_primary_url": "/pages/garantia", "cta_secondary_label": "" }
+      "settings": { "eyebrow": "", "heading": "Have questions before", "heading_accent": "you start?", "cta_primary_label": "See guarantee & FAQ", "cta_primary_url": "/pages/guarantee", "cta_secondary_label": "" }
     }
   },
   "order": ["main", "closer"]

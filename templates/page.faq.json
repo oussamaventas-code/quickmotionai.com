@@ -2,51 +2,40 @@
   "sections": {
     "hero": {
       "type": "page-hero",
-      "settings": {
-        "eyebrow": "Garantía y dudas",
-        "heading": "Todo lo que necesitas saber",
-        "heading_accent": "antes de empezar",
-        "body": "Plazos de entrega, revisiones incluidas, cómo funciona el brief y nuestra garantía de devolución."
-      }
+      "settings": { "eyebrow": "Guarantee & FAQ", "heading": "Everything you need to know", "heading_accent": "before you start", "body": "Turnaround times, included revisions, how the brief works, and our money-back guarantee." }
     },
     "guarantee": {
       "type": "guarantee-band",
-      "settings": {
-        "heading": "Si el primer lote no te convence, te devolvemos el pago de ese mes",
-        "body": "<p>Tienes 7 días desde la entrega de tu primer lote para solicitar la devolución completa de ese pago. Escríbenos y gestionamos el reembolso sin más condiciones.</p>"
-      },
+      "settings": { "heading": "If the first batch doesn't convince you, we refund that month's payment", "body": "<p>You have 7 days from delivery of your first batch to request a full refund of that payment. Just message us and we'll handle it, no other conditions.</p>" },
       "blocks": {
-        "gp1": { "type": "point", "settings": { "text": "Sin permanencia" } },
-        "gp2": { "type": "point", "settings": { "text": "Revisiones incluidas" } },
-        "gp3": { "type": "point", "settings": { "text": "Devolución en 7 días" } }
+        "gp1": { "type": "point", "settings": { "text": "No lock-in" } },
+        "gp2": { "type": "point", "settings": { "text": "Revisions included" } },
+        "gp3": { "type": "point", "settings": { "text": "7-day refund" } }
       },
       "block_order": ["gp1", "gp2", "gp3"]
     },
     "faq": {
       "type": "faq-accordion",
       "blocks": {
-        "c1": { "type": "category", "settings": { "title": "Plazos de entrega" } },
-        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar el primer lote?", "answer": "<p>72 horas desde que recibimos tu brief, para todos los packs excepto Scale, que se entrega en 48 horas.</p>" } },
-        "f2": { "type": "faq", "settings": { "question": "¿Qué pasa si necesito los vídeos con más urgencia?", "answer": "<p>Escríbenos antes de contratar: si tenemos hueco de producción, podemos acelerar la entrega según el pack.</p>" } },
-        "c2": { "type": "category", "settings": { "title": "Revisiones" } },
-        "f3": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?", "answer": "<p>1 ronda en Starter, 2 en Growth y 3 en Scale. Cada ronda cubre ajustes de guion, montaje, música o texto en pantalla.</p>" } },
-        "f4": { "type": "faq", "settings": { "question": "¿Qué pasa si pido una revisión que no está en el alcance?", "answer": "<p>Te avisamos antes de aplicarla y te decimos si supone coste adicional o una nueva producción.</p>" } },
-        "c3": { "type": "category", "settings": { "title": "El brief" } },
-        "f5": { "type": "faq", "settings": { "question": "¿Cómo funciona el formulario de brief?", "answer": "<p>Al contratar recibes un formulario por pasos: tus datos, el producto, el ángulo de venta y tus referencias o assets. Tarda unos 10 minutos.</p>" } },
-        "f6": { "type": "faq", "settings": { "question": "¿Puedo enviar mis propios anuncios de referencia?", "answer": "<p>Sí, y te lo recomendamos: cuanto más claro el referente, menos rondas de revisión hacen falta.</p>" } },
-        "c4": { "type": "category", "settings": { "title": "Pagos y cancelación" } },
-        "f7": { "type": "faq", "settings": { "question": "¿Cómo se cobra la suscripción?", "answer": "<p>El cobro es mensual y automático a través de Shopify. Puedes ver y gestionar tu suscripción desde tu cuenta.</p>" } },
-        "f8": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?", "answer": "<p>Sí, sin permanencia. Cancela desde tu cuenta antes de la fecha del siguiente cobro.</p>" } },
-        "c5": { "type": "category", "settings": { "title": "Garantía" } },
-        "f9": { "type": "faq", "settings": { "question": "¿Cómo reclamo la garantía de devolución?", "answer": "<p>Escríbenos dentro de los 7 días siguientes a la entrega de tu primer lote y gestionamos el reembolso de ese pago.</p>" } }
+        "c1": { "type": "category", "settings": { "title": "Turnaround" } },
+        "f1": { "type": "faq", "settings": { "question": "How long until you deliver the first batch?", "answer": "<p>72 hours from when we receive your brief, for every plan except Scale, which delivers in 48 hours.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "What if I need the videos faster?", "answer": "<p>Message us before signing up: if we have production capacity, we can speed up delivery depending on the plan.</p>" } },
+        "c2": { "type": "category", "settings": { "title": "Revisions" } },
+        "f3": { "type": "faq", "settings": { "question": "How many revisions does each video include?", "answer": "<p>1 round on Starter, 2 on Growth, 3 on Scale.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "What if I request a change outside the scope?", "answer": "<p>We'll flag it before applying it and let you know if it involves extra cost or a new production run.</p>" } },
+        "c3": { "type": "category", "settings": { "title": "The brief" } },
+        "f5": { "type": "faq", "settings": { "question": "How does the brief form work?", "answer": "<p>Once you sign up you get a step-by-step form: your details, the product, the sales angle, and your references or assets. Takes about 10 minutes.</p>" } },
+        "f6": { "type": "faq", "settings": { "question": "Can I send my own reference ads?", "answer": "<p>Yes, and we recommend it: the clearer the reference, the fewer revision rounds you'll need.</p>" } },
+        "c4": { "type": "category", "settings": { "title": "Billing & cancellation" } },
+        "f7": { "type": "faq", "settings": { "question": "How is the subscription billed?", "answer": "<p>Billing is monthly and automatic through Shopify. You can view and manage your subscription from your account.</p>" } },
+        "f8": { "type": "faq", "settings": { "question": "Can I cancel anytime?", "answer": "<p>Yes, no lock-in. Cancel from your account before your next billing date.</p>" } },
+        "c5": { "type": "category", "settings": { "title": "Guarantee" } },
+        "f9": { "type": "faq", "settings": { "question": "How do I claim the refund guarantee?", "answer": "<p>Message us within 7 days of your first batch being delivered and we'll process the refund for that payment.</p>" } }
       },
       "block_order": ["c1", "f1", "f2", "c2", "f3", "f4", "c3", "f5", "f6", "c4", "f7", "f8", "c5", "f9"],
       "settings": { "layout": "stack", "single_open": true, "contact_label": "" }
     },
-    "closer": {
-      "type": "cta-closer",
-      "settings": { "eyebrow": "", "heading": "¿Sigues con dudas?", "heading_accent": "Hablemos", "cta_secondary_label": "" }
-    }
+    "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "Still have questions?", "heading_accent": "Let's talk", "cta_secondary_label": "" } }
   },
   "order": ["hero", "guarantee", "faq", "closer"]
 }

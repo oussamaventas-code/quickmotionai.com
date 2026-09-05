@@ -1,0 +1,118 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Savings comparison. Each block is one plan: video count, an hourly rate and
+  hours-per-video assumption (both editable, so the merchant can update the
+  benchmark without touching code), and the plan price. Everything else
+  (freelance cost, savings amount, savings %) is computed here so the numbers
+  can never drift out of sync with the inputs.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section section--tight savings">
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="savings__grid" data-stagger="90">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign videos = block.settings.videos | times: 1
+          assign hours_per_video = block.settings.hours_per_video | times: 1.0
+          assign hourly_rate = block.settings.hourly_rate | times: 1.0
+          assign plan_price = block.settings.plan_price | times: 1.0
+          assign freelance_cost = videos | times: hours_per_video | times: hourly_rate
+          assign you_save = freelance_cost | minus: plan_price
+          assign save_pct = 0
+          if freelance_cost > 0
+            assign save_pct = you_save | times: 100.0 | divided_by: freelance_cost | round
+          endif
+          comment
+            Liquid's money filters treat a raw number as cents (that's how
+            product.price already arrives), so a plain dollar figure needs to
+            be scaled up by 100 before it goes through `money`.
+          endcomment
+          assign freelance_cost_cents = freelance_cost | times: 100
+          assign plan_price_cents = plan_price | times: 100
+          assign you_save_cents = you_save | times: 100
+        -%}
+        <article class="savings__card{% if block.settings.featured %} savings__card--featured{% endif %}" {{ block.shopify_attributes }} data-reveal>
+          <p class="savings__plan">{{ block.settings.plan_name }}</p>
+          <p class="savings__videos">{{ videos }} {{ s.videos_label | default: 'videos/mo' }}</p>
+
+          <div class="savings__row savings__row--freelance">
+            <span>{{ s.freelance_label | default: 'Freelance cost' }}</span>
+            <span class="savings__strike">{{ freelance_cost_cents | money_without_trailing_zeros }}</span>
+          </div>
+          <div class="savings__row savings__row--plan">
+            <span>{{ s.plan_label | default: 'Your plan' }}</span>
+            <span class="savings__amount">{{ plan_price_cents | money_without_trailing_zeros }}</span>
+          </div>
+
+          <div class="savings__result">
+            <span class="t-metric savings__save-amount">{{ you_save_cents | money_without_trailing_zeros }}</span>
+            <span class="savings__save-label">{{ s.save_label | default: 'saved every month' }} · {{ save_pct }}%</span>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.disclaimer != blank -%}
+      <p class="savings__disclaimer t-sm t-dim" data-reveal="fade">{{ s.disclaimer }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Savings comparison",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "heading_accent", "label": "Accent part" },
+    { "type": "textarea", "id": "body", "label": "Subheading" },
+    { "type": "text", "id": "videos_label", "label": "\"Videos\" label" },
+    { "type": "text", "id": "freelance_label", "label": "\"Freelance cost\" row label" },
+    { "type": "text", "id": "plan_label", "label": "\"Your plan\" row label" },
+    { "type": "text", "id": "save_label", "label": "Savings caption" },
+    { "type": "textarea", "id": "disclaimer", "label": "Methodology note", "info": "Explain how the freelance cost is calculated so the number stays credible." }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "plan_name", "label": "Plan name", "default": "Plan" },
+        { "type": "number", "id": "videos", "label": "Videos per month", "default": 5 },
+        { "type": "number", "id": "hours_per_video", "label": "Freelancer hours per video", "default": 2 },
+        { "type": "number", "id": "hourly_rate", "label": "Freelancer hourly rate ($)", "default": 65 },
+        { "type": "number", "id": "plan_price", "label": "Plan price ($)", "default": 497 },
+        { "type": "checkbox", "id": "featured", "label": "Highlight this card", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Savings comparison",
+      "blocks": [
+        { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "plan_price": 297 } },
+        { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "plan_price": 497, "featured": true } },
+        { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "plan_price": 997 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

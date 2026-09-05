@@ -142,7 +142,7 @@
                     <input type="hidden" name="selling_plan" value="{{ allocations.first.selling_plan.id }}">
                   {%- endif -%}
                   <button type="submit" class="btn btn--primary btn--lg btn--full">
-                    {{ block.settings.cta_label | default: 'Empezar ahora' }}
+                    {{ block.settings.cta_label | default: 'Get started' }}
                     {% render 'icon', name: 'arrow-right', size: 16 %}
                   </button>
                 </form>
@@ -197,7 +197,7 @@
       "type": "eyebrow",
       "name": "Etiqueta",
       "limit": 1,
-      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Pack mensual" }]
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Monthly pack" }]
     },
     { "type": "title", "name": "Título", "limit": 1 },
     {
@@ -219,8 +219,7 @@
           "type": "textarea",
           "id": "items",
           "label": "Puntos",
-          "info": "Una línea por punto.",
-          "default": ""
+          "info": "Una línea por punto."
         }
       ]
     },
@@ -229,7 +228,7 @@
       "name": "Compra",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar ahora" },
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Get started" },
         { "type": "text", "id": "note", "label": "Nota bajo el botón" }
       ]
     },
@@ -238,7 +237,7 @@
       "name": "Refuerzos",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "items", "label": "Puntos", "info": "Separados por comas.", "default": "Pago seguro, Producto digital: sin envío, Garantía de devolución" }
+        { "type": "text", "id": "items", "label": "Puntos", "info": "Separados por comas.", "default": "Secure payment, Digital product: no shipping, Money-back guarantee" }
       ]
     }
   ]

@@ -433,3 +433,49 @@
 .product-page__trust { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); margin-top: var(--s-6); }
 .product-page__trust li { display: flex; align-items: center; gap: var(--s-2); font-size: var(--t-xs); color: var(--c-text-dim); }
 .product-page__trust li svg { color: var(--c-text-faint); }
+
+/* ==========================================================================
+   SAVINGS COMPARISON
+   ========================================================================== */
+
+.savings__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+@media (max-width: 989px) { .savings__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .savings__grid { grid-template-columns: 1fr; max-width: 400px; margin-inline: auto; } }
+
+.savings__card {
+  padding: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  background: var(--c-elev-1);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+}
+.savings__card--featured {
+  background: linear-gradient(180deg, rgba(123,97,255,0.08), rgba(123,97,255,0.015) 60%), var(--c-elev-1);
+  border-color: var(--c-line-accent);
+  box-shadow: var(--glow-violet), var(--shadow-card);
+}
+
+.savings__plan { font-size: var(--t-h4); font-weight: 600; letter-spacing: -0.015em; }
+.savings__videos { margin-top: var(--s-1); font-size: var(--t-sm); color: var(--c-text-dim); }
+
+.savings__row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--t-sm); color: var(--c-text-soft);
+}
+.savings__row--freelance { margin-top: var(--s-6); }
+.savings__strike { font-size: var(--t-lead); color: var(--c-text-faint); text-decoration: line-through; }
+.savings__amount { font-size: var(--t-lead); font-weight: 600; color: var(--c-text); }
+
+.savings__result {
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  border-top: 1px dashed var(--c-line-strong);
+  text-align: center;
+}
+.savings__save-amount { display: block; color: #7dffca; }
+.savings__save-label { display: block; margin-top: var(--s-2); font-size: var(--t-xs); color: var(--c-text-dim); }
+
+.savings__disclaimer { max-width: 640px; margin: var(--s-7) auto 0; text-align: center; }

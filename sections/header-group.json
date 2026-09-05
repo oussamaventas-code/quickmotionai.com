@@ -5,15 +5,15 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "text": "<strong>Plazas limitadas</strong> — quedan 3 huecos de producción este mes"
+        "text": "<strong>Limited slots</strong> — only 3 production spots left this month"
       }
     },
     "header": {
       "type": "header",
       "settings": {
         "menu": "main-menu",
-        "cta_label": "Ver precios",
-        "cta_url": "/pages/precios",
+        "cta_label": "See pricing",
+        "cta_url": "/pages/pricing",
         "show_market_selector": true,
         "show_cart": true,
         "static_header": false

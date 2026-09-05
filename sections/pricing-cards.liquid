@@ -88,7 +88,7 @@
                 <span class="pcard__compare">{{ variant.compare_at_price | money }}</span>
               {%- endif -%}
             {%- else -%}
-              <span class="pcard__amount">[Precio]</span>
+              <span class="pcard__amount">Price</span>
               <span class="pcard__period">{{ block.settings.period }}</span>
             {%- endif -%}
           </div>
@@ -154,7 +154,7 @@
                   <input type="hidden" name="selling_plan" value="{{ allocations.first.selling_plan.id }}">
                 {%- endif -%}
                 <button type="submit" class="btn btn--full {% if block.settings.featured %}btn--primary{% else %}btn--ghost{% endif %}">
-                  {{ block.settings.cta_label | default: 'Empezar' }}
+                  {{ block.settings.cta_label | default: 'Get started' }}
                   {% render 'icon', name: 'arrow-right', size: 15 %}
                 </button>
               </form>
@@ -164,7 +164,7 @@
               </button>
             {%- else -%}
               <a href="{{ block.settings.fallback_url | default: '#' }}" class="btn btn--ghost btn--full">
-                {{ block.settings.cta_label | default: 'Empezar' }}
+                {{ block.settings.cta_label | default: 'Get started' }}
               </a>
             {%- endif -%}
 
@@ -227,10 +227,9 @@
           "type": "textarea",
           "id": "features",
           "label": "Qué incluye",
-          "info": "Una línea por punto.",
-          "default": ""
+          "info": "Una línea por punto."
         },
-        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar" },
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Get started" },
         { "type": "url", "id": "fallback_url", "label": "Enlace alternativo", "info": "Se usa si aún no has asignado producto." },
         { "type": "text", "id": "foot_note", "label": "Nota bajo el botón" },
         { "type": "header", "content": "Destacado" },

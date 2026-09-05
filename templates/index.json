@@ -8,7 +8,7 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
-            "caption": "Kit alivio articular · ángulo dolor"
+            "caption": "Joint relief kit · pain angle"
           }
         },
         "v2": {
@@ -16,7 +16,7 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
-            "caption": "Kit alivio articular · comparativa"
+            "caption": "Joint relief kit · comparison"
           }
         },
         "v3": {
@@ -24,21 +24,21 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
-            "caption": "Kit alivio articular · objeción"
+            "caption": "Joint relief kit · objection handling"
           }
         }
       },
       "block_order": ["v1", "v2", "v3"],
       "settings": {
         "layout": "split",
-        "eyebrow": "Producción de vídeo-anuncio con IA",
-        "heading": "Vídeos-anuncio para tu agencia,",
-        "heading_accent": "listos en 72 horas",
-        "body": "Packs mensuales de vídeos-anuncio producidos con IA para Meta y TikTok. Sin freelancers que coordinar ni plazos de tres semanas.",
+        "eyebrow": "AI ad video production",
+        "heading": "Ad videos for your agency,",
+        "heading_accent": "ready in 72 hours",
+        "body": "Monthly batches of AI-produced ad videos for Meta and TikTok. No freelancers to coordinate, no three-week turnarounds.",
         "proof": "",
-        "cta_primary_label": "Ver precios",
-        "cta_primary_url": "/pages/precios",
-        "cta_secondary_label": "Ver más creativos",
+        "cta_primary_label": "See pricing",
+        "cta_primary_url": "/pages/pricing",
+        "cta_secondary_label": "See more creatives",
         "cta_secondary_url": "/pages/portfolio",
         "show_scroll_cue": true
       }
@@ -46,9 +46,9 @@
     "value-props": {
       "type": "value-props",
       "blocks": {
-        "p1": { "type": "prop", "settings": { "icon": "bolt", "icon_color": "violet", "title": "Velocidad", "body": "<p>Del brief al creativo en 72 horas. Sin esperar semanas a una agencia o a un freelance.</p>" } },
-        "p2": { "type": "prop", "settings": { "icon": "target", "icon_color": "cyan", "title": "Volumen fijo", "body": "<p>Sabes exactamente cuántos vídeos vas a tener cada mes, sin sorpresas de presupuesto.</p>" } },
-        "p3": { "type": "prop", "settings": { "icon": "refresh", "icon_color": "green", "title": "Sin permanencia", "body": "<p>Cancela cuando quieras. Sin contratos largos ni penalización por darte de baja.</p>" } }
+        "p1": { "type": "prop", "settings": { "icon": "bolt", "icon_color": "violet", "title": "Speed", "body": "<p>From brief to creative in 72 hours. No waiting weeks on an agency or a freelancer.</p>" } },
+        "p2": { "type": "prop", "settings": { "icon": "target", "icon_color": "cyan", "title": "Fixed volume", "body": "<p>You know exactly how many videos you'll get every month, no budget surprises.</p>" } },
+        "p3": { "type": "prop", "settings": { "icon": "refresh", "icon_color": "green", "title": "No lock-in", "body": "<p>Cancel anytime. No long contracts, no penalty for leaving.</p>" } }
       },
       "block_order": ["p1", "p2", "p3"]
     },
@@ -80,120 +80,89 @@
       "block_order": ["s1", "s2", "s3"],
       "settings": {
         "layout": "strip",
-        "eyebrow": "Producción real",
-        "heading": "Así son los creativos",
-        "heading_accent": "que salen de producción",
-        "link_label": "Ver todo el portfolio",
+        "eyebrow": "Real production",
+        "heading": "Here's what the creatives",
+        "heading_accent": "coming out of production look like",
+        "link_label": "See the full portfolio",
         "link_url": "/pages/portfolio"
       }
     },
     "how-it-works": {
       "type": "how-it-works",
       "blocks": {
-        "st1": { "type": "step", "settings": { "title": "Rellenas el brief", "body": "<p>Producto, ángulo de venta y referencias. El formulario tarda unos 10 minutos.</p>", "meta": "10 minutos" } },
-        "st2": { "type": "step", "settings": { "title": "Producimos los creativos", "body": "<p>Guion, generación con IA y montaje final en los formatos que necesites.</p>", "meta": "72 horas" } },
-        "st3": { "type": "step", "settings": { "title": "Revisas y lanzas", "body": "<p>Pides los ajustes dentro de las rondas de revisión incluidas en tu pack.</p>", "meta": "Revisiones incluidas" } }
+        "st1": { "type": "step", "settings": { "title": "Fill out the brief", "body": "<p>Product, sales angle, and references. The form takes about 10 minutes.</p>", "meta": "10 minutes" } },
+        "st2": { "type": "step", "settings": { "title": "We produce the creatives", "body": "<p>Script, AI generation, and final edit in whatever formats you need.</p>", "meta": "72 hours" } },
+        "st3": { "type": "step", "settings": { "title": "You review and launch", "body": "<p>Request changes within the revision rounds included in your plan.</p>", "meta": "Revisions included" } }
       },
       "block_order": ["st1", "st2", "st3"]
     },
     "pricing": {
       "type": "pricing-cards",
-      "settings": {
-        "footer_note": "Todos los packs son un servicio digital: sin envío, sin coste de configuración."
-      },
+      "settings": { "footer_note": "Every plan is a digital service: no shipping, no setup fee." },
       "blocks": {
-        "pk1": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes",
-            "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
-            "name": "Starter",
-            "pitch": "Para probar el servicio con volumen bajo pero constante",
-            "features": "3 vídeos-anuncio al mes\nFormatos 9:16 y 4:5\n1 ronda de revisión por vídeo\nEntrega en 72 h desde el brief"
-          }
-        },
-        "pk2": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes",
-            "product_handle": "pack-growth-5-videos-anuncio-ia-mes",
-            "name": "Growth",
-            "featured": true,
-            "badge": "Más elegido",
-            "pitch": "Para escalar cuentas activas sin saturar al equipo creativo",
-            "features": "5 vídeos-anuncio al mes\nFormatos 9:16, 4:5 y 1:1\n2 rondas de revisión por vídeo\nEntrega en 72 h desde el brief"
-          }
-        },
-        "pk3": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-scale-10-videos-anuncio-ia-mes",
-            "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
-            "name": "Scale",
-            "pitch": "Para agencias con varias cuentas y un punto de contacto fijo",
-            "features": "10 vídeos-anuncio al mes\nTodos los formatos\n3 rondas de revisión por vídeo\nEntrega en 48 h desde el brief\nGestor de cuenta dedicado"
-          }
-        }
+        "pk1": { "type": "pack", "settings": { "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes", "product_handle": "pack-starter-3-videos-anuncio-ia-mes", "period": "/mo", "name": "Starter", "pitch": "To test the service with steady, low volume", "features": "3 ad videos per month\n9:16 and 4:5 formats\n1 revision round per video\nDelivered in 72h from brief" } },
+        "pk2": { "type": "pack", "settings": { "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes", "product_handle": "pack-growth-5-videos-anuncio-ia-mes", "period": "/mo", "name": "Growth", "featured": true, "badge": "Most popular", "pitch": "To scale active accounts without overloading your creative team", "features": "5 ad videos per month\n9:16, 4:5 and 1:1 formats\n2 revision rounds per video\nDelivered in 72h from brief" } },
+        "pk3": { "type": "pack", "settings": { "product": "shopify://products/pack-scale-10-videos-anuncio-ia-mes", "product_handle": "pack-scale-10-videos-anuncio-ia-mes", "period": "/mo", "name": "Scale", "pitch": "For agencies with multiple accounts and one point of contact", "features": "10 ad videos per month\nAll formats\n3 revision rounds per video\nDelivered in 48h from brief\nDedicated account manager" } }
       },
       "block_order": ["pk1", "pk2", "pk3"]
     },
-    "compare": {
-      "type": "comparison-table",
+    "savings": {
+      "type": "savings-band",
       "settings": {
-        "row_header": "",
-        "columns": "Nosotros, Agencia tradicional, Freelance",
-        "highlight_index": 0
+        "eyebrow": "Do the math",
+        "heading": "What you save",
+        "heading_accent": "with each plan",
+        "body": "A rough freelance-editor benchmark, compared to your monthly plan price.",
+        "videos_label": "videos/mo",
+        "freelance_label": "Freelance cost",
+        "plan_label": "Your plan",
+        "save_label": "saved every month",
+        "disclaimer": "Freelance cost assumes 2 hours of editing per video at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
       },
       "blocks": {
-        "r1": { "type": "row", "settings": { "label": "Plazo de entrega", "values": "72 h, 2-4 semanas, Variable" } },
-        "r2": { "type": "row", "settings": { "label": "Volumen mensual fijo", "values": "si, no, no" } },
-        "r3": { "type": "row", "settings": { "label": "Revisiones incluidas", "values": "si, si, no" } },
-        "r4": { "type": "row", "settings": { "label": "Sin permanencia", "values": "si, no, si" } }
+        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 297 } },
+        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 497, "featured": true } },
+        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 997 } }
+      },
+      "block_order": ["sv1", "sv2", "sv3"]
+    },
+    "compare": {
+      "type": "comparison-table",
+      "settings": { "row_header": "", "columns": "Us, Traditional agency, Freelancer", "highlight_index": 0 },
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Turnaround", "values": "72h, 2-4 weeks, Variable" } },
+        "r2": { "type": "row", "settings": { "label": "Fixed monthly volume", "values": "yes, no, no" } },
+        "r3": { "type": "row", "settings": { "label": "Revisions included", "values": "yes, yes, no" } },
+        "r4": { "type": "row", "settings": { "label": "No lock-in", "values": "yes, no, yes" } }
       },
       "block_order": ["r1", "r2", "r3", "r4"]
     },
     "faq": {
       "type": "faq-accordion",
-      "settings": {
-        "contact_label": ""
-      },
+      "settings": { "contact_label": "" },
       "blocks": {
-        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar?", "answer": "<p>El plazo estándar es de 72 horas desde que recibimos tu brief. El pack Scale se entrega en 48 horas.</p>" } },
-        "f2": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?", "answer": "<p>Depende del pack: 1 ronda en Starter, 2 en Growth y 3 en Scale. Cada ronda incluye ajustes de guion, montaje o texto en pantalla.</p>" } },
-        "f3": { "type": "faq", "settings": { "question": "¿Cómo funciona el brief?", "answer": "<p>Al contratar un pack recibes un formulario para indicar el producto, el ángulo de venta y las referencias que quieras que usemos. Tarda unos 10 minutos.</p>" } },
-        "f4": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?", "answer": "<p>Sí. La suscripción no tiene permanencia: puedes cancelarla desde tu cuenta en cualquier momento antes del siguiente cobro.</p>" } },
-        "f5": { "type": "faq", "settings": { "question": "¿Qué pasa si no me gusta el resultado?", "answer": "<p>Incluimos rondas de revisión en cada pack para ajustar el creativo antes de la entrega final. Si aun así el primer lote no te convence, consulta nuestra garantía de devolución.</p>" } }
+        "f1": { "type": "faq", "settings": { "question": "How fast do you deliver?", "answer": "<p>Standard turnaround is 72 hours from when we receive your brief. The Scale plan delivers in 48 hours.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "How many revisions does each video include?", "answer": "<p>Depends on the plan: 1 round on Starter, 2 on Growth, 3 on Scale.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How does the brief work?", "answer": "<p>Once you sign up you get a form to specify the product, the sales angle, and any references you want us to use. Takes about 10 minutes.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "Can I cancel anytime?", "answer": "<p>Yes. The subscription has no lock-in: cancel from your account anytime before the next billing date.</p>" } },
+        "f5": { "type": "faq", "settings": { "question": "What if I don't like the result?", "answer": "<p>Every plan includes revision rounds to adjust the creative before final delivery. If the first batch still doesn't convince you, check our money-back guarantee.</p>" } }
       },
       "block_order": ["f1", "f2", "f3", "f4", "f5"]
     },
     "guarantee": {
       "type": "guarantee-band",
-      "settings": {
-        "heading": "Si el primer lote no te convence, te devolvemos el pago de ese mes",
-        "body": "<p>Tienes 7 días desde la entrega de tu primer lote para solicitar la devolución completa de ese pago, sin condiciones. Escríbenos y gestionamos el reembolso.</p>",
-        "cta_label": "Ver condiciones completas",
-        "cta_url": "/pages/garantia"
-      },
+      "settings": { "heading": "If the first batch doesn't convince you, we refund that month's payment", "body": "<p>You have 7 days from delivery of your first batch to request a full refund of that payment. Just message us and we'll handle it.</p>", "cta_label": "See full terms", "cta_url": "/pages/guarantee" },
       "blocks": {
-        "gp1": { "type": "point", "settings": { "text": "Sin permanencia" } },
-        "gp2": { "type": "point", "settings": { "text": "Revisiones incluidas" } },
-        "gp3": { "type": "point", "settings": { "text": "Devolución en 7 días" } }
+        "gp1": { "type": "point", "settings": { "text": "No lock-in" } },
+        "gp2": { "type": "point", "settings": { "text": "Revisions included" } },
+        "gp3": { "type": "point", "settings": { "text": "7-day refund" } }
       },
       "block_order": ["gp1", "gp2", "gp3"]
     },
     "closer": {
       "type": "cta-closer",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Tu próximo lote de creativos",
-        "heading_accent": "puede estar listo en 72 horas",
-        "body": "Elige tu pack y rellena el brief. Sin llamadas de venta ni presupuestos a medida.",
-        "cta_primary_label": "Ver precios",
-        "cta_primary_url": "/pages/precios",
-        "cta_secondary_label": "",
-        "note": "Sin permanencia · Cancela cuando quieras"
-      }
+      "settings": { "eyebrow": "", "heading": "Your next batch of creatives", "heading_accent": "could be ready in 72 hours", "body": "Pick your plan and fill out the brief. No sales calls, no custom quotes.", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing", "cta_secondary_label": "", "note": "No lock-in · Cancel anytime" }
     }
   },
-  "order": ["hero", "value-props", "showcase", "how-it-works", "pricing", "compare", "faq", "guarantee", "closer"]
+  "order": ["hero", "value-props", "showcase", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer"]
 }

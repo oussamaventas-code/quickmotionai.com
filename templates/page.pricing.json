@@ -3,89 +3,75 @@
     "hero": {
       "type": "page-hero",
       "blocks": {
-        "pl1": { "type": "pill", "settings": { "text": "Sin permanencia" } },
-        "pl2": { "type": "pill", "settings": { "text": "Cancela cuando quieras" } },
-        "pl3": { "type": "pill", "settings": { "text": "Entrega en 72 h" } }
+        "pl1": { "type": "pill", "settings": { "text": "No lock-in" } },
+        "pl2": { "type": "pill", "settings": { "text": "Cancel anytime" } },
+        "pl3": { "type": "pill", "settings": { "text": "72h delivery" } }
       },
       "block_order": ["pl1", "pl2", "pl3"],
-      "settings": {
-        "eyebrow": "Precios",
-        "heading": "Elige tu volumen",
-        "heading_accent": "de producción",
-        "body": "Precios en tu moneda local. Todos los packs son un servicio digital: sin envío, sin coste de configuración."
-      }
+      "settings": { "eyebrow": "Pricing", "heading": "Pick your", "heading_accent": "production volume", "body": "Prices in your local currency. Every plan is a digital service: no shipping, no setup fee." }
     },
     "pricing": {
       "type": "pricing-cards",
       "blocks": {
-        "pk1": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes", "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
-            "name": "Starter",
-            "pitch": "Para probar el servicio con volumen bajo pero constante",
-            "features": "3 vídeos-anuncio al mes\nFormatos 9:16 y 4:5\n1 ronda de revisión por vídeo\nEntrega en 72 h desde el brief"
-          }
-        },
-        "pk2": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes", "product_handle": "pack-growth-5-videos-anuncio-ia-mes",
-            "name": "Growth",
-            "featured": true,
-            "badge": "Más elegido",
-            "pitch": "Para escalar cuentas activas sin saturar al equipo creativo",
-            "features": "5 vídeos-anuncio al mes\nFormatos 9:16, 4:5 y 1:1\n2 rondas de revisión por vídeo\nEntrega en 72 h desde el brief"
-          }
-        },
-        "pk3": {
-          "type": "pack",
-          "settings": {
-            "product": "shopify://products/pack-scale-10-videos-anuncio-ia-mes", "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
-            "name": "Scale",
-            "pitch": "Para agencias con varias cuentas y un punto de contacto fijo",
-            "features": "10 vídeos-anuncio al mes\nTodos los formatos\n3 rondas de revisión por vídeo\nEntrega en 48 h desde el brief\nGestor de cuenta dedicado"
-          }
-        }
+        "pk1": { "type": "pack", "settings": { "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes", "product_handle": "pack-starter-3-videos-anuncio-ia-mes", "period": "/mo", "name": "Starter", "pitch": "To test the service with steady, low volume", "features": "3 ad videos per month\n9:16 and 4:5 formats\n1 revision round per video\nDelivered in 72h from brief" } },
+        "pk2": { "type": "pack", "settings": { "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes", "product_handle": "pack-growth-5-videos-anuncio-ia-mes", "period": "/mo", "name": "Growth", "featured": true, "badge": "Most popular", "pitch": "To scale active accounts without overloading your creative team", "features": "5 ad videos per month\n9:16, 4:5 and 1:1 formats\n2 revision rounds per video\nDelivered in 72h from brief" } },
+        "pk3": { "type": "pack", "settings": { "product": "shopify://products/pack-scale-10-videos-anuncio-ia-mes", "product_handle": "pack-scale-10-videos-anuncio-ia-mes", "period": "/mo", "name": "Scale", "pitch": "For agencies with multiple accounts and one point of contact", "features": "10 ad videos per month\nAll formats\n3 revision rounds per video\nDelivered in 48h from brief\nDedicated account manager" } }
       },
       "block_order": ["pk1", "pk2", "pk3"],
-      "settings": { "eyebrow": "", "heading": "Los tres packs", "heading_accent": "" }
+      "settings": { "eyebrow": "", "heading": "The three plans", "heading_accent": "", "footer_note": "Every plan is a digital service: no shipping, no setup fee." }
+    },
+    "savings": {
+      "type": "savings-band",
+      "settings": {
+        "eyebrow": "Do the math",
+        "heading": "What you save",
+        "heading_accent": "with each plan",
+        "body": "A rough freelance-editor benchmark, compared to your monthly plan price.",
+        "videos_label": "videos/mo",
+        "freelance_label": "Freelance cost",
+        "plan_label": "Your plan",
+        "save_label": "saved every month",
+        "disclaimer": "Freelance cost assumes 2 hours of editing per video at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
+      },
+      "blocks": {
+        "sv1": { "type": "plan", "settings": { "plan_name": "Starter", "videos": 3, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 297 } },
+        "sv2": { "type": "plan", "settings": { "plan_name": "Growth", "videos": 5, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 497, "featured": true } },
+        "sv3": { "type": "plan", "settings": { "plan_name": "Scale", "videos": 10, "hours_per_video": 2, "hourly_rate": 65, "plan_price": 997 } }
+      },
+      "block_order": ["sv1", "sv2", "sv3"]
     },
     "includes": {
       "type": "comparison-table",
-      "settings": {
-        "eyebrow": "Qué incluye cada uno",
-        "heading": "Compara los packs",
-        "heading_accent": "en detalle",
-        "columns": "Starter, Growth, Scale",
-        "highlight_index": 1
-      },
+      "settings": { "eyebrow": "What's included", "heading": "Compare the plans", "heading_accent": "in detail", "columns": "Starter, Growth, Scale", "highlight_index": 1 },
       "blocks": {
-        "r1": { "type": "row", "settings": { "label": "Vídeos al mes", "values": "3, 5, 10" } },
-        "r2": { "type": "row", "settings": { "label": "Formatos", "values": "9:16 y 4:5, Todos, Todos" } },
-        "r3": { "type": "row", "settings": { "label": "Revisiones incluidas", "values": "1, 2, 3" } },
-        "r4": { "type": "row", "settings": { "label": "Plazo de entrega", "values": "72 h, 72 h, 48 h" } },
-        "r5": { "type": "row", "settings": { "label": "Gestor de cuenta dedicado", "values": "no, no, si" } }
+        "r1": { "type": "row", "settings": { "label": "Videos per month", "values": "3, 5, 10" } },
+        "r2": { "type": "row", "settings": { "label": "Formats", "values": "9:16 and 4:5, All, All" } },
+        "r3": { "type": "row", "settings": { "label": "Revisions included", "values": "1, 2, 3" } },
+        "r4": { "type": "row", "settings": { "label": "Turnaround", "values": "72h, 72h, 48h" } },
+        "r5": { "type": "row", "settings": { "label": "Dedicated account manager", "values": "no, no, yes" } }
       },
       "block_order": ["r1", "r2", "r3", "r4", "r5"]
     },
     "faq": {
       "type": "faq-accordion",
       "blocks": {
-        "f1": { "type": "faq", "settings": { "question": "¿Los precios incluyen IVA?", "answer": "<p>Los precios se muestran sin IVA. El impuesto correspondiente se calcula en el checkout según tu país.</p>" } },
-        "f2": { "type": "faq", "settings": { "question": "¿Puedo cambiar de pack a mitad de mes?", "answer": "<p>Sí, escríbenos y ajustamos el cambio para el siguiente ciclo de facturación.</p>" } },
-        "f3": { "type": "faq", "settings": { "question": "¿Cómo se factura la suscripción?", "answer": "<p>El cobro es mensual y automático a través de Shopify, con el precio de tu pack.</p>" } }
+        "f1": { "type": "faq", "settings": { "question": "Do prices include tax?", "answer": "<p>Prices are shown without tax. Applicable tax is calculated at checkout based on your country.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Can I switch plans mid-month?", "answer": "<p>Yes, just message us and we'll adjust the change for your next billing cycle.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How is the subscription billed?", "answer": "<p>Billing is monthly and automatic through Shopify, at your plan's price.</p>" } }
       },
       "block_order": ["f1", "f2", "f3"],
-      "settings": { "layout": "stack" }
+      "settings": { "layout": "stack", "contact_label": "" }
     },
     "guarantee": {
       "type": "guarantee-band",
-      "settings": {
-        "heading": "Si el primer lote no te convence, te devolvemos el pago de ese mes",
-        "body": "<p>Tienes 7 días desde la entrega de tu primer lote para solicitar la devolución completa de ese pago.</p>"
-      }
+      "settings": { "heading": "If the first batch doesn't convince you, we refund that month's payment", "body": "<p>You have 7 days from delivery of your first batch to request a full refund of that payment.</p>" },
+      "blocks": {
+        "gp1": { "type": "point", "settings": { "text": "No lock-in" } },
+        "gp2": { "type": "point", "settings": { "text": "Revisions included" } },
+        "gp3": { "type": "point", "settings": { "text": "7-day refund" } }
+      },
+      "block_order": ["gp1", "gp2", "gp3"]
     }
   },
-  "order": ["hero", "pricing", "includes", "faq", "guarantee"]
+  "order": ["hero", "pricing", "savings", "includes", "faq", "guarantee"]
 }

@@ -1,76 +1,20 @@
 {
   "sections": {
-    "hero": {
-      "type": "page-hero",
-      "settings": {
-        "eyebrow": "Portfolio",
-        "heading": "Creativos que",
-        "heading_accent": "estamos produciendo",
-        "body": "Una muestra real de producción. Se actualiza con cada nuevo lote de creativos."
-      }
-    },
+    "hero": { "type": "page-hero", "settings": { "eyebrow": "Portfolio", "heading": "Creatives we're", "heading_accent": "currently producing", "body": "A real sample of our production. Updated with every new batch of creatives." } },
     "showcase": {
       "type": "video-showcase",
       "blocks": {
-        "s1": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
-            "caption": "Kit alivio articular · ángulo dolor"
-          }
-        },
-        "s2": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
-            "caption": "Kit alivio articular · comparativa"
-          }
-        },
-        "s3": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
-            "caption": "Kit alivio articular · objeción"
-          }
-        },
-        "s4": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/1f13602b38694c54913bf427734f807b/1f13602b38694c54913bf427734f807b.HD-1080p-7.2Mbps-93534587.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/1f13602b38694c54913bf427734f807b.thumbnail.0000000000.jpg?v=1788555800"
-          }
-        },
-        "s5": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/92596bf50d314da3a8c362cd6066c9f9/92596bf50d314da3a8c362cd6066c9f9.HD-1080p-7.2Mbps-93534588.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/92596bf50d314da3a8c362cd6066c9f9.thumbnail.0000000000.jpg?v=1788555822"
-          }
-        },
-        "s6": {
-          "type": "creative",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/a49647e14af04066a9192cd728c13cbc/a49647e14af04066a9192cd728c13cbc.HD-1080p-7.2Mbps-93534612.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a49647e14af04066a9192cd728c13cbc.thumbnail.0000000000.jpg?v=1788555848"
-          }
-        }
+        "s1": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820", "caption": "Joint relief kit · pain angle" } },
+        "s2": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829", "caption": "Joint relief kit · comparison" } },
+        "s3": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831", "caption": "Joint relief kit · objection handling" } },
+        "s4": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/1f13602b38694c54913bf427734f807b/1f13602b38694c54913bf427734f807b.HD-1080p-7.2Mbps-93534587.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/1f13602b38694c54913bf427734f807b.thumbnail.0000000000.jpg?v=1788555800" } },
+        "s5": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/92596bf50d314da3a8c362cd6066c9f9/92596bf50d314da3a8c362cd6066c9f9.HD-1080p-7.2Mbps-93534588.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/92596bf50d314da3a8c362cd6066c9f9.thumbnail.0000000000.jpg?v=1788555822" } },
+        "s6": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/a49647e14af04066a9192cd728c13cbc/a49647e14af04066a9192cd728c13cbc.HD-1080p-7.2Mbps-93534612.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a49647e14af04066a9192cd728c13cbc.thumbnail.0000000000.jpg?v=1788555848" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"],
       "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left", "show_halo": false }
     },
-    "closer": {
-      "type": "cta-closer",
-      "settings": {
-        "eyebrow": "",
-        "heading": "¿Quieres creativos",
-        "heading_accent": "así para tu marca?",
-        "cta_primary_label": "Ver precios",
-        "cta_primary_url": "/pages/precios"
-      }
-    }
+    "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "Want creatives", "heading_accent": "like this for your brand?", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing" } }
   },
   "order": ["hero", "showcase", "closer"]
 }
