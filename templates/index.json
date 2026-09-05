@@ -81,6 +81,26 @@
       },
       "block_order": ["st1", "st2", "st3"]
     },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "Clients who put their",
+        "heading_accent": "brand in front of the world",
+        "align": "center"
+      },
+      "blocks": {
+        "q1": {
+          "type": "quote",
+          "settings": {
+            "quote": "Ever since these videos went up, people message us from all over the world wanting me to tattoo them.",
+            "name": "Perla Negra Tattoo",
+            "role": "Tattoo artist"
+          }
+        }
+      },
+      "block_order": ["q1"]
+    },
     "pricing": {
       "type": "pricing-cards",
       "settings": { "footer_note": "Every plan is a digital service: no shipping, no setup fee." },
@@ -162,5 +182,5 @@
       "settings": { "eyebrow": "", "heading": "Your next batch of creatives", "heading_accent": "could be ready in 72 hours", "body": "Pick your plan and fill out the brief. No sales calls, no custom quotes.", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing", "cta_secondary_label": "", "note": "No lock-in · Cancel anytime" }
     }
   },
-  "order": ["hero", "spotlight", "value-props", "how-it-works", "pricing", "savings", "compare", "faq", "guarantee", "closer", "sticky-cta"]
+  "order": ["hero", "spotlight", "value-props", "how-it-works", "testimonials", "pricing", "savings", "compare", "faq", "guarantee", "closer", "sticky-cta"]
 }
