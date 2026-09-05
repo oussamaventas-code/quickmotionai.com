@@ -43,9 +43,14 @@
             product.price already arrives), so a plain dollar figure needs to
             be scaled up by 100 before it goes through `money`.
           endcomment
-          assign freelance_cost_cents = freelance_cost | times: 100
-          assign plan_price_cents = plan_price | times: 100
-          assign you_save_cents = you_save | times: 100
+          comment
+            `round` no es cosmético: 344.91 * 100 da 34490.999... en coma
+            flotante, y sin redondear el precio se pintaría un céntimo por
+            debajo del que cobra Shopify.
+          endcomment
+          assign freelance_cost_cents = freelance_cost | times: 100 | round
+          assign plan_price_cents = plan_price | times: 100 | round
+          assign you_save_cents = you_save | times: 100 | round
         -%}
         <article class="savings__card{% if block.settings.featured %} savings__card--featured{% endif %}" {{ block.shopify_attributes }} data-reveal>
           <p class="savings__plan">{{ block.settings.plan_name }}</p>

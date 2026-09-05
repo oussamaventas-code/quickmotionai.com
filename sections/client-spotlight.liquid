@@ -147,6 +147,11 @@
 
       dots.forEach(function (dot) {
         dot.addEventListener('click', function () {
+          // Un clic es intención explícita: reproduce aunque el usuario
+          // tenga "menos animación" activado (eso silencia el movimiento
+          // automático, no el que pide a mano).
+          canPlay = true;
+          onScreen = true;
           load(parseInt(dot.dataset.spotlightDot, 10));
         });
       });

@@ -33,12 +33,19 @@
   assign poster_loading = loading | default: 'lazy'
   assign metric_color = m_color | default: 'green'
 
+  comment
+    Shopify devuelve las fuentes desordenadas (480, 1080, 720), así que hay
+    que ordenarlas antes de elegir: si no, "máximo 720" acaba sirviendo el
+    1080p de 7.2 Mbps dentro de una tarjeta de 230px. Se coge la más pequeña
+    que llegue al mínimo pedido, y la mayor disponible sólo si ninguna llega.
+  endcomment
   assign src = video_url
   if video != blank
-    assign mp4s = video.sources | where: 'format', 'mp4'
+    assign mp4s = video.sources | where: 'format', 'mp4' | sort: 'height'
+    assign src = mp4s.last.url
     for source in mp4s
-      assign src = source.url
       if source.height >= cap
+        assign src = source.url
         break
       endif
     endfor

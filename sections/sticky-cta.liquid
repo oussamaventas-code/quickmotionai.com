@@ -63,16 +63,17 @@
       bar.hidden = !(pastHero && !overTarget);
     }
 
-    // 1) No aparece hasta haber pasado el primer viewport.
-    var sentinel = document.createElement('div');
-    sentinel.style.cssText = 'position:absolute;top:90vh;height:1px;width:1px;pointer-events:none;';
-    document.body.appendChild(sentinel);
+    // 1) No aparece hasta haber dejado atrás el hero. Se observa el propio
+    //    hero en vez de inyectar un centinela en el body: menos riesgo de
+    //    tocar el layout de la página.
+    var anchor = document.querySelector('.hero') || document.querySelector('.page-hero') || document.querySelector('main > *');
 
-    if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && anchor) {
       new IntersectionObserver(function (entries) {
-        pastHero = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
+        var e = entries[0];
+        pastHero = !e.isIntersecting && e.boundingClientRect.top < 0;
         apply();
-      }, { threshold: 0 }).observe(sentinel);
+      }, { threshold: 0 }).observe(anchor);
 
       // 2) Se aparta cuando la sección de precios (o la que se indique) está
       //    en pantalla: ahí ya hay botones reales y la barra sólo tapa.
