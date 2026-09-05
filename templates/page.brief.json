@@ -41,7 +41,14 @@
         "eyebrow": "Ya casi está",
         "heading": "Vamos a producir",
         "heading_accent": "tus primeros vídeos",
-        "body": "[Rellena el brief para arrancar la producción. 10 minutos.]"
+        "body": "Rellena el brief para arrancar la producción. Tarda unos 10 minutos.",
+        "next_label": "Siguiente",
+        "submit_label": "Enviar brief",
+        "footer_note": "Las referencias y los assets se envían como enlaces (Drive, Dropbox, WeTransfer).",
+        "success_heading": "Brief recibido",
+        "success_body": "<p>Gracias. Empezamos a producir tu primer lote y te avisaremos por email en cuanto esté listo para revisión.</p>",
+        "success_cta_label": "Volver al inicio",
+        "success_cta_url": "/"
       }
     }
   },

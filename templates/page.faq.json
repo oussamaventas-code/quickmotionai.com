@@ -6,27 +6,39 @@
         "eyebrow": "Garantía y dudas",
         "heading": "Todo lo que necesitas saber",
         "heading_accent": "antes de empezar",
-        "body": "[Plazos de entrega, revisiones incluidas, cómo funciona el brief y nuestra garantía de devolución.]"
+        "body": "Plazos de entrega, revisiones incluidas, cómo funciona el brief y nuestra garantía de devolución."
       }
     },
-    "guarantee": { "type": "guarantee-band" },
+    "guarantee": {
+      "type": "guarantee-band",
+      "settings": {
+        "heading": "Si el primer lote no te convence, te devolvemos el pago de ese mes",
+        "body": "<p>Tienes 7 días desde la entrega de tu primer lote para solicitar la devolución completa de ese pago. Escríbenos y gestionamos el reembolso sin más condiciones.</p>"
+      },
+      "blocks": {
+        "gp1": { "type": "point", "settings": { "text": "Sin permanencia" } },
+        "gp2": { "type": "point", "settings": { "text": "Revisiones incluidas" } },
+        "gp3": { "type": "point", "settings": { "text": "Devolución en 7 días" } }
+      },
+      "block_order": ["gp1", "gp2", "gp3"]
+    },
     "faq": {
       "type": "faq-accordion",
       "blocks": {
         "c1": { "type": "category", "settings": { "title": "Plazos de entrega" } },
-        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar el primer lote?" } },
-        "f2": { "type": "faq", "settings": { "question": "¿Qué pasa si necesito los vídeos con más urgencia?" } },
+        "f1": { "type": "faq", "settings": { "question": "¿Cuánto tardáis en entregar el primer lote?", "answer": "<p>72 horas desde que recibimos tu brief, para todos los packs excepto Scale, que se entrega en 48 horas.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "¿Qué pasa si necesito los vídeos con más urgencia?", "answer": "<p>Escríbenos antes de contratar: si tenemos hueco de producción, podemos acelerar la entrega según el pack.</p>" } },
         "c2": { "type": "category", "settings": { "title": "Revisiones" } },
-        "f3": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?" } },
-        "f4": { "type": "faq", "settings": { "question": "¿Qué pasa si pido una revisión que no está en el alcance?" } },
+        "f3": { "type": "faq", "settings": { "question": "¿Cuántas revisiones incluye cada vídeo?", "answer": "<p>1 ronda en Starter, 2 en Growth y 3 en Scale. Cada ronda cubre ajustes de guion, montaje, música o texto en pantalla.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "¿Qué pasa si pido una revisión que no está en el alcance?", "answer": "<p>Te avisamos antes de aplicarla y te decimos si supone coste adicional o una nueva producción.</p>" } },
         "c3": { "type": "category", "settings": { "title": "El brief" } },
-        "f5": { "type": "faq", "settings": { "question": "¿Cómo funciona el formulario de brief?" } },
-        "f6": { "type": "faq", "settings": { "question": "¿Puedo enviar mis propios anuncios de referencia?" } },
+        "f5": { "type": "faq", "settings": { "question": "¿Cómo funciona el formulario de brief?", "answer": "<p>Al contratar recibes un formulario por pasos: tus datos, el producto, el ángulo de venta y tus referencias o assets. Tarda unos 10 minutos.</p>" } },
+        "f6": { "type": "faq", "settings": { "question": "¿Puedo enviar mis propios anuncios de referencia?", "answer": "<p>Sí, y te lo recomendamos: cuanto más claro el referente, menos rondas de revisión hacen falta.</p>" } },
         "c4": { "type": "category", "settings": { "title": "Pagos y cancelación" } },
-        "f7": { "type": "faq", "settings": { "question": "¿Cómo se cobra la suscripción?" } },
-        "f8": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?" } },
+        "f7": { "type": "faq", "settings": { "question": "¿Cómo se cobra la suscripción?", "answer": "<p>El cobro es mensual y automático a través de Shopify. Puedes ver y gestionar tu suscripción desde tu cuenta.</p>" } },
+        "f8": { "type": "faq", "settings": { "question": "¿Puedo cancelar cuando quiera?", "answer": "<p>Sí, sin permanencia. Cancela desde tu cuenta antes de la fecha del siguiente cobro.</p>" } },
         "c5": { "type": "category", "settings": { "title": "Garantía" } },
-        "f9": { "type": "faq", "settings": { "question": "¿Cómo reclamo la garantía de devolución?" } }
+        "f9": { "type": "faq", "settings": { "question": "¿Cómo reclamo la garantía de devolución?", "answer": "<p>Escríbenos dentro de los 7 días siguientes a la entrega de tu primer lote y gestionamos el reembolso de ese pago.</p>" } }
       },
       "block_order": ["c1", "f1", "f2", "c2", "f3", "f4", "c3", "f5", "f6", "c4", "f7", "f8", "c5", "f9"],
       "settings": { "layout": "stack", "single_open": true, "contact_label": "" }
