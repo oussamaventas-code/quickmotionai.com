@@ -52,6 +52,34 @@
   </div>
 </section>
 
+{%- comment -%}
+  FAQPage en JSON-LD, generado a partir de las mismas preguntas que se pintan
+  arriba: nunca puede quedar desincronizado del contenido visible. Es lo que
+  permite que un motor de IA (incluido el rastreador de ChatGPT Ads) cite
+  respuestas concretas sobre plazos, revisiones y cancelación.
+{%- endcomment -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- if faq_blocks.size > 0 -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- for block in faq_blocks -%}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | strip_html | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | strip | json }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Preguntas frecuentes",
@@ -59,8 +87,8 @@
   "settings": [
     { "type": "select", "id": "layout", "label": "Composición", "options": [{ "value": "split", "label": "Cabecera a la izquierda" }, { "value": "stack", "label": "Cabecera arriba" }], "default": "split" },
     { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Dudas" },
-    { "type": "text", "id": "heading", "label": "Titular", "default": "Lo que preguntan" },
-    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "antes de contratar" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "What clients ask" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "before signing up" },
     { "type": "textarea", "id": "body", "label": "Subtítulo" },
     { "type": "text", "id": "contact_label", "label": "Enlace de contacto", "default": "¿Otra duda? Escríbenos" },
     { "type": "url", "id": "contact_url", "label": "URL de contacto" },

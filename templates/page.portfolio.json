@@ -14,7 +14,7 @@
         "s8": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/d1704e2a47e547d293d05bd2f709abca/d1704e2a47e547d293d05bd2f709abca.SD-480p-1.2Mbps-93598424.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/d1704e2a47e547d293d05bd2f709abca.thumbnail.0000000000.jpg?v=1788642005", "caption": "ALM Electricidad · solar panel install" } }
       },
       "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"],
-      "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left", "show_halo": false }
+      "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left", "show_halo": false, "link_label": "See the full portfolio", "link_url": "/pages/pricing" }
     },
     "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "Want creatives", "heading_accent": "like this for your brand?", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing" } }
   },

@@ -1,0 +1,139 @@
+{%- comment -%}
+  Datos estructurados (JSON-LD) para rastreadores de IA.
+
+  Por qué existe esto: OAI-AdsBot (el crawler de ChatGPT Ads) no solo revisa la
+  página para aprobar el anuncio — OpenAI usa el contenido de la landing para
+  decidir en qué conversaciones mostrarlo. Un rastreador no puede ver un vídeo,
+  así que toda la prueba visual del sitio le resulta invisible: lo que entiende
+  es el texto y este esquema.
+
+  Los precios salen de los productos de Shopify, nunca escritos a mano, para que
+  no puedan desincronizarse (mismo criterio que el resto del tema).
+{%- endcomment -%}
+
+{%- liquid
+  assign starter = all_products['pack-starter-3-videos-anuncio-ia-mes']
+  assign growth = all_products['pack-growth-5-videos-anuncio-ia-mes']
+  assign scale = all_products['pack-scale-10-videos-anuncio-ia-mes']
+  assign single = all_products['single-ad-video']
+  assign currency = cart.currency.iso_code | default: shop.currency
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ shop.url }}/#organization",
+      "name": {{ shop.name | json }},
+      "url": "{{ shop.url }}",
+      "description": "AI-produced ad videos for ecommerce brands and agencies. Fixed monthly batches of UGC-style video ads for Meta and TikTok, delivered in 72 hours from brief, with revision rounds included and no lock-in.",
+      "email": "hello@quickmotionai.com",
+      "areaServed": { "@type": "Country", "name": "United States" }
+      {%- if settings.logo != blank -%},
+      "logo": "https:{{ settings.logo | image_url: width: 512 }}"
+      {%- endif -%}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#website",
+      "url": "{{ shop.url }}",
+      "name": {{ shop.name | json }},
+      "publisher": { "@id": "{{ shop.url }}/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Service",
+      "@id": "{{ shop.url }}/#service",
+      "name": "AI ad video production",
+      "serviceType": "Video advertising production",
+      "provider": { "@id": "{{ shop.url }}/#organization" },
+      "areaServed": { "@type": "Country", "name": "United States" },
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "Ecommerce brands, DTC stores and marketing agencies running paid social ads"
+      },
+      "description": "Monthly subscription that delivers a fixed number of AI-produced, UGC-style video ads for Meta and TikTok. Each batch is produced from a short brief and delivered in 72 hours (48 hours on the Scale plan), with revision rounds included. No long-term contract: cancel anytime. Single one-off videos are also available without a subscription.",
+      "termsOfService": "{{ shop.url }}/pages/terminos",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "{{ currency }}",
+        {%- if single != blank %}"lowPrice": "{{ single.price | divided_by: 100.0 }}",{% endif %}
+        {%- if scale != blank %}"highPrice": "{{ scale.price | divided_by: 100.0 }}",{% endif %}
+        "offerCount": 4,
+        "offers": [
+          {%- if starter != blank -%}
+          {
+            "@type": "Offer",
+            "name": "Starter — 3 ad videos per month",
+            "description": "3 AI-produced ad videos per month, 9:16 and 4:5 formats, 1 revision round per video, delivered in 72 hours from brief.",
+            "price": "{{ starter.price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ currency }}",
+            "url": "{{ shop.url }}{{ starter.url }}",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "{{ starter.price | divided_by: 100.0 }}",
+              "priceCurrency": "{{ currency }}",
+              "billingDuration": 1,
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          },
+          {%- endif -%}
+          {%- if growth != blank -%}
+          {
+            "@type": "Offer",
+            "name": "Growth — 5 ad videos per month",
+            "description": "5 AI-produced ad videos per month, 9:16, 4:5 and 1:1 formats, 2 revision rounds per video, delivered in 72 hours from brief.",
+            "price": "{{ growth.price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ currency }}",
+            "url": "{{ shop.url }}{{ growth.url }}",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "{{ growth.price | divided_by: 100.0 }}",
+              "priceCurrency": "{{ currency }}",
+              "billingDuration": 1,
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          },
+          {%- endif -%}
+          {%- if scale != blank -%}
+          {
+            "@type": "Offer",
+            "name": "Scale — 10 ad videos per month",
+            "description": "10 AI-produced ad videos per month, all formats, 3 revision rounds per video, delivered in 48 hours from brief, with a dedicated account manager.",
+            "price": "{{ scale.price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ currency }}",
+            "url": "{{ shop.url }}{{ scale.url }}",
+            "availability": "https://schema.org/InStock",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "{{ scale.price | divided_by: 100.0 }}",
+              "priceCurrency": "{{ currency }}",
+              "billingDuration": 1,
+              "billingIncrement": 1,
+              "unitCode": "MON"
+            }
+          },
+          {%- endif -%}
+          {%- if single != blank -%}
+          {
+            "@type": "Offer",
+            "name": "Single ad video — one-time purchase",
+            "description": "One AI-produced ad video, bought individually with no subscription. 9:16 and 4:5 formats, 1 revision round, delivered in 72 hours from brief.",
+            "price": "{{ single.price | divided_by: 100.0 }}",
+            "priceCurrency": "{{ currency }}",
+            "url": "{{ shop.url }}{{ single.url }}",
+            "availability": "https://schema.org/InStock"
+          }
+          {%- endif -%}
+        ]
+      }
+    }
+  ]
+}
+</script>

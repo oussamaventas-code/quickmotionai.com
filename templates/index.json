@@ -40,7 +40,8 @@
         "cta_primary_url": "/pages/pricing",
         "cta_secondary_label": "See more creatives",
         "cta_secondary_url": "/pages/portfolio",
-        "show_scroll_cue": true
+        "show_scroll_cue": true,
+        "scroll_label": "Scroll"
       }
     },
     "spotlight": {
@@ -65,6 +66,7 @@
     },
     "value-props": {
       "type": "value-props",
+      "settings": { "eyebrow": "Why us", "heading": "Built for agencies", "heading_accent": "that need volume" },
       "blocks": {
         "p1": { "type": "prop", "settings": { "icon": "bolt", "icon_color": "violet", "title": "Speed", "body": "<p>From brief to creative in 72 hours. No waiting weeks on an agency or a freelancer.</p>" } },
         "p2": { "type": "prop", "settings": { "icon": "target", "icon_color": "cyan", "title": "Fixed volume", "body": "<p>You know exactly how many videos you'll get every month, no budget surprises.</p>" } },
@@ -97,6 +99,7 @@
     },
     "how-it-works": {
       "type": "how-it-works",
+      "settings": { "eyebrow": "How it works", "heading": "From your brief to", "heading_accent": "finished creatives" },
       "blocks": {
         "st1": { "type": "step", "settings": { "title": "Fill out the brief", "body": "<p>Product, sales angle, and references. The form takes about 10 minutes.</p>", "meta": "10 minutes" } },
         "st2": { "type": "step", "settings": { "title": "We produce the creatives", "body": "<p>Script, AI generation, and final edit in whatever formats you need.</p>", "meta": "72 hours" } },
@@ -136,7 +139,7 @@
     },
     "pricing": {
       "type": "pricing-cards",
-      "settings": { "footer_note": "Every plan is a digital service: no shipping, no setup fee." },
+      "settings": { "eyebrow": "Pricing", "heading": "Pick your", "heading_accent": "production volume", "footer_note": "Every plan is a digital service: no shipping, no setup fee." },
       "blocks": {
         "pk1": { "type": "pack", "settings": { "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes", "product_handle": "pack-starter-3-videos-anuncio-ia-mes", "period": "/mo", "name": "Starter", "pitch": "To test the service with steady, low volume", "features": "3 ad videos per month\n9:16 and 4:5 formats\n1 revision round per video\nDelivered in 72h from brief" } },
         "pk2": { "type": "pack", "settings": { "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes", "product_handle": "pack-growth-5-videos-anuncio-ia-mes", "period": "/mo", "name": "Growth", "featured": true, "badge": "Most popular", "pitch": "To scale active accounts without overloading your creative team", "features": "5 ad videos per month\n9:16, 4:5 and 1:1 formats\n2 revision rounds per video\nDelivered in 72h from brief" } },
@@ -177,7 +180,7 @@
     },
     "faq": {
       "type": "faq-accordion",
-      "settings": { "contact_label": "" },
+      "settings": { "eyebrow": "FAQ", "heading": "What clients ask", "heading_accent": "before signing up", "contact_label": "" },
       "blocks": {
         "f1": { "type": "faq", "settings": { "question": "How fast do you deliver?", "answer": "<p>Standard turnaround is 72 hours from when we receive your brief. The Scale plan delivers in 48 hours.</p>" } },
         "f2": { "type": "faq", "settings": { "question": "How many revisions does each video include?", "answer": "<p>Depends on the plan: 1 round on Starter, 2 on Growth, 3 on Scale.</p>" } },

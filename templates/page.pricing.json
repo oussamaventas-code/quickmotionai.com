@@ -70,7 +70,7 @@
         "f3": { "type": "faq", "settings": { "question": "How is the subscription billed?", "answer": "<p>Billing is monthly and automatic through Shopify, at your plan's price.</p>" } }
       },
       "block_order": ["f1", "f2", "f3"],
-      "settings": { "layout": "stack", "contact_label": "" }
+      "settings": { "layout": "stack", "eyebrow": "FAQ", "heading": "What clients ask", "heading_accent": "before signing up", "contact_label": "" }
     },
     "guarantee": {
       "type": "guarantee-band",

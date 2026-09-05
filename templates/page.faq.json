@@ -33,7 +33,7 @@
         "f9": { "type": "faq", "settings": { "question": "How do I claim the refund guarantee?", "answer": "<p>Message us within 7 days of your first batch being delivered and we'll process the refund for that payment.</p>" } }
       },
       "block_order": ["c1", "f1", "f2", "c2", "f3", "f4", "c3", "f5", "f6", "c4", "f7", "f8", "c5", "f9"],
-      "settings": { "layout": "stack", "single_open": true, "contact_label": "" }
+      "settings": { "layout": "stack", "single_open": true, "eyebrow": "FAQ", "heading": "What clients ask", "heading_accent": "before signing up", "contact_label": "" }
     },
     "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "Still have questions?", "heading_accent": "Let's talk", "cta_secondary_label": "" } }
   },

@@ -17,11 +17,16 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
-    {%- endif -%}
+    {%- comment -%}
+      Descripción: si la página no tiene la suya en el admin, cae en una
+      descripción del negocio. No dejar nunca el <head> sin description: es lo
+      primero que lee un rastreador de IA para resumir de qué va el sitio.
+    {%- endcomment -%}
+    {%- assign fallback_description = 'AI-produced ad videos for ecommerce brands and agencies. Fixed monthly batches of UGC-style video ads for Meta and TikTok, delivered in 72 hours from brief. Revisions included, no lock-in, cancel anytime.' -%}
+    <meta name="description" content="{{ page_description | default: fallback_description | escape }}">
 
     {% render 'meta-tags' %}
+    {% render 'structured-data' %}
 
     {%- comment -%}
       Dos fuentes variables self-hosted (72 KB juntas). Se precargan porque el H1
