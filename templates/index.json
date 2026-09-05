@@ -58,22 +58,25 @@
         "s1": {
           "type": "creative",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/1f13602b38694c54913bf427734f807b/1f13602b38694c54913bf427734f807b.HD-1080p-7.2Mbps-93534587.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/1f13602b38694c54913bf427734f807b.thumbnail.0000000000.jpg?v=1788555800"
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.HD-1080p-7.2Mbps-93534615.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
+            "caption": "Joint relief kit · pain angle"
           }
         },
         "s2": {
           "type": "creative",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/92596bf50d314da3a8c362cd6066c9f9/92596bf50d314da3a8c362cd6066c9f9.HD-1080p-7.2Mbps-93534588.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/92596bf50d314da3a8c362cd6066c9f9.thumbnail.0000000000.jpg?v=1788555822"
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.HD-1080p-7.2Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Joint relief kit · comparison"
           }
         },
         "s3": {
           "type": "creative",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/vp/a49647e14af04066a9192cd728c13cbc/a49647e14af04066a9192cd728c13cbc.HD-1080p-7.2Mbps-93534612.mp4",
-            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a49647e14af04066a9192cd728c13cbc.thumbnail.0000000000.jpg?v=1788555848"
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.HD-1080p-7.2Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Joint relief kit · objection handling"
           }
         }
       },
