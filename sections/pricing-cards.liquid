@@ -38,7 +38,15 @@
     <div class="pricing__grid pricing__grid--{{ section.blocks.size }}" data-stagger="90">
       {%- for block in section.blocks -%}
         {%- liquid
+          comment
+            El selector de producto guarda su valor de forma distinta según cómo
+            se haya creado la plantilla, así que aceptamos también el handle
+            escrito a mano: lo que llegue primero es lo que se usa.
+          endcomment
           assign product = block.settings.product
+          if product == blank and block.settings.product_handle != blank
+            assign product = all_products[block.settings.product_handle]
+          endif
           assign variant = product.selected_or_first_available_variant
           assign allocations = variant.selling_plan_allocations
           assign has_plans = false
@@ -210,6 +218,7 @@
       "limit": 4,
       "settings": [
         { "type": "product", "id": "product", "label": "Producto", "info": "Marca el producto como digital (sin envío) en el panel de Shopify." },
+        { "type": "text", "id": "product_handle", "label": "Handle del producto", "info": "Alternativa al selector: el handle exacto del producto (lo que va después de /products/ en su URL)." },
         { "type": "text", "id": "name", "label": "Nombre visible", "info": "Si lo dejas vacío se usa el título del producto." },
         { "type": "text", "id": "pitch", "label": "Descripción corta" },
         { "type": "text", "id": "period", "label": "Periodicidad", "default": "/mes" },

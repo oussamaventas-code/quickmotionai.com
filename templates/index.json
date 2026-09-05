@@ -106,6 +106,7 @@
           "type": "pack",
           "settings": {
             "product": "shopify://products/pack-starter-3-videos-anuncio-ia-mes",
+            "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
             "name": "Starter",
             "pitch": "Para probar el servicio con volumen bajo pero constante",
             "features": "3 vídeos-anuncio al mes\nFormatos 9:16 y 4:5\n1 ronda de revisión por vídeo\nEntrega en 72 h desde el brief"
@@ -115,6 +116,7 @@
           "type": "pack",
           "settings": {
             "product": "shopify://products/pack-growth-5-videos-anuncio-ia-mes",
+            "product_handle": "pack-growth-5-videos-anuncio-ia-mes",
             "name": "Growth",
             "featured": true,
             "badge": "Más elegido",
@@ -126,6 +128,7 @@
           "type": "pack",
           "settings": {
             "product": "shopify://products/pack-scale-10-videos-anuncio-ia-mes",
+            "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
             "name": "Scale",
             "pitch": "Para agencias con varias cuentas y un punto de contacto fijo",
             "features": "10 vídeos-anuncio al mes\nTodos los formatos\n3 rondas de revisión por vídeo\nEntrega en 48 h desde el brief\nGestor de cuenta dedicado"
