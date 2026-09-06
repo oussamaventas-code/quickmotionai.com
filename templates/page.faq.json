@@ -12,6 +12,7 @@
     "guarantee": {
       "type": "guarantee-band",
       "settings": {
+        "eyebrow": "Guarantee",
         "heading": "If the first batch doesn't convince you, we refund that month's payment",
         "body": "<p>You have 7 days from delivery of your first batch to request a full refund of that payment. Just message us and we'll handle it, no other conditions.</p>"
       },
