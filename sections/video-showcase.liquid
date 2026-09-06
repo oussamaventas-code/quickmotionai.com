@@ -8,15 +8,24 @@
     strip   tira horizontal con ajuste por tarjeta (home)
     grid    rejilla de 3-4 columnas (portfolio)
     stagger rejilla escalonada, las pares bajan medio módulo (portfolio, más editorial)
+
+  Filtros: la lista de la sección manda (para poder ordenarla) y cada creativo
+  declara sus etiquetas. El filtrado es puramente de clase — nada se descarga ni
+  se destruye al cambiar de pestaña, así que los vídeos ya cargados siguen ahí.
 {%- endcomment -%}
 
 {%- liquid
   assign s = section.settings
   assign layout = s.layout
   assign per_row = s.columns | default: 3
+  assign filters = s.filters | split: ','
+  assign show_filters = false
+  if s.show_filters and filters.size > 0
+    assign show_filters = true
+  endif
 -%}
 
-<section class="section showcase showcase--{{ layout }}">
+<section class="section showcase showcase--{{ layout }}" {% if show_filters %}data-showcase-filter{% endif %}>
   {%- if s.show_halo -%}
     <span class="halo halo--bc" style="--halo-color: var(--c-violet); --halo-opacity: 0.16;" aria-hidden="true"></span>
   {%- endif -%}
@@ -39,64 +48,144 @@
         </a>
       {%- endif -%}
     </div>
-  </div>
 
-  {%- if layout == 'strip' -%}
-    <div class="hscroll showcase__strip" data-stagger="70">
-      {%- for block in section.blocks -%}
-        <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
-          {% render 'video-embed',
-            video: block.settings.video,
-            video_url: block.settings.video_url,
-            poster: block.settings.poster,
-            poster_url: block.settings.poster_url,
-            ratio: '9-16',
-            lightbox: true,
-            caption: block.settings.caption,
-            m1_value: block.settings.metric_1_value,
-            m1_label: block.settings.metric_1_label,
-            m2_value: block.settings.metric_2_value,
-            m2_label: block.settings.metric_2_label,
-            m_color: block.settings.metric_color,
-            class: 'vframe--lift vframe--hoverzoom',
-            sizes: '(max-width: 749px) 66vw, 280px'
-          %}
-          {%- if block.settings.note != blank -%}
-            <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
+    {%- if show_filters -%}
+      <div class="showcase__filters" data-reveal="fade">
+        <button type="button" class="showcase__filter is-active" data-filter="*" aria-pressed="true">
+          {{ s.filter_all_label | default: 'All work' }}
+        </button>
+        {%- for filter in filters -%}
+          {%- assign filter_label = filter | strip -%}
+          {%- if filter_label != blank -%}
+            <button type="button" class="showcase__filter" data-filter="{{ filter_label | downcase }}" aria-pressed="false">
+              {{ filter_label }}
+            </button>
           {%- endif -%}
-        </figure>
-      {%- endfor -%}
-    </div>
-  {%- else -%}
-    <div class="wrap">
-      <div class="showcase__grid showcase__grid--{{ per_row }}" data-stagger="80">
-        {%- for block in section.blocks -%}
-          <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale">
-            {% render 'video-embed',
-              video: block.settings.video,
-              video_url: block.settings.video_url,
-              poster: block.settings.poster,
-              poster_url: block.settings.poster_url,
-              ratio: '9-16',
-              lightbox: true,
-              caption: block.settings.caption,
-              m1_value: block.settings.metric_1_value,
-              m1_label: block.settings.metric_1_label,
-              m2_value: block.settings.metric_2_value,
-              m2_label: block.settings.metric_2_label,
-              m_color: block.settings.metric_color,
-              class: 'vframe--lift vframe--hoverzoom',
-              sizes: '(max-width: 749px) 88vw, (max-width: 989px) 44vw, 300px'
-            %}
-            {%- if block.settings.note != blank -%}
-              <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
-            {%- endif -%}
-          </figure>
         {%- endfor -%}
       </div>
+    {%- endif -%}
+  </div>
+
+  {%- capture items -%}
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign meta_parts = ''
+        if block.settings.industry != blank
+          assign meta_parts = meta_parts | append: block.settings.industry | append: '|'
+        endif
+        if block.settings.creative_type != blank
+          assign meta_parts = meta_parts | append: block.settings.creative_type | append: '|'
+        endif
+        if block.settings.platform != blank
+          assign meta_parts = meta_parts | append: block.settings.platform | append: '|'
+        endif
+        if block.settings.objective != blank
+          assign meta_parts = meta_parts | append: block.settings.objective | append: '|'
+        endif
+        assign meta_list = meta_parts | split: '|'
+
+        comment
+          Las etiquetas de filtro salen del campo `tags` y, si está vacío, de los
+          propios metadatos: una ficha bien rellenada ya filtra sin trabajo extra.
+        endcomment
+        assign tag_source = block.settings.tags
+        if tag_source == blank
+          assign tag_source = block.settings.industry | append: ',' | append: block.settings.creative_type
+        endif
+        assign tag_list = tag_source | downcase | split: ','
+        assign tag_attr = ''
+        for tag in tag_list
+          assign clean_tag = tag | strip
+          if clean_tag != blank
+            assign tag_attr = tag_attr | append: '|' | append: clean_tag
+          endif
+        endfor
+        if tag_attr != blank
+          assign tag_attr = tag_attr | append: '|'
+        endif
+      -%}
+      <figure class="showcase__item" {{ block.shopify_attributes }} data-reveal="scale" data-tags="{{ tag_attr }}">
+        {% render 'video-embed',
+          video: block.settings.video,
+          video_url: block.settings.video_url,
+          poster: block.settings.poster,
+          poster_url: block.settings.poster_url,
+          ratio: '9-16',
+          lightbox: true,
+          caption: block.settings.caption,
+          m1_value: block.settings.metric_1_value,
+          m1_label: block.settings.metric_1_label,
+          m2_value: block.settings.metric_2_value,
+          m2_label: block.settings.metric_2_label,
+          m_color: block.settings.metric_color,
+          class: 'vframe--lift vframe--hoverzoom',
+          sizes: '(max-width: 749px) 88vw, (max-width: 989px) 44vw, 300px'
+        %}
+
+        {%- if meta_list.size > 0 -%}
+          <figcaption class="showcase__meta">
+            {%- for part in meta_list -%}
+              <span class="showcase__meta-item">{{ part }}</span>
+            {%- endfor -%}
+          </figcaption>
+        {%- endif -%}
+
+        {%- if block.settings.note != blank -%}
+          <figcaption class="showcase__note t-sm t-dim">{{ block.settings.note }}</figcaption>
+        {%- endif -%}
+      </figure>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if layout == 'strip' -%}
+    <div class="hscroll showcase__strip" data-stagger="70">{{ items }}</div>
+  {%- else -%}
+    <div class="wrap">
+      <div class="showcase__grid showcase__grid--{{ per_row }}" data-stagger="80">{{ items }}</div>
+    </div>
+  {%- endif -%}
+
+  {%- if show_filters -%}
+    <div class="wrap">
+      <p class="showcase__empty t-dim" hidden>{{ s.empty_text | default: 'Nothing in this category yet.' }}</p>
     </div>
   {%- endif -%}
 </section>
+
+{%- if show_filters -%}
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      if (!root || !root.hasAttribute('data-showcase-filter')) return;
+
+      var buttons = root.querySelectorAll('.showcase__filter');
+      var items = root.querySelectorAll('.showcase__item');
+      var empty = root.querySelector('.showcase__empty');
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          var filter = button.dataset.filter;
+          var shown = 0;
+
+          buttons.forEach(function (other) {
+            var active = other === button;
+            other.classList.toggle('is-active', active);
+            other.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          items.forEach(function (item) {
+            var tags = item.dataset.tags || '';
+            var match = filter === '*' || tags.indexOf('|' + filter + '|') !== -1;
+            item.hidden = !match;
+            if (match) shown++;
+          });
+
+          if (empty) empty.hidden = shown > 0;
+        });
+      });
+    })();
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -141,19 +230,36 @@
     },
     { "type": "text", "id": "link_label", "label": "Enlace de la cabecera", "default": "See the full portfolio" },
     { "type": "url", "id": "link_url", "label": "URL del enlace" },
-    { "type": "checkbox", "id": "show_halo", "label": "Resplandor de fondo", "default": true }
+    { "type": "checkbox", "id": "show_halo", "label": "Resplandor de fondo", "default": true },
+    { "type": "header", "content": "Filtros" },
+    { "type": "checkbox", "id": "show_filters", "label": "Mostrar filtros", "default": false },
+    { "type": "text", "id": "filter_all_label", "label": "Etiqueta de todo", "default": "All work" },
+    {
+      "type": "textarea",
+      "id": "filters",
+      "label": "Filtros disponibles",
+      "info": "Separados por comas y en el orden en que quieres verlos. Un creativo aparece si una de sus etiquetas coincide.",
+      "default": "E-commerce, UGC, Healthcare, Wellness, Product ads, AI commercials, Image-to-video"
+    },
+    { "type": "text", "id": "empty_text", "label": "Texto si no hay resultados", "default": "Nothing in this category yet." }
   ],
   "blocks": [
     {
       "type": "creative",
       "name": "Creativo",
-      "limit": 12,
+      "limit": 24,
       "settings": [
         { "type": "video", "id": "video", "label": "Vídeo" },
         { "type": "text", "id": "video_url", "label": "URL de vídeo externo (.mp4)" },
         { "type": "image_picker", "id": "poster", "label": "Póster" },
         { "type": "text", "id": "poster_url", "label": "URL de póster externo", "info": "Se usa solo si el vídeo viene de una URL externa y no tiene póster." },
         { "type": "text", "id": "caption", "label": "Pie sobre el vídeo" },
+        { "type": "header", "content": "Ficha del creativo" },
+        { "type": "text", "id": "industry", "label": "Sector", "info": "Ej.: Healthcare" },
+        { "type": "text", "id": "creative_type", "label": "Tipo de creativo", "info": "Ej.: AI product explainer" },
+        { "type": "text", "id": "platform", "label": "Plataforma", "info": "Ej.: Meta Ads" },
+        { "type": "text", "id": "objective", "label": "Objetivo", "info": "Ej.: Product education" },
+        { "type": "text", "id": "tags", "label": "Etiquetas de filtro", "info": "Separadas por comas. Si lo dejas vacío se usan el sector y el tipo de creativo." },
         { "type": "header", "content": "Métricas" },
         { "type": "text", "id": "metric_1_value", "label": "Métrica 1" },
         { "type": "text", "id": "metric_1_label", "label": "Etiqueta 1" },

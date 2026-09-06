@@ -690,3 +690,334 @@
 .videowall__thumb:hover .videowall__thumb-play { opacity: 1; }
 
 .videowall__copy .btn { margin-top: var(--s-6); }
+
+/* ==========================================================================
+   HERO — apoyo y garantías
+   ========================================================================== */
+
+/* Titular largo: escala h1 en vez de mega, para que los botones no caigan
+   fuera de pantalla. La clase la pone hero-cinematic.liquid por longitud. */
+.hero__title--tight {
+  font-size: clamp(2.5rem, 1.45rem + 4.6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.hero__support {
+  max-width: 46ch;
+  margin-bottom: var(--s-6);
+  font-size: var(--t-sm);
+  color: var(--c-text-dim);
+}
+.hero--center .hero__support { margin-inline: auto; }
+
+.hero__bullets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  margin-top: var(--s-5);
+  list-style: none;
+  padding: 0;
+}
+.hero__bullets li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--t-xs);
+  color: var(--c-text-soft);
+}
+.hero__bullets .tick { width: 15px; height: 15px; flex: none; }
+.hero__bullets .tick svg { width: 9px; height: 9px; }
+.hero--center .hero__bullets { justify-content: center; }
+
+/* ==========================================================================
+   PROBLEMA QUE RESOLVEMOS
+   ========================================================================== */
+
+.problems__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+}
+@media (max-width: 749px) { .problems__grid { grid-template-columns: 1fr; } }
+
+.problems__card { border-color: rgba(255, 255, 255, 0.05); }
+.problems__mark {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  color: var(--c-text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--c-line);
+  margin-bottom: var(--s-4);
+}
+.problems__title {
+  font-size: var(--t-h4);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-3);
+}
+.problems__text { color: var(--c-text-dim); }
+
+.problems__solution {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-4);
+  margin-top: var(--gutter);
+  padding: clamp(1.25rem, 1rem + 0.9vw, 1.75rem) clamp(1.5rem, 1.2rem + 1.1vw, 2.25rem);
+  border: 1px solid var(--c-line-accent);
+  border-radius: var(--r-lg);
+  background: linear-gradient(115deg, rgba(123, 97, 255, 0.1) 0%, rgba(0, 207, 255, 0.05) 100%);
+}
+.problems__solution-mark {
+  display: grid;
+  place-items: center;
+  width: 28px; height: 28px;
+  flex: none;
+  border-radius: 50%;
+  color: var(--c-green);
+  background: var(--c-green-soft);
+}
+.problems__solution-text {
+  flex: 1 1 20rem;
+  font-size: var(--t-lead);
+  font-weight: 500;
+  color: var(--c-text);
+  text-wrap: pretty;
+}
+.problems__solution-cta { flex: none; }
+
+/* ==========================================================================
+   QUÉ PRODUCIMOS
+   ========================================================================== */
+
+.caps__grid { display: grid; gap: clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem) var(--gutter); }
+.caps__grid--3 { grid-template-columns: repeat(3, 1fr); }
+.caps__grid--2 { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 989px) { .caps__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .caps__grid { grid-template-columns: 1fr; } }
+
+.caps__card { display: flex; flex-direction: column; gap: var(--s-5); }
+/* 9:16 a 320px deja tarjetas de ~700px: seis de ellas son media página de scroll.
+   260px mantiene el vídeo como prueba sin que la sección se coma la home. */
+.caps__media { max-width: 260px; width: 100%; }
+@media (max-width: 620px) { .caps__media { max-width: 100%; } }
+
+.caps__title {
+  font-size: var(--t-h4);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-3);
+}
+.caps__text { color: var(--c-text-soft); font-size: var(--t-body); }
+.caps__foot { display: flex; justify-content: center; margin-top: var(--s-9); }
+
+/* ==========================================================================
+   SECTORES ESPECIALIZADOS
+   ========================================================================== */
+
+.industries__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+@media (max-width: 989px) { .industries__inner { grid-template-columns: 1fr; } }
+
+.industries__title { margin-top: var(--s-4); }
+.industries__body { margin-top: var(--s-4); max-width: 46ch; }
+
+.industries__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-3);
+  margin-top: var(--s-7);
+  list-style: none;
+  padding: 0;
+}
+.industries__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  background: var(--c-elev-1);
+  font-size: var(--t-xs);
+  color: var(--c-text-soft);
+}
+.industries__dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--c-green);
+  flex: none;
+}
+.industries__ctas { margin-top: var(--s-7); }
+.industries__note .card__text { color: var(--c-text-dim); font-size: var(--t-sm); }
+.industries__note .card__title { margin-top: var(--s-4); margin-bottom: var(--s-3); }
+
+/* ==========================================================================
+   IA VS. DIRECCIÓN CREATIVA
+   ========================================================================== */
+
+.aitools__split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--gutter);
+  align-items: stretch;
+}
+@media (max-width: 900px) { .aitools__split { grid-template-columns: 1fr; } }
+
+.aitools__col { display: flex; flex-direction: column; }
+.aitools__col-label { margin-bottom: var(--s-5); }
+.aitools__col--tool .aitools__col-label { color: var(--c-text-faint); }
+.aitools__col-lead {
+  font-size: var(--t-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tr-h3);
+  font-weight: 500;
+  color: var(--c-text-dim);
+  text-wrap: balance;
+}
+.aitools__col-note { margin-top: auto; padding-top: var(--s-6); }
+
+.aitools__reqs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-3) var(--s-5);
+  list-style: none;
+  padding: 0;
+}
+@media (max-width: 620px) { .aitools__reqs { grid-template-columns: 1fr; } }
+.aitools__reqs li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--t-body);
+  color: var(--c-text);
+}
+.aitools__reqs .tick { flex: none; }
+
+.aitools__closer {
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  text-align: center;
+  text-wrap: balance;
+}
+.aitools__foot { display: flex; justify-content: center; margin-top: var(--s-7); }
+
+/* ==========================================================================
+   BLOQUE PARA AGENCIAS
+   ========================================================================== */
+
+.agency__card {
+  position: relative;
+  padding: clamp(2rem, 1.5rem + 2.6vw, 4rem);
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-xl);
+  background: linear-gradient(160deg, rgba(123, 97, 255, 0.12) 0%, rgba(5, 5, 8, 0) 55%), var(--c-elev-1);
+  overflow: hidden;
+  isolation: isolate;
+}
+.agency__glow {
+  position: absolute;
+  top: -40%; right: -15%;
+  width: 45%; aspect-ratio: 1;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 207, 255, 0.22) 0%, transparent 68%);
+  filter: blur(40px);
+}
+
+.agency__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 1.6rem + 2.4vw, 4rem);
+  align-items: center;
+}
+@media (max-width: 900px) { .agency__inner { grid-template-columns: 1fr; } }
+
+.agency__title { margin-top: var(--s-4); }
+.agency__body { margin-top: var(--s-4); max-width: 48ch; }
+.agency__ctas { margin-top: var(--s-7); }
+
+.agency__benefits {
+  display: grid;
+  gap: var(--s-3);
+  list-style: none;
+  padding: 0;
+}
+.agency__benefits li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: var(--t-body);
+  color: var(--c-text-soft);
+}
+.agency__benefits .tick { flex: none; }
+
+/* ==========================================================================
+   ESCAPARATE — filtros y ficha del creativo
+   ========================================================================== */
+
+.showcase__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
+}
+.showcase__filter {
+  appearance: none;
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  background: var(--c-elev-1);
+  color: var(--c-text-dim);
+  font-family: inherit;
+  font-size: var(--t-xs);
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  transition:
+    color var(--d-fast) var(--e-out),
+    border-color var(--d-fast) var(--e-out),
+    background-color var(--d-fast) var(--e-out);
+}
+.showcase__filter:hover { color: var(--c-text); border-color: var(--c-line-strong); }
+.showcase__filter.is-active {
+  color: var(--c-text);
+  border-color: var(--c-line-accent);
+  background: var(--c-violet-soft);
+}
+
+/* Con filtros, la rejilla vive en otro .wrap que la barra, así que el aire de
+   separación no puede salir de un selector hermano. */
+[data-showcase-filter] .showcase__grid,
+[data-showcase-filter] .showcase__strip { margin-top: clamp(2rem, 1.6rem + 1.8vw, 3rem); }
+
+.showcase__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-2);
+  margin-top: var(--s-3);
+}
+.showcase__meta-item {
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-dim);
+}
+.showcase__meta-item + .showcase__meta-item::before {
+  content: "\00b7";
+  margin-right: var(--s-2);
+  color: var(--c-text-faint);
+}
+
+.showcase__empty { margin-top: var(--s-8); text-align: center; }
+
+/* Proceso de 5 pasos: se estrecha antes que la rejilla de 4 para no comprimir
+   el texto. Las reglas van juntas y en orden descendente a propósito. */
+.steps__list--5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1200px) { .steps__list--5 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 989px)  { .steps__list--5 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .steps__list--5 { grid-template-columns: 1fr; } }

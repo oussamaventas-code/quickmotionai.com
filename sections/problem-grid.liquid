@@ -1,0 +1,93 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  El problema del cliente antes de la solución. Las tarjetas describen el coste
+  de la producción tradicional; la banda final introduce QuickMotion.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign problems = section.blocks | where: 'type', 'problem'
+-%}
+
+<section class="section problems">
+  <div class="wrap">
+    <div class="section-head{% if s.align == 'center' %} section-head--center{% endif %}">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="problems__grid" data-stagger="80">
+      {%- for block in problems -%}
+        <article class="card card--flat problems__card" {{ block.shopify_attributes }} data-reveal>
+          <span class="problems__mark" aria-hidden="true">{% render 'icon', name: 'close', size: 14 %}</span>
+          <h3 class="problems__title">{{ block.settings.title }}</h3>
+          <div class="problems__text rte">{{ block.settings.body }}</div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.solution_text != blank -%}
+      <div class="problems__solution" data-reveal style="--reveal-delay: 120ms">
+        <span class="problems__solution-mark" aria-hidden="true">{% render 'icon', name: 'check', size: 14 %}</span>
+        <p class="problems__solution-text">{{ s.solution_text }}</p>
+        {%- if s.cta_label != blank -%}
+          <a href="{{ s.cta_url | default: '/pages/pricing' }}" class="btn btn--text problems__solution-cta">
+            {{ s.cta_label }}
+            <span class="btn__arrow">{% render 'icon', name: 'arrow-right', size: 15 %}</span>
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problema que resolvemos",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "The problem we solve" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Creative production shouldn't" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "slow down your campaigns" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alineación de la cabecera",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "left"
+    },
+    { "type": "header", "content": "Banda de solución" },
+    { "type": "text", "id": "solution_text", "label": "Frase de solución", "default": "QuickMotion removes the production bottleneck so your team can keep testing." },
+    { "type": "text", "id": "cta_label", "label": "Enlace" },
+    { "type": "url", "id": "cta_url", "label": "URL del enlace" }
+  ],
+  "blocks": [
+    {
+      "type": "problem",
+      "name": "Problema",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "richtext", "id": "body", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Problema que resolvemos",
+      "blocks": [{ "type": "problem" }, { "type": "problem" }, { "type": "problem" }, { "type": "problem" }]
+    }
+  ]
+}
+{% endschema %}

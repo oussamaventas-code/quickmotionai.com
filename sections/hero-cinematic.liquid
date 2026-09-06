@@ -3,6 +3,17 @@
 {%- liquid
   assign s = section.settings
   assign video_blocks = section.blocks | where: 'type', 'video'
+
+  comment
+    A 120px, un titular de tres frases ocupa cinco líneas y empuja los botones
+    fuera de pantalla. Por encima de ~46 caracteres bajamos a escala h1: el
+    titular corto sigue siendo enorme, el largo sigue siendo legible.
+  endcomment
+  assign heading_length = s.heading | append: ' ' | append: s.heading_accent | strip | size
+  assign title_size = 't-mega'
+  if heading_length > 46
+    assign title_size = 't-mega hero__title--tight'
+  endif
 -%}
 
 <section
@@ -43,7 +54,7 @@
         </p>
       {%- endif -%}
 
-      <h1 class="t-mega hero__title" data-reveal style="--reveal-delay: 60ms">
+      <h1 class="{{ title_size }} hero__title" data-reveal style="--reveal-delay: 60ms">
         {{ s.heading }}
         {%- if s.heading_accent != blank -%}
           <span class="t-grad">{{ s.heading_accent }}</span>
@@ -52,6 +63,10 @@
 
       {%- if s.body != blank -%}
         <p class="t-lead hero__body" data-reveal style="--reveal-delay: 140ms">{{ s.body }}</p>
+      {%- endif -%}
+
+      {%- if s.support != blank -%}
+        <p class="hero__support" data-reveal style="--reveal-delay: 180ms">{{ s.support }}</p>
       {%- endif -%}
 
       <div class="btn-row hero__ctas" data-reveal style="--reveal-delay: 220ms">
@@ -68,6 +83,21 @@
           </a>
         {%- endif -%}
       </div>
+
+      {%- if s.bullets != blank -%}
+        {%- assign hero_bullets = s.bullets | newline_to_br | split: '<br />' -%}
+        <ul class="hero__bullets" data-reveal="fade" style="--reveal-delay: 280ms">
+          {%- for bullet in hero_bullets -%}
+            {%- assign bullet_text = bullet | strip_html | strip -%}
+            {%- if bullet_text != blank -%}
+              <li>
+                <span class="tick tick--yes" aria-hidden="true">{% render 'icon', name: 'check', size: 9 %}</span>
+                {{ bullet_text }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
 
       {%- if s.proof != blank -%}
         <div class="hero__proof" data-reveal style="--reveal-delay: 300ms">
@@ -149,7 +179,9 @@
     { "type": "text", "id": "heading", "label": "Titular", "default": "Ad videos that" },
     { "type": "text", "id": "heading_accent", "label": "Parte destacada del titular", "info": "Se pinta con el degradado de marca.", "default": "rinden desde el día uno" },
     { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    { "type": "text", "id": "support", "label": "Línea de apoyo", "info": "Frase corta entre el subtítulo y los botones." },
     { "type": "text", "id": "proof", "label": "Línea de refuerzo" },
+    { "type": "textarea", "id": "bullets", "label": "Garantías bajo los botones", "info": "Una por línea. Se pintan con check." },
     { "type": "header", "content": "Botones" },
     { "type": "text", "id": "cta_primary_label", "label": "Botón principal", "default": "Ver precios" },
     { "type": "url", "id": "cta_primary_url", "label": "Enlace principal" },

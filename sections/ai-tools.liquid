@@ -1,0 +1,105 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  "¿Por qué no usar las herramientas de IA por tu cuenta?" — la objeción que
+  más caro sale no responder. Dos columnas: lo que la herramienta te da y lo que
+  sigue decidiendo si el anuncio funciona.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign reqs = section.blocks | where: 'type', 'requirement'
+-%}
+
+<section class="section aitools">
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="aitools__split" data-stagger="90">
+      <article class="card card--flat aitools__col aitools__col--tool" data-reveal>
+        <p class="t-label t-label--plain aitools__col-label">{{ s.tool_label }}</p>
+        <p class="aitools__col-lead">{{ s.tool_lead }}</p>
+        {%- if s.tool_note != blank -%}
+          <p class="aitools__col-note t-sm t-dim">{{ s.tool_note }}</p>
+        {%- endif -%}
+      </article>
+
+      <article class="card card--glow aitools__col aitools__col--work" data-reveal style="--reveal-delay: 90ms">
+        <p class="t-label t-label--plain aitools__col-label">{{ s.work_label }}</p>
+        {%- if reqs.size > 0 -%}
+          <ul class="aitools__reqs">
+            {%- for block in reqs -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="tick tick--yes" aria-hidden="true">{% render 'icon', name: 'check', size: 10 %}</span>
+                {{ block.settings.text }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </article>
+    </div>
+
+    {%- if s.closer != blank -%}
+      <p class="aitools__closer t-h3" data-reveal style="--reveal-delay: 160ms">{{ s.closer }}</p>
+    {%- endif -%}
+
+    {%- if s.cta_label != blank -%}
+      <div class="aitools__foot" data-reveal="fade">
+        <a href="{{ s.cta_url | default: '/pages/pricing' }}" class="btn btn--primary btn--lg">
+          {{ s.cta_label }}
+          {% render 'icon', name: 'arrow-right', size: 15 %}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IA vs. dirección creativa",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Why not just use AI tools yourself?" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "AI tools are easy." },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "Great advertising still isn't." },
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    { "type": "header", "content": "Columna izquierda" },
+    { "type": "text", "id": "tool_label", "label": "Etiqueta", "default": "What an AI tool gives you" },
+    { "type": "textarea", "id": "tool_lead", "label": "Frase", "default": "Content. A clip that renders, on demand, at low cost." },
+    { "type": "text", "id": "tool_note", "label": "Nota", "default": "That part is solved. It's also the part that doesn't decide performance." },
+    { "type": "header", "content": "Columna derecha" },
+    { "type": "text", "id": "work_label", "label": "Etiqueta", "default": "What effective advertising still requires" },
+    { "type": "header", "content": "Cierre" },
+    { "type": "text", "id": "closer", "label": "Frase de cierre", "default": "You bring the product. We build the creatives." },
+    { "type": "text", "id": "cta_label", "label": "Botón" },
+    { "type": "url", "id": "cta_url", "label": "URL del botón" }
+  ],
+  "blocks": [
+    {
+      "type": "requirement",
+      "name": "Requisito",
+      "limit": 10,
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Strong creative concepts" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "IA vs. dirección creativa",
+      "blocks": [
+        { "type": "requirement" }, { "type": "requirement" }, { "type": "requirement" },
+        { "type": "requirement" }, { "type": "requirement" }, { "type": "requirement" },
+        { "type": "requirement" }, { "type": "requirement" }, { "type": "requirement" }
+      ]
+    }
+  ]
+}
+{% endschema %}
