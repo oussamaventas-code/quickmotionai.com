@@ -1,0 +1,117 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  "Who this is for" — vive justo tras el hero para que el visitante se
+  reconozca en una de las tres categorías antes de leer nada más.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign profiles = section.blocks | where: 'type', 'profile'
+  assign cols = profiles.size
+  if cols > 3
+    assign cols = 3
+  endif
+-%}
+
+<section class="section audience" id="{{ section.id }}">
+  <div class="wrap">
+    <div class="section-head{% if s.align == 'center' %} section-head--center{% endif %}">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}<p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>{%- endif -%}
+    </div>
+
+    <div class="grid grid--{{ cols }}" data-stagger="80">
+      {%- for block in profiles -%}
+        <article class="card card--glow audience__card" {{ block.shopify_attributes }} data-reveal>
+          <span class="card__rule" aria-hidden="true"></span>
+          {%- if block.settings.icon != 'none' -%}
+            <span class="card__icon card__icon--{{ block.settings.icon_color }}">
+              {% render 'icon', name: block.settings.icon, size: 20 %}
+            </span>
+          {%- endif -%}
+          <p class="audience__label">{{ block.settings.label }}</p>
+          <h3 class="card__title">{{ block.settings.title }}</h3>
+          <p class="card__text">{{ block.settings.body }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "A quién va dirigido",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Who this is for" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Built for teams that need" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "more creative output" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alineación de la cabecera",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "profile",
+      "name": "Perfil de cliente",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "target", "label": "Diana" },
+            { "value": "layers", "label": "Capas" },
+            { "value": "shield", "label": "Escudo" },
+            { "value": "bolt", "label": "Rayo" },
+            { "value": "sparkle", "label": "Destello" },
+            { "value": "grid", "label": "Cuadrícula" },
+            { "value": "none", "label": "Sin icono" }
+          ],
+          "default": "target"
+        },
+        {
+          "type": "select",
+          "id": "icon_color",
+          "label": "Color del icono",
+          "options": [
+            { "value": "violet", "label": "Violeta" },
+            { "value": "green", "label": "Verde" },
+            { "value": "cyan", "label": "Cian" }
+          ],
+          "default": "violet"
+        },
+        { "type": "text", "id": "label", "label": "Etiqueta corta", "info": "Ej.: For agencies" },
+        { "type": "text", "id": "title", "label": "Título del perfil" },
+        { "type": "textarea", "id": "body", "label": "Descripción" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "A quién va dirigido",
+      "blocks": [
+        { "type": "profile", "settings": { "icon": "target", "icon_color": "violet" } },
+        { "type": "profile", "settings": { "icon": "layers", "icon_color": "cyan" } },
+        { "type": "profile", "settings": { "icon": "shield", "icon_color": "green" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -12,7 +12,7 @@
         "eyebrow": "Pricing",
         "heading": "A monthly creative production system,",
         "heading_accent": "not a video order",
-        "body": "Each plan is a fixed monthly batch of launch-ready ad creatives with creative direction, multiple formats and revisions included. Digital service: no shipping, no setup fee."
+        "body": "Your on-demand creative production capacity: no production team required, no freelancers to manage, no cameras or shoots. Digital service: no shipping, no setup fee."
       }
     },
     "pricing": {
@@ -25,9 +25,10 @@
             "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Starter",
-            "pitch": "For brands testing new creative concepts.",
-            "features": "3 launch-ready ad creatives per month\nMultiple hooks and angles per batch\n9:16 and 4:5 formats\n1 revision round per creative\nCreative direction included\nDelivered in 72h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Testing",
+            "pitch": "For brands testing new advertising concepts and creative angles.",
+            "features": "Up to 3 ad creatives per month\nCreative direction\nAI-powered production\nEditing\nShort-form ad formats\n1 revision round per creative\nCommercial usage rights",
+            "cta_label": "Start Creating"
           }
         },
         "pk2": {
@@ -39,9 +40,10 @@
             "name": "Growth",
             "featured": true,
             "badge": "Most popular",
-            "pitch": "For brands actively running paid campaigns.",
-            "features": "5 launch-ready ad creatives per month\nUGC, product and AI creative formats\nMultiple angles per campaign\n9:16, 4:5 and 1:1 formats\n2 revision rounds per creative\nPriority production\nDelivered in 72h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Momentum",
+            "pitch": "For brands actively running paid advertising campaigns and testing new creative angles.",
+            "features": "Up to 5 ad creatives per month\nMultiple hooks and creative angles\nCreative direction\nAI-powered production\nProfessional editing\nPaid social ad formats\nMeta and TikTok-ready creatives\nRevisions included\nCommercial usage rights\nPriority production",
+            "cta_label": "Scale Your Creative"
           }
         },
         "pk3": {
@@ -51,9 +53,10 @@
             "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Scale",
-            "pitch": "For agencies and brands with continuous creative demand.",
-            "features": "10 launch-ready ad creatives per month\nMultiple campaigns in parallel\nCreative variations for testing\nAll formats\n3 revision rounds per creative\nDedicated creative workflow\nPriority turnaround: 48h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Capacity",
+            "pitch": "For agencies and brands with continuous creative production needs.",
+            "features": "Up to 10 ad creatives per month\nMultiple creative concepts\nMultiple hooks and advertising angles\nAI UGC creatives\nProduct-focused ads\nImage-to-video creatives\nPriority production\nRevisions included\nCommercial usage rights\nAgency and white-label collaboration available",
+            "cta_label": "Scale Production"
           }
         }
       },
@@ -62,28 +65,30 @@
         "eyebrow": "",
         "heading": "The three plans",
         "heading_accent": "",
-        "footer_note": "We limit monthly production capacity to maintain fast turnaround and quality. Digital service: no shipping, no setup fee."
+        "footer_note": "We limit monthly production capacity to maintain fast turnaround and quality. Digital service: no shipping, no setup fee.",
+        "clarification": "An ad creative refers to one completed short-form advertising concept. Complex or custom productions may require a custom quote."
       }
     },
     "compare": {
       "type": "comparison-table",
       "settings": {
         "row_header": "",
-        "columns": "Traditional production, QuickMotion",
+        "columns": "Traditional Production, QuickMotion",
         "highlight_index": 1,
         "eyebrow": "The real comparison",
-        "heading": "Speed, scale and simplicity",
-        "heading_accent": "without the production overhead"
+        "heading": "Traditional Production",
+        "heading_accent": "vs QuickMotion",
+        "closer": "You're not replacing creativity. You're removing production friction."
       },
       "blocks": {
-        "cr1": { "type": "row", "settings": { "label": "Time to first creative", "values": "Weeks, Days" } },
-        "cr2": { "type": "row", "settings": { "label": "People to manage", "values": "Multiple freelancers, One creative partner" } },
-        "cr3": { "type": "row", "settings": { "label": "Coordination", "values": "Complex and manual, One simple workflow" } },
-        "cr4": { "type": "row", "settings": { "label": "Creative variations per cycle", "values": "Limited, Multiple angles and hooks" } },
-        "cr5": { "type": "row", "settings": { "label": "Cost structure", "values": "Expensive production teams, Predictable monthly pricing" } },
-        "cr6": { "type": "row", "settings": { "label": "Scaling output", "values": "Difficult to scale, Built to scale" } },
-        "cr7": { "type": "row", "settings": { "label": "Human creative direction", "values": "yes, yes" } },
-        "cr8": { "type": "row", "settings": { "label": "Long-term contract", "values": "Usually, no" } }
+        "cr1": { "type": "row", "settings": { "label": "Camera crews", "values": "yes, no" } },
+        "cr2": { "type": "row", "settings": { "label": "Studio rentals", "values": "yes, no" } },
+        "cr3": { "type": "row", "settings": { "label": "Actors and creators", "values": "yes, no" } },
+        "cr4": { "type": "row", "settings": { "label": "Travel and shoot days", "values": "yes, no" } },
+        "cr5": { "type": "row", "settings": { "label": "Time to first creative", "values": "Weeks, Days" } },
+        "cr6": { "type": "row", "settings": { "label": "New shoot for every concept", "values": "Required, Multiple concepts possible" } },
+        "cr7": { "type": "row", "settings": { "label": "People to manage", "values": "Multiple freelancers, One creative partner" } },
+        "cr8": { "type": "row", "settings": { "label": "Scaling output", "values": "Difficult to scale, Built for scalable production" } }
       },
       "block_order": ["cr1", "cr2", "cr3", "cr4", "cr5", "cr6", "cr7", "cr8"]
     },
@@ -123,54 +128,6 @@
         }
       },
       "block_order": ["cp1", "cp2", "cp3"]
-    },
-    "savings": {
-      "type": "savings-band",
-      "settings": {
-        "eyebrow": "One more angle",
-        "heading": "And that's before counting",
-        "heading_accent": "what editing alone would cost",
-        "body": "Speed and scale are the reason to work this way. The cost difference is just what falls out of it — and this line only counts editing, not the camera, the studio, the talent or the shooting days.",
-        "videos_label": "creatives/mo",
-        "freelance_label": "Editing alone would cost",
-        "plan_label": "Your plan",
-        "save_label": "saved every month",
-        "disclaimer": "Freelance cost assumes 2 hours of editing per creative at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
-      },
-      "blocks": {
-        "sv1": {
-          "type": "plan",
-          "settings": {
-            "plan_name": "Starter",
-            "videos": 3,
-            "hours_per_video": 2,
-            "hourly_rate": 65,
-            "plan_price": 344.91
-          }
-        },
-        "sv2": {
-          "type": "plan",
-          "settings": {
-            "plan_name": "Growth",
-            "videos": 5,
-            "hours_per_video": 2,
-            "hourly_rate": 65,
-            "plan_price": 577.17,
-            "featured": true
-          }
-        },
-        "sv3": {
-          "type": "plan",
-          "settings": {
-            "plan_name": "Scale",
-            "videos": 10,
-            "hours_per_video": 2,
-            "hourly_rate": 65,
-            "plan_price": 1157.82
-          }
-        }
-      },
-      "block_order": ["sv1", "sv2", "sv3"]
     },
     "includes": {
       "type": "comparison-table",
@@ -262,7 +219,6 @@
     "pricing",
     "compare",
     "calculator",
-    "savings",
     "includes",
     "faq",
     "guarantee"

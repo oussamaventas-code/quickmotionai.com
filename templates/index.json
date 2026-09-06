@@ -31,10 +31,10 @@
       "block_order": ["v1", "v2", "v3"],
       "settings": {
         "layout": "split",
-        "eyebrow": "AI-powered creative production partner",
-        "heading": "More ad creatives. More testing.",
-        "heading_accent": "Less production bottlenecks.",
-        "body": "AI-powered video ads built for brands and agencies that need to launch, test, and scale faster across Meta, TikTok, and other paid media channels.",
+        "eyebrow": "AI-powered creative production for brands & agencies",
+        "heading": "Create professional ads without",
+        "heading_accent": "a traditional production",
+        "body": "Human creative direction, AI-powered production, and advertising expertise — for brands and agencies running paid social campaigns across Meta and TikTok.",
         "support": "From creative brief to launch-ready ads in as little as 72 hours.",
         "proof": "",
         "bullets": "Launch-ready ad creatives\nFast turnaround\nRevisions included\nNo long-term contracts",
@@ -46,13 +46,55 @@
         "scroll_label": "Scroll"
       }
     },
+    "audience": {
+      "type": "audience-fit",
+      "settings": {
+        "eyebrow": "Who this is for",
+        "heading": "Built for teams that need",
+        "heading_accent": "more creative output",
+        "align": "center"
+      },
+      "blocks": {
+        "au1": {
+          "type": "profile",
+          "settings": {
+            "icon": "target",
+            "icon_color": "violet",
+            "label": "For agencies",
+            "title": "Performance Agencies",
+            "body": "Scale creative production across multiple client accounts without hiring additional editors or managing multiple freelancers."
+          }
+        },
+        "au2": {
+          "type": "profile",
+          "settings": {
+            "icon": "layers",
+            "icon_color": "cyan",
+            "label": "For e-commerce",
+            "title": "DTC & E-commerce Brands",
+            "body": "Test more hooks, creative angles and advertising concepts without expensive traditional shoots."
+          }
+        },
+        "au3": {
+          "type": "profile",
+          "settings": {
+            "icon": "shield",
+            "icon_color": "green",
+            "label": "For health brands",
+            "title": "Healthcare & Wellness Brands",
+            "body": "Turn complex products into simple, engaging and visually compelling advertising creatives."
+          }
+        }
+      },
+      "block_order": ["au1", "au2", "au3"]
+    },
     "problems": {
       "type": "problem-grid",
       "settings": {
         "eyebrow": "The problem we solve",
         "heading": "Creative production shouldn't",
         "heading_accent": "slow down your campaigns",
-        "body": "Most teams don't lose money on media buying. They lose it waiting on creative.",
+        "body": "Most performance marketing teams don't lose money on media buying. They lose it waiting on creative.",
         "align": "left",
         "solution_text": "QuickMotion gives your team a production system that keeps up with how fast you need to test.",
         "cta_label": "See our work",
@@ -96,6 +138,7 @@
         "eyebrow": "How QuickMotion helps",
         "heading": "Built for teams that",
         "heading_accent": "need to test faster",
+        "body": "More concepts. More angles. More opportunities to find winning creatives — built for paid social teams running Meta and TikTok campaigns.",
         "align": "left"
       },
       "blocks": {
@@ -300,7 +343,7 @@
         "heading_accent": "healthcare, wellness & biomedical brands",
         "body": "We help complex products become simple, engaging, and visually compelling advertising creatives.",
         "note_title": "Built with responsible messaging in mind",
-        "note_body": "<p>We are not a regulatory or legal advisor. All health-related claims, product statements, and scientific messaging should be provided or approved by the client before production.</p>",
+        "note_body": "<p>We are not a regulatory or legal advisor and we don't guarantee compliance. All medical, scientific and health-related claims should be provided or approved by the client before production.</p>",
         "cta_label": "See our healthcare work",
         "cta_url": "/pages/healthcare",
         "cta_secondary_label": "Start a project",
@@ -335,15 +378,15 @@
         "cta_url": ""
       },
       "blocks": {
-        "r1": { "type": "requirement", "settings": { "text": "Strong creative concepts" } },
-        "r2": { "type": "requirement", "settings": { "text": "Advertising strategy" } },
-        "r3": { "type": "requirement", "settings": { "text": "Hooks that stop the scroll" } },
+        "r1": { "type": "requirement", "settings": { "text": "Creative strategy" } },
+        "r2": { "type": "requirement", "settings": { "text": "Strong hooks" } },
+        "r3": { "type": "requirement", "settings": { "text": "Sales angles" } },
         "r4": { "type": "requirement", "settings": { "text": "Messaging" } },
         "r5": { "type": "requirement", "settings": { "text": "Storytelling" } },
         "r6": { "type": "requirement", "settings": { "text": "Editing" } },
-        "r7": { "type": "requirement", "settings": { "text": "Product positioning" } },
-        "r8": { "type": "requirement", "settings": { "text": "Multiple variations" } },
-        "r9": { "type": "requirement", "settings": { "text": "Platform-specific formatting" } }
+        "r7": { "type": "requirement", "settings": { "text": "Platform knowledge" } },
+        "r8": { "type": "requirement", "settings": { "text": "Creative direction" } },
+        "r9": { "type": "requirement", "settings": { "text": "Understanding how paid ads work" } }
       },
       "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9"]
     },
@@ -490,38 +533,40 @@
           }
         }
       },
-      "block_order": ["q1", "q2", "q3", "q4"]
+      "block_order": ["q3", "q4", "q1", "q2"]
     },
     "agency": {
       "type": "agency-band",
       "settings": {
         "eyebrow": "For agencies",
-        "heading": "Built for agencies that need",
-        "heading_accent": "more creative capacity",
-        "body": "<p>QuickMotion works as an extension of your creative team. We help agencies increase production capacity without hiring additional editors or managing multiple freelancers.</p>",
-        "cta_label": "Partner with QuickMotion",
+        "heading": "Your On-Demand",
+        "heading_accent": "Creative Production Partner",
+        "body": "<p>For agencies that need more creative capacity without hiring additional staff.</p>",
+        "cta_label": "Partner With QuickMotion",
         "cta_url": "/pages/agencies",
         "cta_secondary_label": "See pricing",
         "cta_secondary_url": "/pages/pricing"
       },
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "text": "White-label collaboration available" } },
-        "b2": { "type": "benefit", "settings": { "text": "Predictable production workflow" } },
-        "b3": { "type": "benefit", "settings": { "text": "Fast turnaround" } },
-        "b4": { "type": "benefit", "settings": { "text": "Scalable creative capacity" } },
-        "b5": { "type": "benefit", "settings": { "text": "Multiple client projects" } },
-        "b6": { "type": "benefit", "settings": { "text": "No long-term hiring commitments" } }
+        "b1": { "type": "benefit", "settings": { "text": "Scale production across multiple clients" } },
+        "b2": { "type": "benefit", "settings": { "text": "No need to hire additional editors" } },
+        "b3": { "type": "benefit", "settings": { "text": "No need to manage multiple freelancers" } },
+        "b4": { "type": "benefit", "settings": { "text": "Predictable production workflow" } },
+        "b5": { "type": "benefit", "settings": { "text": "Fast turnaround" } },
+        "b6": { "type": "benefit", "settings": { "text": "White-label collaboration available" } },
+        "b7": { "type": "benefit", "settings": { "text": "Scalable creative capacity" } }
       },
-      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"]
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7"]
     },
     "pricing": {
       "type": "pricing-cards",
       "settings": {
         "eyebrow": "Pricing",
-        "heading": "A monthly creative production system,",
-        "heading_accent": "not a video order",
-        "body": "Pick the volume your campaigns need. Every plan includes creative direction, multiple formats and revisions.",
-        "footer_note": "We limit monthly production capacity to maintain fast turnaround and quality. Digital service: no shipping, no setup fee."
+        "heading": "Your on-demand",
+        "heading_accent": "creative production capacity",
+        "body": "More concepts. More angles. More opportunities to find winning ads. No production team required, no freelancers to manage, no cameras or shoots.",
+        "footer_note": "We limit monthly production capacity to maintain fast turnaround and quality. Digital service: no shipping, no setup fee.",
+        "clarification": "An ad creative refers to one completed short-form advertising concept. Complex or custom productions may require a custom quote."
       },
       "blocks": {
         "pk1": {
@@ -531,9 +576,10 @@
             "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Starter",
-            "pitch": "For brands testing new creative concepts.",
-            "features": "3 launch-ready ad creatives per month\nMultiple hooks and angles per batch\n9:16 and 4:5 formats\n1 revision round per creative\nCreative direction included\nDelivered in 72h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Testing",
+            "pitch": "For brands testing new advertising concepts and creative angles.",
+            "features": "Up to 3 ad creatives per month\nCreative direction\nAI-powered production\nEditing\nShort-form ad formats\n1 revision round per creative\nCommercial usage rights",
+            "cta_label": "Start Creating"
           }
         },
         "pk2": {
@@ -545,9 +591,10 @@
             "name": "Growth",
             "featured": true,
             "badge": "Most popular",
-            "pitch": "For brands actively running paid campaigns.",
-            "features": "5 launch-ready ad creatives per month\nUGC, product and AI creative formats\nMultiple angles per campaign\n9:16, 4:5 and 1:1 formats\n2 revision rounds per creative\nPriority production\nDelivered in 72h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Momentum",
+            "pitch": "For brands actively running paid advertising campaigns and testing new creative angles.",
+            "features": "Up to 5 ad creatives per month\nMultiple hooks and creative angles\nCreative direction\nAI-powered production\nProfessional editing\nPaid social ad formats\nMeta and TikTok-ready creatives\nRevisions included\nCommercial usage rights\nPriority production",
+            "cta_label": "Scale Your Creative"
           }
         },
         "pk3": {
@@ -557,9 +604,10 @@
             "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Scale",
-            "pitch": "For agencies and brands with continuous creative demand.",
-            "features": "10 launch-ready ad creatives per month\nMultiple campaigns in parallel\nCreative variations for testing\nAll formats\n3 revision rounds per creative\nDedicated creative workflow\nPriority turnaround: 48h from brief",
-            "cta_label": "Start your creative batch"
+            "subtitle": "Creative Capacity",
+            "pitch": "For agencies and brands with continuous creative production needs.",
+            "features": "Up to 10 ad creatives per month\nMultiple creative concepts\nMultiple hooks and advertising angles\nAI UGC creatives\nProduct-focused ads\nImage-to-video creatives\nPriority production\nRevisions included\nCommercial usage rights\nAgency and white-label collaboration available",
+            "cta_label": "Scale Production"
           }
         }
       },
@@ -569,21 +617,22 @@
       "type": "comparison-table",
       "settings": {
         "row_header": "",
-        "columns": "Traditional production, QuickMotion",
+        "columns": "Traditional Production, QuickMotion",
         "highlight_index": 1,
         "eyebrow": "The real comparison",
-        "heading": "Speed, scale and simplicity",
-        "heading_accent": "without the production overhead"
+        "heading": "Traditional Production",
+        "heading_accent": "vs QuickMotion",
+        "closer": "You're not replacing creativity. You're removing production friction."
       },
       "blocks": {
-        "r1": { "type": "row", "settings": { "label": "Time to first creative", "values": "Weeks, Days" } },
-        "r2": { "type": "row", "settings": { "label": "People to manage", "values": "Multiple freelancers, One creative partner" } },
-        "r3": { "type": "row", "settings": { "label": "Coordination", "values": "Complex and manual, One simple workflow" } },
-        "r4": { "type": "row", "settings": { "label": "Creative variations per cycle", "values": "Limited, Multiple angles and hooks" } },
-        "r5": { "type": "row", "settings": { "label": "Cost structure", "values": "Expensive production teams, Predictable monthly pricing" } },
-        "r6": { "type": "row", "settings": { "label": "Scaling output", "values": "Difficult to scale, Built to scale" } },
-        "r7": { "type": "row", "settings": { "label": "Human creative direction", "values": "yes, yes" } },
-        "r8": { "type": "row", "settings": { "label": "Long-term contract", "values": "Usually, no" } }
+        "r1": { "type": "row", "settings": { "label": "Camera crews", "values": "yes, no" } },
+        "r2": { "type": "row", "settings": { "label": "Studio rentals", "values": "yes, no" } },
+        "r3": { "type": "row", "settings": { "label": "Actors and creators", "values": "yes, no" } },
+        "r4": { "type": "row", "settings": { "label": "Travel and shoot days", "values": "yes, no" } },
+        "r5": { "type": "row", "settings": { "label": "Time to first creative", "values": "Weeks, Days" } },
+        "r6": { "type": "row", "settings": { "label": "New shoot for every concept", "values": "Required, Multiple concepts possible" } },
+        "r7": { "type": "row", "settings": { "label": "People to manage", "values": "Multiple freelancers, One creative partner" } },
+        "r8": { "type": "row", "settings": { "label": "Scaling output", "values": "Difficult to scale, Built for scalable production" } }
       },
       "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8"]
     },
@@ -715,6 +764,7 @@
   },
   "order": [
     "hero",
+    "audience",
     "problems",
     "helps",
     "video-wall",

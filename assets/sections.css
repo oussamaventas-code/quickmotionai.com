@@ -234,6 +234,7 @@
 
 .pcard__head { margin-bottom: var(--s-6); }
 .pcard__name { font-size: var(--t-h4); font-weight: 600; letter-spacing: -0.015em; }
+.pcard__subtitle { margin-top: var(--s-2); }
 .pcard__pitch { margin-top: var(--s-2); font-size: var(--t-sm); color: var(--c-text-dim); }
 
 .pcard__price { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; }
@@ -264,11 +265,31 @@
 .pcard__foot-note { margin-top: var(--s-3); text-align: center; font-size: var(--t-xs); color: var(--c-text-faint); }
 
 .pricing__note { text-align: center; margin-top: var(--s-8); }
+.pricing__clarification { text-align: center; margin-top: var(--s-3); color: var(--c-text-faint); }
 
 /* ==========================================================================
    COMPARISON TABLE
    ========================================================================== */
 /* (estilos de .ctable en components.css) */
+/* ==========================================================================
+   A QUIÉN VA DIRIGIDO
+   ========================================================================== */
+
+.audience__label {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--c-text-dim);
+  margin-bottom: var(--s-3);
+}
+
+.ctable__closer {
+  margin-top: clamp(2rem, 1.6rem + 1.8vw, 3rem);
+  text-align: center;
+  text-wrap: balance;
+  color: var(--c-text-soft);
+  font-weight: 500;
+}
 
 /* ==========================================================================
    TESTIMONIALS

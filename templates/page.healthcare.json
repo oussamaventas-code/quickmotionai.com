@@ -32,13 +32,13 @@
       "settings": {
         "layout": "split",
         "height": 80,
-        "eyebrow": "Healthcare · Wellness · Biomedical",
-        "heading": "Scale your health brand's creative",
-        "heading_accent": "without a full production team",
-        "body": "AI-powered ad creatives for healthcare, wellness, and biomedical brands. Meta, TikTok, product demos, UGC and explainers.",
+        "eyebrow": "AI creative production for healthcare & wellness brands",
+        "heading": "Turn complex products into",
+        "heading_accent": "simple, engaging advertising creatives",
+        "body": "AI-powered creative production for healthcare, wellness and consumer health brands that need to explain products clearly and create engaging paid social campaigns.",
         "support": "Delivered in days, not weeks.",
         "bullets": "Launch-ready ad creatives\nMultiple angles per batch\nRevisions included\nNo long-term contracts",
-        "cta_primary_label": "View healthcare portfolio",
+        "cta_primary_label": "View Healthcare Work",
         "cta_primary_url": "/pages/portfolio",
         "cta_secondary_label": "Start a project",
         "cta_secondary_url": "/pages/pricing",
@@ -199,7 +199,7 @@
         "heading_accent": "and biomedical brands",
         "body": "We help complex products become simple, engaging, and visually compelling advertising creatives.",
         "note_title": "Built with responsible messaging in mind",
-        "note_body": "<p>We are not a regulatory or legal advisor and we don't guarantee compliance. All health-related claims, product statements, and scientific messaging should be provided or approved by the client before production.</p>",
+        "note_body": "<p>We are not a regulatory or legal advisor and we don't guarantee compliance. All medical, scientific and health-related claims should be provided or approved by the client before production.</p>",
         "cta_label": "Start a project",
         "cta_url": "/pages/pricing",
         "cta_secondary_label": "Talk to our team",
@@ -214,7 +214,7 @@
         "i6": { "type": "industry", "settings": { "name": "Health technology" } },
         "i7": { "type": "industry", "settings": { "name": "Telehealth" } },
         "i8": { "type": "industry", "settings": { "name": "Medical aesthetics" } },
-        "i9": { "type": "industry", "settings": { "name": "Consumer health" } }
+        "i9": { "type": "industry", "settings": { "name": "Consumer health products" } }
       },
       "block_order": ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9"]
     },

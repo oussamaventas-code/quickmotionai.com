@@ -30,7 +30,7 @@
         "link_url": "",
         "show_filters": true,
         "filter_all_label": "All work",
-        "filters": "E-commerce, Wellness, UGC, Product ads, AI commercials",
+        "filters": "Performance Ads, AI UGC, E-commerce, Healthcare, Wellness, Product Ads, Image-to-Video",
         "empty_text": "Nothing in this category yet — new work is added with every batch."
       },
       "blocks": {
@@ -44,7 +44,7 @@
             "creative_type": "AI UGC",
             "platform": "Instagram Reels",
             "objective": "Brand awareness",
-            "tags": "UGC, AI commercials",
+            "tags": "AI UGC, Performance Ads",
             "metric_1_value": "100K+",
             "metric_1_label": "views",
             "metric_color": "cyan"
@@ -60,7 +60,7 @@
             "creative_type": "AI UGC",
             "platform": "Instagram Reels",
             "objective": "Brand awareness",
-            "tags": "UGC, AI commercials"
+            "tags": "AI UGC, Performance Ads"
           }
         },
         "s3": {
@@ -73,7 +73,7 @@
             "creative_type": "AI UGC",
             "platform": "Instagram Reels",
             "objective": "Brand awareness",
-            "tags": "UGC, AI commercials"
+            "tags": "AI UGC, Performance Ads"
           }
         },
         "s4": {
@@ -86,7 +86,7 @@
             "creative_type": "AI UGC",
             "platform": "Instagram Reels",
             "objective": "Brand awareness",
-            "tags": "UGC, AI commercials"
+            "tags": "AI UGC, Performance Ads"
           }
         },
         "s5": {
@@ -99,7 +99,7 @@
             "creative_type": "Performance ad variation",
             "platform": "Meta Ads",
             "objective": "Problem awareness",
-            "tags": "Wellness, E-commerce, Product ads"
+            "tags": "Wellness, E-commerce, Product Ads, Performance Ads"
           }
         },
         "s6": {
@@ -112,7 +112,7 @@
             "creative_type": "Product demonstration",
             "platform": "Meta Ads",
             "objective": "Product education",
-            "tags": "Wellness, E-commerce, Product ads"
+            "tags": "Wellness, E-commerce, Product Ads, Performance Ads"
           }
         },
         "s7": {
@@ -125,7 +125,7 @@
             "creative_type": "Performance ad variation",
             "platform": "Meta Ads",
             "objective": "Objection handling",
-            "tags": "Wellness, E-commerce, Product ads"
+            "tags": "Wellness, E-commerce, Product Ads, Performance Ads"
           }
         },
         "s8": {
@@ -138,7 +138,7 @@
             "creative_type": "Product commercial",
             "platform": "Meta Ads",
             "objective": "Lead generation",
-            "tags": "AI commercials, Product ads"
+            "tags": "Product Ads, Performance Ads"
           }
         }
       },

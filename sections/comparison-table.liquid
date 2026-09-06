@@ -65,6 +65,10 @@
         </tbody>
       </table>
     </div>
+
+    {%- if s.closer != blank -%}
+      <p class="ctable__closer t-h4" data-reveal="fade">{{ s.closer }}</p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -94,7 +98,8 @@
       "max": 5,
       "step": 1,
       "default": 0
-    }
+    },
+    { "type": "text", "id": "closer", "label": "Frase de cierre" }
   ],
   "blocks": [
     {

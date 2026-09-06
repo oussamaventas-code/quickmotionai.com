@@ -102,14 +102,15 @@
         "cta_secondary_url": "/pages/pricing"
       },
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "text": "White-label collaboration available" } },
-        "b2": { "type": "benefit", "settings": { "text": "Predictable production workflow" } },
-        "b3": { "type": "benefit", "settings": { "text": "Fast turnaround" } },
-        "b4": { "type": "benefit", "settings": { "text": "Scalable creative capacity" } },
-        "b5": { "type": "benefit", "settings": { "text": "Multiple client projects" } },
-        "b6": { "type": "benefit", "settings": { "text": "No long-term hiring commitments" } }
+        "b1": { "type": "benefit", "settings": { "text": "Scale production across multiple clients" } },
+        "b2": { "type": "benefit", "settings": { "text": "No need to hire additional editors" } },
+        "b3": { "type": "benefit", "settings": { "text": "No need to manage multiple freelancers" } },
+        "b4": { "type": "benefit", "settings": { "text": "Predictable production workflow" } },
+        "b5": { "type": "benefit", "settings": { "text": "Fast turnaround" } },
+        "b6": { "type": "benefit", "settings": { "text": "White-label collaboration available" } },
+        "b7": { "type": "benefit", "settings": { "text": "Scalable creative capacity" } }
       },
-      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"]
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7"]
     },
     "capabilities": {
       "type": "capabilities",

@@ -68,6 +68,9 @@
 
           <header class="pcard__head">
             <h3 class="pcard__name">{{ block.settings.name | default: product.title }}</h3>
+            {%- if block.settings.subtitle != blank -%}
+              <p class="pcard__subtitle t-label t-label--plain">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
             {%- if block.settings.pitch != blank -%}
               <p class="pcard__pitch">{{ block.settings.pitch }}</p>
             {%- endif -%}
@@ -179,6 +182,9 @@
     {%- if s.footer_note != blank -%}
       <p class="pricing__note t-sm t-dim" data-reveal="fade">{{ s.footer_note }}</p>
     {%- endif -%}
+    {%- if s.clarification != blank -%}
+      <p class="pricing__clarification t-xs" data-reveal="fade">{{ s.clarification }}</p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -209,7 +215,8 @@
     { "type": "textarea", "id": "body", "label": "Subtítulo" },
     { "type": "checkbox", "id": "show_plan_picker", "label": "Mostrar selector de plan de suscripción", "default": true, "info": "Aparece sólo si el producto tiene más de un plan en Shopify Subscriptions." },
     { "type": "checkbox", "id": "go_to_cart", "label": "Enviar al carrito en vez de al checkout", "default": false, "info": "Por defecto el botón lleva directo al checkout." },
-    { "type": "text", "id": "footer_note", "label": "Nota bajo los packs" }
+    { "type": "text", "id": "footer_note", "label": "Nota bajo los packs" },
+    { "type": "text", "id": "clarification", "label": "Aclaración legal", "info": "Línea pequeña bajo la nota. Ej.: qué cuenta como un creativo." }
   ],
   "blocks": [
     {
@@ -220,6 +227,7 @@
         { "type": "product", "id": "product", "label": "Producto", "info": "Marca el producto como digital (sin envío) en el panel de Shopify." },
         { "type": "text", "id": "product_handle", "label": "Handle del producto", "info": "Alternativa al selector: el handle exacto del producto (lo que va después de /products/ en su URL)." },
         { "type": "text", "id": "name", "label": "Nombre visible", "info": "Si lo dejas vacío se usa el título del producto." },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo del plan", "info": "Ej.: Creative Testing" },
         { "type": "text", "id": "pitch", "label": "Descripción corta" },
         { "type": "text", "id": "period", "label": "Periodicidad", "default": "/mo" },
         { "type": "text", "id": "price_note", "label": "Nota bajo el precio" },
