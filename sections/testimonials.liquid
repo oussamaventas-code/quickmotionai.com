@@ -18,7 +18,27 @@
 
     <div class="quotes__grid" data-stagger="90">
       {%- for block in section.blocks -%}
-        <figure class="card card--glow quote" {{ block.shopify_attributes }} data-reveal>
+        {%- liquid
+          assign has_video = false
+          if block.settings.video != blank or block.settings.video_url != blank
+            assign has_video = true
+          endif
+        -%}
+        <figure class="card card--glow quote{% if has_video %} quote--video{% endif %}" {{ block.shopify_attributes }} data-reveal>
+          {%- if has_video -%}
+            <div class="quote__clip">
+              {% render 'video-embed',
+                video: block.settings.video,
+                video_url: block.settings.video_url,
+                poster: block.settings.poster,
+                poster_url: block.settings.poster_url,
+                ratio: block.settings.video_ratio,
+                lightbox: true,
+                sizes: '(max-width: 749px) 88vw, 360px'
+              %}
+            </div>
+          {%- endif -%}
+
           {%- if block.settings.result != blank -%}
             <p class="quote__result">
               <span class="t-metric quote__result-value">{{ block.settings.result }}</span>
@@ -74,12 +94,29 @@
       "name": "Testimonio",
       "limit": 6,
       "settings": [
-        { "type": "text", "id": "result", "label": "Resultado", "info": "Un número corto. Ej.: -38%" },
-        { "type": "text", "id": "result_label", "label": "Etiqueta del resultado" },
         { "type": "textarea", "id": "quote", "label": "Cita" },
         { "type": "image_picker", "id": "avatar", "label": "Foto" },
         { "type": "text", "id": "name", "label": "Nombre" },
-        { "type": "text", "id": "role", "label": "Cargo y empresa" }
+        { "type": "text", "id": "role", "label": "Cargo y empresa" },
+        { "type": "header", "content": "Resultado" },
+        { "type": "text", "id": "result", "label": "Resultado", "info": "Un número corto. Ej.: -38%" },
+        { "type": "text", "id": "result_label", "label": "Etiqueta del resultado" },
+        { "type": "header", "content": "Vídeo testimonial (opcional)" },
+        { "type": "video", "id": "video", "label": "Vídeo" },
+        { "type": "text", "id": "video_url", "label": "URL de vídeo externo (.mp4)" },
+        { "type": "image_picker", "id": "poster", "label": "Póster" },
+        { "type": "text", "id": "poster_url", "label": "URL de póster externo" },
+        {
+          "type": "select",
+          "id": "video_ratio",
+          "label": "Formato del vídeo",
+          "options": [
+            { "value": "16-9", "label": "Horizontal (16:9)" },
+            { "value": "9-16", "label": "Vertical (9:16)" },
+            { "value": "1-1", "label": "Cuadrado (1:1)" }
+          ],
+          "default": "16-9"
+        }
       ]
     }
   ],

@@ -274,11 +274,12 @@
    TESTIMONIALS
    ========================================================================== */
 
-.quotes__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
-@media (max-width: 989px) { .quotes__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .quotes__grid { grid-template-columns: 1fr; } }
-
-.quote { display: flex; flex-direction: column; }
+/* Flex en vez de grid fijo: con un número de testimonios que no es múltiplo de
+   3, la última fila queda centrada en vez de pegada al borde izquierdo. */
+.quotes__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gutter); }
+.quote { display: flex; flex-direction: column; flex: 1 1 300px; max-width: 380px; }
+.quote__clip { margin-bottom: var(--s-5); }
+.quote--video .quote__clip .vframe { border-radius: var(--r-md); }
 .quote__result { margin-bottom: var(--s-5); }
 .quote__result-value { color: #7dffca; display: block; }
 .quote__result-label { font-size: var(--t-xs); color: var(--c-text-dim); text-transform: uppercase; letter-spacing: 0.06em; }

@@ -472,9 +472,25 @@
             "name": "Perla Negra Tattoo",
             "role": "Tattoo studio"
           }
+        },
+        "q3": {
+          "type": "quote",
+          "settings": {
+            "quote": "We went from a brand nobody knew to one people recognize across Spain's car parts market. The ads weren't just something we ran — they're part of why we're billing what we bill today.",
+            "name": "Recambia",
+            "role": "Car parts retailer, Spain"
+          }
+        },
+        "q4": {
+          "type": "quote",
+          "settings": {
+            "quote": "People in Murcia started recognizing us from the videos before they even walked into the shop. It's the most visibility we've had without changing anything else about the business.",
+            "name": "Automar Menor",
+            "role": "Bosch Car Service, Murcia"
+          }
         }
       },
-      "block_order": ["q1", "q2"]
+      "block_order": ["q1", "q2", "q3", "q4"]
     },
     "agency": {
       "type": "agency-band",
