@@ -5,14 +5,14 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "text": "<strong>Limited slots</strong> — only 3 production spots left this month"
+        "text": "We limit monthly production capacity to maintain fast turnaround and quality."
       }
     },
     "header": {
       "type": "header",
       "settings": {
         "menu": "main-menu",
-        "cta_label": "See pricing",
+        "cta_label": "Start your creative batch",
         "cta_url": "/pages/pricing",
         "show_market_selector": true,
         "show_cart": true,

@@ -1,0 +1,349 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-cinematic",
+      "blocks": {
+        "v1": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.SD-480p-1.5Mbps-93534615.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
+            "caption": "Wellness product · pain angle"
+          }
+        },
+        "v2": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Wellness product · comparison"
+          }
+        },
+        "v3": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Wellness product · objection handling"
+          }
+        }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {
+        "layout": "split",
+        "height": 80,
+        "eyebrow": "Healthcare · Wellness · Biomedical",
+        "heading": "Scale your health brand's creative",
+        "heading_accent": "without a full production team",
+        "body": "AI-powered ad creatives for healthcare, wellness, and biomedical brands. Meta, TikTok, product demos, UGC and explainers.",
+        "support": "Delivered in days, not weeks.",
+        "bullets": "Launch-ready ad creatives\nMultiple angles per batch\nRevisions included\nNo long-term contracts",
+        "cta_primary_label": "View healthcare portfolio",
+        "cta_primary_url": "/pages/portfolio",
+        "cta_secondary_label": "Start a project",
+        "cta_secondary_url": "/pages/pricing",
+        "show_scroll_cue": false
+      }
+    },
+    "problems": {
+      "type": "problem-grid",
+      "settings": {
+        "eyebrow": "Why health brands get stuck",
+        "heading": "Complex products are the hardest thing",
+        "heading_accent": "to explain in six seconds",
+        "body": "",
+        "align": "left",
+        "solution_text": "We turn technical products into creatives a scrolling audience actually understands.",
+        "cta_label": "",
+        "cta_url": ""
+      },
+      "blocks": {
+        "pb1": {
+          "type": "problem",
+          "settings": {
+            "title": "The product is hard to show",
+            "body": "<p>Devices, formulations and mechanisms of action don't film well. Most footage ends up generic and interchangeable.</p>"
+          }
+        },
+        "pb2": {
+          "type": "problem",
+          "settings": {
+            "title": "Every claim needs care",
+            "body": "<p>Health messaging can't be improvised by whoever is editing that week. It needs a process, and someone who knows it matters.</p>"
+          }
+        },
+        "pb3": {
+          "type": "problem",
+          "settings": {
+            "title": "Shoots are slow and expensive",
+            "body": "<p>Talent, locations and product handling turn a single creative into a multi-week project.</p>"
+          }
+        },
+        "pb4": {
+          "type": "problem",
+          "settings": {
+            "title": "One creative isn't enough",
+            "body": "<p>Health audiences respond to very different angles: education, comparison, objection handling, before and after context.</p>"
+          }
+        }
+      },
+      "block_order": ["pb1", "pb2", "pb3", "pb4"]
+    },
+    "work": {
+      "type": "video-showcase",
+      "settings": {
+        "layout": "grid",
+        "columns": "3",
+        "eyebrow": "Selected work",
+        "heading": "Wellness creatives",
+        "heading_accent": "produced end to end",
+        "body": "Three angles for the same product, built as a test set rather than a single hero video.",
+        "align": "left",
+        "link_label": "",
+        "link_url": "",
+        "show_halo": true,
+        "show_filters": false
+      },
+      "blocks": {
+        "s1": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.SD-480p-1.5Mbps-93534615.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
+            "caption": "Joint relief kit · pain angle",
+            "industry": "Wellness",
+            "creative_type": "Performance ad variation",
+            "platform": "Meta Ads",
+            "objective": "Problem awareness"
+          }
+        },
+        "s2": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Joint relief kit · comparison",
+            "industry": "Wellness",
+            "creative_type": "Product demonstration",
+            "platform": "Meta Ads",
+            "objective": "Product education"
+          }
+        },
+        "s3": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Joint relief kit · objection handling",
+            "industry": "Wellness",
+            "creative_type": "Performance ad variation",
+            "platform": "Meta Ads",
+            "objective": "Objection handling"
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3"]
+    },
+    "capabilities": {
+      "type": "capabilities",
+      "settings": {
+        "eyebrow": "What we create for health brands",
+        "heading": "The formats health campaigns",
+        "heading_accent": "actually run on",
+        "body": "",
+        "columns": "3",
+        "align": "left",
+        "show_halo": false,
+        "cta_label": "",
+        "cta_url": ""
+      },
+      "blocks": {
+        "c1": {
+          "type": "category",
+          "settings": {
+            "title": "Product explainers",
+            "body": "Make the mechanism visible. Show what the product does before asking anyone to believe it.",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Explainer · 9:16"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "title": "AI UGC and spokesperson ads",
+            "body": "Creator-style content for social feeds, without casting or booking talent.",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.SD-480p-1.5Mbps-93594648.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528",
+            "caption": "AI UGC · 9:16"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "title": "Angle variations for testing",
+            "body": "Education, comparison and objection-handling versions of the same product, built as one test set.",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Variation set · 9:16"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3"]
+    },
+    "industries": {
+      "type": "industries",
+      "settings": {
+        "eyebrow": "Who we work with",
+        "heading": "Built for health, wellness",
+        "heading_accent": "and biomedical brands",
+        "body": "We help complex products become simple, engaging, and visually compelling advertising creatives.",
+        "note_title": "Built with responsible messaging in mind",
+        "note_body": "<p>We are not a regulatory or legal advisor and we don't guarantee compliance. All health-related claims, product statements, and scientific messaging should be provided or approved by the client before production.</p>",
+        "cta_label": "Start a project",
+        "cta_url": "/pages/pricing",
+        "cta_secondary_label": "Talk to our team",
+        "cta_secondary_url": "mailto:hello@quickmotionai.com"
+      },
+      "blocks": {
+        "i1": { "type": "industry", "settings": { "name": "Healthcare" } },
+        "i2": { "type": "industry", "settings": { "name": "Wellness" } },
+        "i3": { "type": "industry", "settings": { "name": "Supplements" } },
+        "i4": { "type": "industry", "settings": { "name": "Skincare" } },
+        "i5": { "type": "industry", "settings": { "name": "Medical devices" } },
+        "i6": { "type": "industry", "settings": { "name": "Health technology" } },
+        "i7": { "type": "industry", "settings": { "name": "Telehealth" } },
+        "i8": { "type": "industry", "settings": { "name": "Medical aesthetics" } },
+        "i9": { "type": "industry", "settings": { "name": "Consumer health" } }
+      },
+      "block_order": ["i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9"]
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "From brief to",
+        "heading_accent": "launch-ready creative",
+        "body": "Human creative direction at every step. AI is how we produce the work, not how we decide it.",
+        "align": "center",
+        "cta_label": "",
+        "cta_url": ""
+      },
+      "blocks": {
+        "st1": {
+          "type": "step",
+          "settings": {
+            "title": "Submit your brief",
+            "meta": "10 minutes",
+            "body": "<p>Product, audience, campaign objective, and the claims you have already approved internally.</p>"
+          }
+        },
+        "st2": {
+          "type": "step",
+          "settings": {
+            "title": "Creative development",
+            "meta": "Before anything is generated",
+            "body": "<p>We develop concepts, scripts, visuals and production direction around your approved messaging.</p>"
+          }
+        },
+        "st3": {
+          "type": "step",
+          "settings": {
+            "title": "AI + human production",
+            "meta": "No shoot required",
+            "body": "<p>We combine generative AI technology with professional creative production and editing.</p>"
+          }
+        },
+        "st4": {
+          "type": "step",
+          "settings": {
+            "title": "Review & revisions",
+            "meta": "Included in every plan",
+            "body": "<p>You review the creatives, check the messaging, and send your changes in one pass.</p>"
+          }
+        },
+        "st5": {
+          "type": "step",
+          "settings": {
+            "title": "Launch",
+            "meta": "72 hours from brief",
+            "body": "<p>Receive campaign-ready creatives in every format your paid media channels need.</p>"
+          }
+        }
+      },
+      "block_order": ["st1", "st2", "st3", "st4", "st5"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "layout": "stack",
+        "eyebrow": "FAQ",
+        "heading": "What health brands ask",
+        "heading_accent": "before starting",
+        "contact_label": ""
+      },
+      "blocks": {
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you handle regulatory compliance?",
+            "answer": "<p>No. We are not a regulatory or legal advisor and we don't guarantee compliance with any regulator or ad platform policy. We do build the process around your approved messaging: claims, product statements and scientific language should be provided or signed off by you before production.</p>"
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you work from our approved claims document?",
+            "answer": "<p>Yes, and it is the fastest way to work. Send the language you have already cleared internally and we build the creative around it.</p>"
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you show a device or mechanism we can't film?",
+            "answer": "<p>That is one of the main reasons health brands come to us. AI production lets us visualize a product or process without a shoot.</p>"
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you sign NDAs?",
+            "answer": "<p>Yes. Send us your NDA before the brief and we'll sign it.</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "Who owns the final creatives?",
+            "answer": "<p>You do, with full commercial usage rights once the batch is delivered and paid for.</p>"
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5"]
+    },
+    "closer": {
+      "type": "cta-closer",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Ready to scale",
+        "heading_accent": "your health brand's creative?",
+        "body": "More creative concepts. Faster production. Less complexity.",
+        "cta_primary_label": "Start a project",
+        "cta_primary_url": "/pages/pricing",
+        "cta_secondary_label": "Talk to our team",
+        "cta_secondary_url": "mailto:hello@quickmotionai.com",
+        "note": "No long-term contracts · Cancel anytime"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "problems",
+    "work",
+    "capabilities",
+    "industries",
+    "how-it-works",
+    "faq",
+    "closer"
+  ]
+}

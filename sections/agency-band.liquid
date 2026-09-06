@@ -1,0 +1,91 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Bloque para agencias. Se usa tanto en la home como en /pages/agencies, así que
+  todo el copy vive en settings: la misma sección, dos discursos.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign benefits = section.blocks | where: 'type', 'benefit'
+-%}
+
+<section class="section agency">
+  <div class="wrap">
+    <div class="agency__card">
+      <span class="agency__glow" aria-hidden="true"></span>
+
+      <div class="agency__inner">
+        <div class="agency__copy">
+          {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+          {%- if s.heading != blank -%}
+            <h2 class="t-h2 agency__title" data-reveal>
+              {{ s.heading }}
+              {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+            </h2>
+          {%- endif -%}
+          {%- if s.body != blank -%}
+            <div class="t-lead agency__body rte" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</div>
+          {%- endif -%}
+
+          {%- if s.cta_label != blank -%}
+            <div class="btn-row agency__ctas" data-reveal="fade" style="--reveal-delay: 140ms">
+              <a href="{{ s.cta_url | default: '/pages/agencies' }}" class="btn btn--primary btn--lg">
+                {{ s.cta_label }}
+                {% render 'icon', name: 'arrow-right', size: 15 %}
+              </a>
+              {%- if s.cta_secondary_label != blank -%}
+                <a href="{{ s.cta_secondary_url }}" class="btn btn--ghost btn--lg">{{ s.cta_secondary_label }}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if benefits.size > 0 -%}
+          <ul class="agency__benefits" data-stagger="60">
+            {%- for block in benefits -%}
+              <li {{ block.shopify_attributes }} data-reveal="fade">
+                <span class="tick tick--yes" aria-hidden="true">{% render 'icon', name: 'check', size: 10 %}</span>
+                {{ block.settings.text }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bloque para agencias",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "For agencies" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Built for agencies that need" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "more creative capacity" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>QuickMotion works as an extension of your creative team. We help agencies increase production capacity without hiring additional editors or managing multiple freelancers.</p>" },
+    { "type": "text", "id": "cta_label", "label": "Botón principal", "default": "Partner with QuickMotion" },
+    { "type": "url", "id": "cta_url", "label": "URL principal" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Botón secundario" },
+    { "type": "url", "id": "cta_secondary_url", "label": "URL secundaria" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Ventaja",
+      "limit": 8,
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "White-label collaboration available" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bloque para agencias",
+      "blocks": [
+        { "type": "benefit" }, { "type": "benefit" }, { "type": "benefit" },
+        { "type": "benefit" }, { "type": "benefit" }, { "type": "benefit" }
+      ]
+    }
+  ]
+}
+{% endschema %}

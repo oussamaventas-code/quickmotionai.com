@@ -1,22 +1,162 @@
 {
   "sections": {
-    "hero": { "type": "page-hero", "settings": { "eyebrow": "Portfolio", "heading": "Creatives we're", "heading_accent": "currently producing", "body": "A real sample of our production. Updated with every new batch of creatives." } },
+    "hero": {
+      "type": "page-hero",
+      "blocks": {
+        "pl1": { "type": "pill", "settings": { "text": "Real client work" } },
+        "pl2": { "type": "pill", "settings": { "text": "Meta & TikTok formats" } },
+        "pl3": { "type": "pill", "settings": { "text": "Updated every batch" } }
+      },
+      "block_order": ["pl1", "pl2", "pl3"],
+      "settings": {
+        "eyebrow": "Portfolio",
+        "heading": "Ad creatives we've",
+        "heading_accent": "produced for real clients",
+        "body": "Filter by industry or creative type. Every clip below was produced end to end by QuickMotion — concept, script, production and edit."
+      }
+    },
     "showcase": {
       "type": "video-showcase",
-      "blocks": {
-        "s1": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.SD-480p-1.5Mbps-93594648.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528", "caption": "Perla Negra Tattoo · Instagram Reels", "metric_1_value": "100K+", "metric_1_label": "views", "metric_color": "cyan" } },
-        "s2": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/5aa9da7f165a486bb48b70d63f2043ce/5aa9da7f165a486bb48b70d63f2043ce.SD-480p-1.5Mbps-93594651.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/5aa9da7f165a486bb48b70d63f2043ce.thumbnail.0000000000.jpg?v=1788636528", "caption": "Perla Negra Tattoo · Instagram Reels" } },
-        "s3": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/530d18cbdb354484ad4a720bc380bf23/530d18cbdb354484ad4a720bc380bf23.SD-480p-1.5Mbps-93594649.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/530d18cbdb354484ad4a720bc380bf23.thumbnail.0000000000.jpg?v=1788636528", "caption": "Perla Negra Tattoo · Instagram Reels" } },
-        "s4": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/69dc6c0874c84941b69c16abc9569792/69dc6c0874c84941b69c16abc9569792.SD-480p-1.5Mbps-93594650.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/69dc6c0874c84941b69c16abc9569792.thumbnail.0000000000.jpg?v=1788636528", "caption": "Perla Negra Tattoo · Instagram Reels" } },
-        "s5": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.SD-480p-1.5Mbps-93534615.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820", "caption": "Joint relief kit · pain angle" } },
-        "s6": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829", "caption": "Joint relief kit · comparison" } },
-        "s7": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831", "caption": "Joint relief kit · objection handling" } },
-        "s8": { "type": "creative", "settings": { "video_url": "https://cdn.shopify.com/videos/c/vp/d1704e2a47e547d293d05bd2f709abca/d1704e2a47e547d293d05bd2f709abca.SD-480p-1.2Mbps-93598424.mp4", "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/d1704e2a47e547d293d05bd2f709abca.thumbnail.0000000000.jpg?v=1788642005", "caption": "ALM Electricidad · solar panel install" } }
+      "settings": {
+        "layout": "grid",
+        "columns": "3",
+        "eyebrow": "",
+        "heading": "",
+        "heading_accent": "",
+        "body": "",
+        "align": "left",
+        "show_halo": false,
+        "link_label": "",
+        "link_url": "",
+        "show_filters": true,
+        "filter_all_label": "All work",
+        "filters": "E-commerce, Wellness, UGC, Product ads, AI commercials",
+        "empty_text": "Nothing in this category yet — new work is added with every batch."
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"],
-      "settings": { "layout": "grid", "columns": "3", "eyebrow": "", "heading": "", "align": "left", "show_halo": false, "link_label": "See the full portfolio", "link_url": "/pages/pricing" }
+      "blocks": {
+        "s1": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/03184c61478e48b3867714ffe03c3fe3/03184c61478e48b3867714ffe03c3fe3.SD-480p-1.5Mbps-93594648.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/03184c61478e48b3867714ffe03c3fe3.thumbnail.0000000000.jpg?v=1788636528",
+            "caption": "Perla Negra Tattoo",
+            "industry": "Local services",
+            "creative_type": "AI UGC",
+            "platform": "Instagram Reels",
+            "objective": "Brand awareness",
+            "tags": "UGC, AI commercials",
+            "metric_1_value": "100K+",
+            "metric_1_label": "views",
+            "metric_color": "cyan"
+          }
+        },
+        "s2": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/5aa9da7f165a486bb48b70d63f2043ce/5aa9da7f165a486bb48b70d63f2043ce.SD-480p-1.5Mbps-93594651.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/5aa9da7f165a486bb48b70d63f2043ce.thumbnail.0000000000.jpg?v=1788636528",
+            "caption": "Perla Negra Tattoo",
+            "industry": "Local services",
+            "creative_type": "AI UGC",
+            "platform": "Instagram Reels",
+            "objective": "Brand awareness",
+            "tags": "UGC, AI commercials"
+          }
+        },
+        "s3": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/530d18cbdb354484ad4a720bc380bf23/530d18cbdb354484ad4a720bc380bf23.SD-480p-1.5Mbps-93594649.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/530d18cbdb354484ad4a720bc380bf23.thumbnail.0000000000.jpg?v=1788636528",
+            "caption": "Perla Negra Tattoo",
+            "industry": "Local services",
+            "creative_type": "AI UGC",
+            "platform": "Instagram Reels",
+            "objective": "Brand awareness",
+            "tags": "UGC, AI commercials"
+          }
+        },
+        "s4": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/69dc6c0874c84941b69c16abc9569792/69dc6c0874c84941b69c16abc9569792.SD-480p-1.5Mbps-93594650.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/69dc6c0874c84941b69c16abc9569792.thumbnail.0000000000.jpg?v=1788636528",
+            "caption": "Perla Negra Tattoo",
+            "industry": "Local services",
+            "creative_type": "AI UGC",
+            "platform": "Instagram Reels",
+            "objective": "Brand awareness",
+            "tags": "UGC, AI commercials"
+          }
+        },
+        "s5": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/275ff9e5f21c48568d818ffa2814a328/275ff9e5f21c48568d818ffa2814a328.SD-480p-1.5Mbps-93534615.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/275ff9e5f21c48568d818ffa2814a328.thumbnail.0000000000.jpg?v=1788555820",
+            "caption": "Joint relief kit · pain angle",
+            "industry": "Wellness",
+            "creative_type": "Performance ad variation",
+            "platform": "Meta Ads",
+            "objective": "Problem awareness",
+            "tags": "Wellness, E-commerce, Product ads"
+          }
+        },
+        "s6": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/95d1fe48086b40ed9e5c610f241569ce/95d1fe48086b40ed9e5c610f241569ce.SD-480p-1.5Mbps-93534614.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/95d1fe48086b40ed9e5c610f241569ce.thumbnail.0000000000.jpg?v=1788555829",
+            "caption": "Joint relief kit · comparison",
+            "industry": "Wellness",
+            "creative_type": "Product demonstration",
+            "platform": "Meta Ads",
+            "objective": "Product education",
+            "tags": "Wellness, E-commerce, Product ads"
+          }
+        },
+        "s7": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/a95869abd9b142d8b91bdea3059ed4e9/a95869abd9b142d8b91bdea3059ed4e9.SD-480p-1.5Mbps-93534613.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/a95869abd9b142d8b91bdea3059ed4e9.thumbnail.0000000000.jpg?v=1788555831",
+            "caption": "Joint relief kit · objection handling",
+            "industry": "Wellness",
+            "creative_type": "Performance ad variation",
+            "platform": "Meta Ads",
+            "objective": "Objection handling",
+            "tags": "Wellness, E-commerce, Product ads"
+          }
+        },
+        "s8": {
+          "type": "creative",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/vp/d1704e2a47e547d293d05bd2f709abca/d1704e2a47e547d293d05bd2f709abca.SD-480p-1.2Mbps-93598424.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/1035/6097/0609/files/preview_images/d1704e2a47e547d293d05bd2f709abca.thumbnail.0000000000.jpg?v=1788642005",
+            "caption": "ALM Electricidad · solar panel install",
+            "industry": "Home services",
+            "creative_type": "Product commercial",
+            "platform": "Meta Ads",
+            "objective": "Lead generation",
+            "tags": "AI commercials, Product ads"
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"]
     },
-    "closer": { "type": "cta-closer", "settings": { "eyebrow": "", "heading": "Want creatives", "heading_accent": "like this for your brand?", "cta_primary_label": "See pricing", "cta_primary_url": "/pages/pricing" } }
+    "closer": {
+      "type": "cta-closer",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Want creatives",
+        "heading_accent": "like this for your brand?",
+        "body": "More creative concepts. Faster production. Less complexity.",
+        "cta_primary_label": "Start your creative batch",
+        "cta_primary_url": "/pages/pricing",
+        "cta_secondary_label": "Talk to our team",
+        "cta_secondary_url": "mailto:hello@quickmotionai.com"
+      }
+    }
   },
   "order": ["hero", "showcase", "closer"]
 }

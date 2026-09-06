@@ -3,35 +3,16 @@
     "hero": {
       "type": "page-hero",
       "blocks": {
-        "pl1": {
-          "type": "pill",
-          "settings": {
-            "text": "No lock-in"
-          }
-        },
-        "pl2": {
-          "type": "pill",
-          "settings": {
-            "text": "Cancel anytime"
-          }
-        },
-        "pl3": {
-          "type": "pill",
-          "settings": {
-            "text": "72h delivery"
-          }
-        }
+        "pl1": { "type": "pill", "settings": { "text": "No long-term contracts" } },
+        "pl2": { "type": "pill", "settings": { "text": "Revisions included" } },
+        "pl3": { "type": "pill", "settings": { "text": "72h turnaround" } }
       },
-      "block_order": [
-        "pl1",
-        "pl2",
-        "pl3"
-      ],
+      "block_order": ["pl1", "pl2", "pl3"],
       "settings": {
         "eyebrow": "Pricing",
-        "heading": "What a month of ads costs",
-        "heading_accent": "without a production behind it",
-        "body": "Every plan is a fixed monthly batch of ads, directed by a person and produced without cameras, studios or actors. Digital service: no shipping, no setup fee."
+        "heading": "A monthly creative production system,",
+        "heading_accent": "not a video order",
+        "body": "Each plan is a fixed monthly batch of launch-ready ad creatives with creative direction, multiple formats and revisions included. Digital service: no shipping, no setup fee."
       }
     },
     "pricing": {
@@ -44,8 +25,9 @@
             "product_handle": "pack-starter-3-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Starter",
-            "pitch": "To test the service with steady, low volume",
-            "features": "3 ad videos per month\n9:16 and 4:5 formats\n1 revision round per video\nDelivered in 72h from brief"
+            "pitch": "For brands testing new creative concepts.",
+            "features": "3 launch-ready ad creatives per month\nMultiple hooks and angles per batch\n9:16 and 4:5 formats\n1 revision round per creative\nCreative direction included\nDelivered in 72h from brief",
+            "cta_label": "Start your creative batch"
           }
         },
         "pk2": {
@@ -57,8 +39,9 @@
             "name": "Growth",
             "featured": true,
             "badge": "Most popular",
-            "pitch": "To scale active accounts without overloading your creative team",
-            "features": "5 ad videos per month\n9:16, 4:5 and 1:1 formats\n2 revision rounds per video\nDelivered in 72h from brief"
+            "pitch": "For brands actively running paid campaigns.",
+            "features": "5 launch-ready ad creatives per month\nUGC, product and AI creative formats\nMultiple angles per campaign\n9:16, 4:5 and 1:1 formats\n2 revision rounds per creative\nPriority production\nDelivered in 72h from brief",
+            "cta_label": "Start your creative batch"
           }
         },
         "pk3": {
@@ -68,30 +51,49 @@
             "product_handle": "pack-scale-10-videos-anuncio-ia-mes",
             "period": "/mo",
             "name": "Scale",
-            "pitch": "For agencies with multiple accounts and one point of contact",
-            "features": "10 ad videos per month\nAll formats\n3 revision rounds per video\nDelivered in 48h from brief\nDedicated account manager"
+            "pitch": "For agencies and brands with continuous creative demand.",
+            "features": "10 launch-ready ad creatives per month\nMultiple campaigns in parallel\nCreative variations for testing\nAll formats\n3 revision rounds per creative\nDedicated creative workflow\nPriority turnaround: 48h from brief",
+            "cta_label": "Start your creative batch"
           }
         }
       },
-      "block_order": [
-        "pk1",
-        "pk2",
-        "pk3"
-      ],
+      "block_order": ["pk1", "pk2", "pk3"],
       "settings": {
         "eyebrow": "",
         "heading": "The three plans",
         "heading_accent": "",
-        "footer_note": "Every plan is a digital service: no shipping, no setup fee."
+        "footer_note": "We limit monthly production capacity to maintain fast turnaround and quality. Digital service: no shipping, no setup fee."
       }
+    },
+    "compare": {
+      "type": "comparison-table",
+      "settings": {
+        "row_header": "",
+        "columns": "Traditional production, QuickMotion",
+        "highlight_index": 1,
+        "eyebrow": "The real comparison",
+        "heading": "Speed, scale and simplicity",
+        "heading_accent": "without the production overhead"
+      },
+      "blocks": {
+        "cr1": { "type": "row", "settings": { "label": "Time to first creative", "values": "Weeks, Days" } },
+        "cr2": { "type": "row", "settings": { "label": "People to manage", "values": "Multiple freelancers, One creative partner" } },
+        "cr3": { "type": "row", "settings": { "label": "Coordination", "values": "Complex and manual, One simple workflow" } },
+        "cr4": { "type": "row", "settings": { "label": "Creative variations per cycle", "values": "Limited, Multiple angles and hooks" } },
+        "cr5": { "type": "row", "settings": { "label": "Cost structure", "values": "Expensive production teams, Predictable monthly pricing" } },
+        "cr6": { "type": "row", "settings": { "label": "Scaling output", "values": "Difficult to scale, Built to scale" } },
+        "cr7": { "type": "row", "settings": { "label": "Human creative direction", "values": "yes, yes" } },
+        "cr8": { "type": "row", "settings": { "label": "Long-term contract", "values": "Usually, no" } }
+      },
+      "block_order": ["cr1", "cr2", "cr3", "cr4", "cr5", "cr6", "cr7", "cr8"]
     },
     "calculator": {
       "type": "video-calculator",
       "settings": {
         "eyebrow": "No subscription needed",
         "heading": "Just need a",
-        "heading_accent": "few videos?",
-        "body": "Buy single ad videos one at a time, no monthly plan required.",
+        "heading_accent": "few creatives?",
+        "body": "Buy single ad creatives one at a time, no monthly plan required.",
         "product_handle": "single-ad-video"
       },
       "blocks": {
@@ -120,24 +122,20 @@
           }
         }
       },
-      "block_order": [
-        "cp1",
-        "cp2",
-        "cp3"
-      ]
+      "block_order": ["cp1", "cp2", "cp3"]
     },
     "savings": {
       "type": "savings-band",
       "settings": {
-        "eyebrow": "Do the math",
-        "heading": "What you stop spending",
-        "heading_accent": "every month",
-        "body": "And this only counts editing. It doesn't count the camera, the studio, the actors or the shooting days you're not paying for either.",
-        "videos_label": "videos/mo",
+        "eyebrow": "One more angle",
+        "heading": "And that's before counting",
+        "heading_accent": "what editing alone would cost",
+        "body": "Speed and scale are the reason to work this way. The cost difference is just what falls out of it — and this line only counts editing, not the camera, the studio, the talent or the shooting days.",
+        "videos_label": "creatives/mo",
         "freelance_label": "Editing alone would cost",
         "plan_label": "Your plan",
         "save_label": "saved every month",
-        "disclaimer": "Freelance cost assumes 2 hours of editing per video at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
+        "disclaimer": "Freelance cost assumes 2 hours of editing per creative at $65/hour, a mid-range US freelance rate. Real agency quotes often run higher once you add project management, revision rounds, and software."
       },
       "blocks": {
         "sv1": {
@@ -172,11 +170,7 @@
           }
         }
       },
-      "block_order": [
-        "sv1",
-        "sv2",
-        "sv3"
-      ]
+      "block_order": ["sv1", "sv2", "sv3"]
     },
     "includes": {
       "type": "comparison-table",
@@ -188,49 +182,17 @@
         "highlight_index": 1
       },
       "blocks": {
-        "r1": {
-          "type": "row",
-          "settings": {
-            "label": "Videos per month",
-            "values": "3, 5, 10"
-          }
-        },
-        "r2": {
-          "type": "row",
-          "settings": {
-            "label": "Formats",
-            "values": "9:16 and 4:5, All, All"
-          }
-        },
-        "r3": {
-          "type": "row",
-          "settings": {
-            "label": "Revisions included",
-            "values": "1, 2, 3"
-          }
-        },
-        "r4": {
-          "type": "row",
-          "settings": {
-            "label": "Turnaround",
-            "values": "72h, 72h, 48h"
-          }
-        },
-        "r5": {
-          "type": "row",
-          "settings": {
-            "label": "Dedicated account manager",
-            "values": "no, no, yes"
-          }
-        }
+        "r1": { "type": "row", "settings": { "label": "Ad creatives per month", "values": "3, 5, 10" } },
+        "r2": { "type": "row", "settings": { "label": "Formats", "values": "9:16 and 4:5, All, All" } },
+        "r3": { "type": "row", "settings": { "label": "Revision rounds per creative", "values": "1, 2, 3" } },
+        "r4": { "type": "row", "settings": { "label": "Turnaround", "values": "72h, 72h, 48h" } },
+        "r5": { "type": "row", "settings": { "label": "Creative direction included", "values": "yes, yes, yes" } },
+        "r6": { "type": "row", "settings": { "label": "Multiple campaigns in parallel", "values": "no, no, yes" } },
+        "r7": { "type": "row", "settings": { "label": "Dedicated creative workflow", "values": "no, no, yes" } },
+        "r8": { "type": "row", "settings": { "label": "Commercial usage rights", "values": "yes, yes, yes" } },
+        "r9": { "type": "row", "settings": { "label": "White-label for agencies", "values": "yes, yes, yes" } }
       },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4",
-        "r5"
-      ]
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9"]
     },
     "faq": {
       "type": "faq-accordion",
@@ -246,7 +208,7 @@
           "type": "faq",
           "settings": {
             "question": "Can I switch plans mid-month?",
-            "answer": "<p>Yes, just message us and we'll adjust the change for your next billing cycle.</p>"
+            "answer": "<p>Yes, just message us and we'll apply the change to your next billing cycle.</p>"
           }
         },
         "f3": {
@@ -255,18 +217,28 @@
             "question": "How is the subscription billed?",
             "answer": "<p>Billing is monthly and automatic through Shopify, at your plan's price.</p>"
           }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "Who owns the final creatives?",
+            "answer": "<p>You do, with full commercial usage rights once the batch is delivered and paid for.</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "question": "Is there a long-term contract?",
+            "answer": "<p>No. Cancel from your account any time before your next billing date.</p>"
+          }
         }
       },
-      "block_order": [
-        "f1",
-        "f2",
-        "f3"
-      ],
+      "block_order": ["f1", "f2", "f3", "f4", "f5"],
       "settings": {
         "layout": "stack",
         "eyebrow": "FAQ",
         "heading": "What clients ask",
-        "heading_accent": "before signing up",
+        "heading_accent": "before starting",
         "contact_label": ""
       }
     },
@@ -277,35 +249,17 @@
         "body": "<p>You have 7 days from delivery of your first batch to request a full refund of that payment.</p>"
       },
       "blocks": {
-        "gp1": {
-          "type": "point",
-          "settings": {
-            "text": "No lock-in"
-          }
-        },
-        "gp2": {
-          "type": "point",
-          "settings": {
-            "text": "Revisions included"
-          }
-        },
-        "gp3": {
-          "type": "point",
-          "settings": {
-            "text": "7-day refund"
-          }
-        }
+        "gp1": { "type": "point", "settings": { "text": "No long-term contracts" } },
+        "gp2": { "type": "point", "settings": { "text": "Revisions included" } },
+        "gp3": { "type": "point", "settings": { "text": "7-day refund" } }
       },
-      "block_order": [
-        "gp1",
-        "gp2",
-        "gp3"
-      ]
+      "block_order": ["gp1", "gp2", "gp3"]
     }
   },
   "order": [
     "hero",
     "pricing",
+    "compare",
     "calculator",
     "savings",
     "includes",

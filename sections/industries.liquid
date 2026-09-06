@@ -1,0 +1,103 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Especialización por sector. Pensada para salud, bienestar y biomédica: la
+  columna derecha lleva la nota de mensajería responsable, que es lo que separa
+  a un proveedor serio de un generador de vídeos en estas categorías.
+
+  Importante: la nota NO promete cumplimiento normativo. Dice quién aprueba los
+  claims. No cambies ese matiz sin hablarlo.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign inds = section.blocks | where: 'type', 'industry'
+-%}
+
+<section class="section industries">
+  <span class="halo halo--bl" style="--halo-color: var(--c-green); --halo-opacity: 0.12;" aria-hidden="true"></span>
+
+  <div class="wrap industries__inner">
+    <div class="industries__copy">
+      {%- if s.eyebrow != blank -%}<p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}
+        <h2 class="t-h2 industries__title" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+        </h2>
+      {%- endif -%}
+      {%- if s.body != blank -%}
+        <p class="t-lead industries__body" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>
+      {%- endif -%}
+
+      {%- if inds.size > 0 -%}
+        <ul class="industries__list" data-stagger="40">
+          {%- for block in inds -%}
+            <li class="industries__item" {{ block.shopify_attributes }} data-reveal="fade">
+              <span class="industries__dot" aria-hidden="true"></span>
+              {{ block.settings.name }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if s.cta_label != blank -%}
+        <div class="btn-row industries__ctas" data-reveal="fade">
+          <a href="{{ s.cta_url | default: '/pages/healthcare' }}" class="btn btn--primary">
+            {{ s.cta_label }}
+            {% render 'icon', name: 'arrow-right', size: 15 %}
+          </a>
+          {%- if s.cta_secondary_label != blank -%}
+            <a href="{{ s.cta_secondary_url }}" class="btn btn--ghost">{{ s.cta_secondary_label }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if s.note_title != blank or s.note_body != blank -%}
+      <aside class="card card--glow industries__note" data-reveal style="--reveal-delay: 140ms">
+        <span class="card__icon card__icon--green">{% render 'icon', name: 'shield', size: 20 %}</span>
+        {%- if s.note_title != blank -%}<h3 class="card__title">{{ s.note_title }}</h3>{%- endif -%}
+        {%- if s.note_body != blank -%}<div class="card__text rte">{{ s.note_body }}</div>{%- endif -%}
+      </aside>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sectores especializados",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Specialization" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "AI creative production for" },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada", "default": "healthcare, wellness & biomedical brands" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "We help complex products become simple, engaging, and visually compelling advertising creatives." },
+    { "type": "header", "content": "Nota de mensajería responsable" },
+    { "type": "text", "id": "note_title", "label": "Título de la nota", "default": "Built with responsible messaging in mind" },
+    { "type": "richtext", "id": "note_body", "label": "Texto de la nota", "default": "<p>All health-related claims, product statements, and scientific messaging should be provided or approved by the client before production.</p>" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta_label", "label": "Botón principal" },
+    { "type": "url", "id": "cta_url", "label": "URL principal" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Botón secundario" },
+    { "type": "url", "id": "cta_secondary_url", "label": "URL secundaria" }
+  ],
+  "blocks": [
+    {
+      "type": "industry",
+      "name": "Sector",
+      "limit": 12,
+      "settings": [{ "type": "text", "id": "name", "label": "Nombre", "default": "Healthcare" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sectores especializados",
+      "blocks": [
+        { "type": "industry" }, { "type": "industry" }, { "type": "industry" },
+        { "type": "industry" }, { "type": "industry" }, { "type": "industry" }
+      ]
+    }
+  ]
+}
+{% endschema %}
