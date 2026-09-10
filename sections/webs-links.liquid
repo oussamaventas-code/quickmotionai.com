@@ -1,0 +1,74 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Índice propio de /webs. El pie global del tema sigue apareciendo debajo:
+  esta banda es sólo el mapa de la landing más los enlaces legales, para que
+  el visitante pueda volver a cualquier sección sin subir a mano.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign nav = section.blocks | where: 'type', 'link'
+  assign legal = section.blocks | where: 'type', 'legal'
+-%}
+
+<section class="qw-links">
+  <div class="wrap qw-links__inner">
+    <div class="qw-links__brand">
+      <p class="qw-links__name">{{ s.brand | default: shop.name }}</p>
+      {%- if s.tagline != blank -%}
+        <p class="qw-links__tag">{{ s.tagline }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if nav.size > 0 -%}
+      <nav class="qw-links__nav" aria-label="{{ s.nav_label | escape }}">
+        {%- for block in nav -%}
+          <a href="{{ block.settings.url | default: '#' }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    {%- if legal.size > 0 -%}
+      <nav class="qw-links__legal" aria-label="{{ s.legal_label | escape }}">
+        {%- for block in legal -%}
+          {%- if block.settings.url != blank -%}
+            <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Webs · Índice de página",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "brand", "label": "Marca", "default": "QuickMotionAI" },
+    { "type": "text", "id": "tagline", "label": "Descriptor", "default": "Webs profesionales para negocios reales." },
+    { "type": "text", "id": "nav_label", "label": "Nombre del menú", "default": "Secciones de la página" },
+    { "type": "text", "id": "legal_label", "label": "Nombre del menú legal", "default": "Legal" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Enlace de sección",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texto", "default": "Planes" },
+        { "type": "url", "id": "url", "label": "Enlace" }
+      ]
+    },
+    {
+      "type": "legal",
+      "name": "Enlace legal",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Texto", "default": "Aviso legal" },
+        { "type": "url", "id": "url", "label": "Enlace", "info": "Si lo dejas vacío, el enlace no se muestra." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Webs · Índice de página" }]
+}
+{% endschema %}

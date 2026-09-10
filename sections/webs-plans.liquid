@@ -1,0 +1,178 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'qm-webs.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section qw-plans" id="planes" data-qw-pricing>
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      {%- if s.eyebrow != blank -%}
+        <p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="t-h2" data-reveal>
+        {{ s.heading }}
+        {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+      </h2>
+      {%- if s.body != blank -%}
+        <p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="qw-plans__grid" data-stagger="90">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign features = b.features | newline_to_br | split: '<br />'
+          assign event_name = b.event | default: 'click_plan'
+        -%}
+        <article
+          class="qw-plan{% if b.featured %} qw-plan--featured{% endif %}"
+          data-reveal
+          {{ block.shopify_attributes }}
+        >
+          {%- if b.featured and b.flag != blank -%}
+            <span class="qw-plan__flag">{{ b.flag }}</span>
+          {%- endif -%}
+
+          <p class="qw-plan__name">{{ b.name }}</p>
+
+          <div class="qw-plan__price">
+            <span class="qw-price qw-price--lg">
+              <span>{{ b.price }}</span>
+              <span class="qw-price__cur">{{ b.currency | default: '€' }}</span>
+              {%- if b.period != blank -%}<span class="qw-price__per">{{ b.period }}</span>{%- endif -%}
+            </span>
+          </div>
+          {%- if b.pay_label != blank -%}
+            <p class="qw-plan__pay">{{ b.pay_label }}</p>
+          {%- endif -%}
+
+          {%- if b.tagline != blank -%}
+            <p class="qw-plan__tagline">{{ b.tagline }}</p>
+          {%- endif -%}
+
+          <ul class="qw-ticks qw-plan__list">
+            {%- for feature in features -%}
+              {%- assign line = feature | strip_newlines | strip -%}
+              {%- if line != blank -%}
+                <li class="qw-tick">
+                  <span class="qw-tick__mark">{% render 'icon', name: 'check', size: 10 %}</span>
+                  {{ line }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+          <div class="qw-plan__foot">
+            <div class="qw-plan__cta">
+              <a
+                href="{% if b.variant_id != blank %}/cart/{{ b.variant_id }}:1{% else %}{{ b.cta_url | default: '#quiero-mi-web' }}{% endif %}"
+                class="btn {% if b.featured %}btn--primary{% else %}btn--ghost{% endif %} btn--full"
+                data-qw-cta="{{ event_name }}"
+                data-plan="{{ b.plan_value | default: b.name | downcase | strip }}"
+                {%- if b.variant_id != blank %}
+                  data-qw-buy="{{ b.variant_id }}"
+                {%- endif %}
+              >
+                {{ b.cta_label }}
+              </a>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.foot_note != blank -%}
+      <p class="qw-note" style="margin-top: var(--s-8); max-width: 680px; margin-inline: auto;" data-reveal="fade">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.2"/></svg>
+        <span>{{ s.foot_note }}</span>
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Webs · Planes",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Planes" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Elige hasta dónde quieres llegar." },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "Empieza por lo básico y sube de plan cuando tu negocio lo pida. Sin permanencia en ninguno." },
+    { "type": "textarea", "id": "foot_note", "label": "Nota bajo los planes", "default": "Dominio y hosting no incluidos en ningún plan. Te pasamos el coste exacto antes de empezar y puedes contratarlos por tu cuenta si lo prefieres." }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre", "default": "STARTER" },
+        { "type": "text", "id": "price", "label": "Importe", "default": "49" },
+        { "type": "text", "id": "currency", "label": "Moneda", "default": "€" },
+        { "type": "text", "id": "period", "label": "Periodo", "info": "Por ejemplo /mes. Déjalo vacío en pagos únicos." },
+        { "type": "text", "id": "pay_label", "label": "Tipo de pago", "default": "Pago único" },
+        { "type": "textarea", "id": "tagline", "label": "Para quién es", "default": "Para negocios que simplemente necesitan estar online." },
+        { "type": "textarea", "id": "features", "label": "Incluye", "info": "Una línea por característica.", "default": "1 página\nDiseño responsive\nWhatsApp\nServicios\nGalería\nContacto" },
+        { "type": "header", "content": "Botón" },
+        { "type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Empezar" },
+        { "type": "url", "id": "cta_url", "label": "Enlace (alternativo)", "info": "Se usa sólo si el ID de variante de abajo está vacío. Vacío = formulario de la página." },
+        { "type": "text", "id": "variant_id", "label": "ID de variante de Shopify", "info": "Si lo rellenas, el botón compra directamente: añade esta variante al carrito y salta al checkout. Lo encuentras en la URL del admin al editar la variante del producto." },
+        {
+          "type": "select",
+          "id": "event",
+          "label": "Evento de analítica",
+          "options": [
+            { "value": "click_starter", "label": "click_starter" },
+            { "value": "click_pro", "label": "click_pro" },
+            { "value": "click_business", "label": "click_business" },
+            { "value": "click_plan", "label": "click_plan" }
+          ],
+          "default": "click_starter"
+        },
+        { "type": "text", "id": "plan_value", "label": "Valor en el formulario", "info": "Debe coincidir con una opción del desplegable del formulario para que se preseleccione sola.", "default": "starter" },
+        { "type": "header", "content": "Destacado" },
+        { "type": "checkbox", "id": "featured", "label": "Marcar como destacado", "default": false },
+        { "type": "text", "id": "flag", "label": "Etiqueta del destacado", "default": "MÁS ELEGIDO" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Webs · Planes",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "name": "STARTER", "price": "49", "pay_label": "Pago único",
+            "tagline": "Para negocios que simplemente necesitan estar online.",
+            "features": "1 página\nDiseño responsive\nWhatsApp\nServicios\nGalería\nContacto",
+            "cta_label": "Empezar", "event": "click_starter", "plan_value": "starter", "featured": false
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "name": "PRO", "price": "199", "pay_label": "Pago único",
+            "tagline": "Para negocios que quieren una presencia online más completa.",
+            "features": "Hasta 5 páginas\nDiseño personalizado\nSEO básico\nWhatsApp\nFormularios\nGoogle Maps\nRedes sociales\nGalería profesional\nOptimización móvil",
+            "cta_label": "Quiero la PRO", "event": "click_pro", "plan_value": "pro", "featured": true, "flag": "MÁS ELEGIDO"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "name": "BUSINESS", "price": "499", "pay_label": "Pago único",
+            "tagline": "Para negocios que quieren convertir su web en una herramienta de ventas.",
+            "features": "Web completa\nReservas y citas\nAutomatizaciones\nSEO avanzado\nFormularios avanzados\nIntegraciones\nGoogle Business\nAnalítica\nFuncionalidades personalizadas",
+            "cta_label": "Quiero BUSINESS", "event": "click_business", "plan_value": "business", "featured": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

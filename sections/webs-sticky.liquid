@@ -1,0 +1,49 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'qm-webs.js' | asset_url }}" defer="defer"></script>
+
+{%- comment -%}
+  Barra fija inferior, sólo en móvil. Aparece al dejar atrás el hero y se
+  aparta sola cuando el usuario ya tiene botones reales delante (oferta,
+  planes o formulario), para no tapar nada importante.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<div class="qw-sticky" data-qw-sticky data-qw-hide-over="{{ s.hide_over | escape }}">
+  <div class="qw-sticky__inner">
+    <div class="qw-sticky__price">
+      <span class="qw-sticky__label">{{ s.label }}</span>
+      <span class="qw-sticky__amount">{{ s.amount }}</span>
+    </div>
+
+    <a
+      href="{% if s.starter_variant_id != blank %}/cart/{{ s.starter_variant_id }}:1{% else %}{{ s.cta_url | default: '#quiero-mi-web' }}{% endif %}"
+      class="btn btn--primary qw-sticky__btn"
+      data-qw-cta="click_starter"
+      data-plan="starter"
+      {%- if s.starter_variant_id != blank %}
+        data-qw-buy="{{ s.starter_variant_id }}"
+      {%- endif %}
+    >
+      {{ s.cta_label }}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Webs · Barra fija móvil",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Desde" },
+    { "type": "text", "id": "amount", "label": "Importe", "default": "49 €" },
+    { "type": "text", "id": "cta_label", "label": "Botón", "default": "Quiero mi web" },
+    { "type": "url", "id": "cta_url", "label": "Enlace del botón (alternativo)", "info": "Se usa sólo si el ID de variante de abajo está vacío." },
+    { "type": "text", "id": "starter_variant_id", "label": "ID de variante del plan STARTER", "info": "Si lo rellenas, el botón compra directamente en el checkout de Shopify." },
+    { "type": "text", "id": "hide_over", "label": "Ocultar sobre estas secciones", "info": "Selector CSS. Deja el valor por defecto salvo que sepas lo que haces.", "default": "[data-qw-pricing], [data-qw-offer], [data-qw-close]" }
+  ],
+  "presets": [{ "name": "Webs · Barra fija móvil" }]
+}
+{% endschema %}

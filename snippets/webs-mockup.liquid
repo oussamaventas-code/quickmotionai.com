@@ -1,0 +1,265 @@
+{%- comment -%}
+  webs-mockup — maqueta de una web de negocio local.
+
+  Es la pieza visual central de /webs: tiene que leerse como una web de verdad,
+  no como un marcador de posición. Va en claro sobre el fondo oscuro de la
+  página, con el cromo del navegador, la ficha de servicios con precios y el
+  botón de WhatsApp que es justo lo que se le vende al cliente.
+
+  Uso:
+    {% render 'webs-mockup', kind: 'peluqueria' %}
+    {% render 'webs-mockup', kind: 'taller', phone: true %}
+    {% render 'webs-mockup', kind: 'restaurante', image: section.settings.foto %}
+
+  Parámetros:
+    kind   peluqueria | estetica | unas | fisio | taller | restaurante |
+           electricista | inmobiliaria    (por defecto: peluqueria)
+    phone  true para la variante compacta de móvil
+    image  imagen de Shopify opcional; sustituye al fondo de color del hero
+{%- endcomment -%}
+
+{%- liquid
+  assign k = kind | default: 'peluqueria'
+
+  case k
+    when 'peluqueria'
+      assign mk_brand = '#b0763a'
+      assign mk_name = 'Salón'
+      assign mk_name_b = 'Aurora'
+      assign mk_url = 'salonaurora.es'
+      assign mk_phone = '963 214 870'
+      assign mk_eyebrow = 'Peluquería en Valencia'
+      assign mk_title = 'Tu pelo, en las mejores manos'
+      assign mk_sub = 'Corte, color y tratamientos con cita previa. Abrimos de martes a sábado.'
+      assign mk_cta = 'Reservar cita'
+      assign mk_nav = 'Inicio,Servicios,Equipo,Contacto'
+      assign mk_rows = 'Corte y peinado|45 min|18 €;;Color completo|2 h|45 €;;Mechas balayage|3 h|75 €'
+      assign mk_rows_title = 'Servicios y precios'
+      assign mk_addr = 'C/ Colón 42, Valencia'
+      assign mk_hours = 'Mar-Sáb · 10:00-20:00'
+      assign mk_rating = '4,9'
+      assign mk_reviews = '212'
+
+    when 'estetica'
+      assign mk_brand = '#a8577f'
+      assign mk_name = 'Centro'
+      assign mk_name_b = 'Lumière'
+      assign mk_url = 'centrolumiere.es'
+      assign mk_phone = '954 118 330'
+      assign mk_eyebrow = 'Estética avanzada en Sevilla'
+      assign mk_title = 'Cuídate como te mereces'
+      assign mk_sub = 'Tratamientos faciales y corporales con diagnóstico previo sin coste.'
+      assign mk_cta = 'Pedir cita'
+      assign mk_nav = 'Inicio,Tratamientos,Precios,Contacto'
+      assign mk_rows = 'Limpieza facial profunda|60 min|39 €;;Presoterapia|45 min|30 €;;Bono 5 sesiones|—|129 €'
+      assign mk_rows_title = 'Tratamientos'
+      assign mk_addr = 'Av. de la Palmera 18, Sevilla'
+      assign mk_hours = 'Lun-Vie · 09:30-20:30'
+      assign mk_rating = '4,8'
+      assign mk_reviews = '164'
+
+    when 'unas'
+      assign mk_brand = '#c2557a'
+      assign mk_name = 'Nails'
+      assign mk_name_b = 'Studio'
+      assign mk_url = 'nailsstudio.es'
+      assign mk_phone = '952 640 219'
+      assign mk_eyebrow = 'Uñas en Málaga'
+      assign mk_title = 'Manicura que dura semanas'
+      assign mk_sub = 'Esmaltado semipermanente, acrílico y nail art. Reserva por WhatsApp.'
+      assign mk_cta = 'Reservar'
+      assign mk_nav = 'Inicio,Servicios,Galería,Contacto'
+      assign mk_rows = 'Semipermanente|60 min|22 €;;Uñas acrílicas|90 min|38 €;;Retirada y cuidado|30 min|12 €'
+      assign mk_rows_title = 'Servicios'
+      assign mk_addr = 'C/ Larios 7, Málaga'
+      assign mk_hours = 'Lun-Sáb · 10:00-21:00'
+      assign mk_rating = '5,0'
+      assign mk_reviews = '98'
+
+    when 'fisio'
+      assign mk_brand = '#1f6feb'
+      assign mk_name = 'Fisio'
+      assign mk_name_b = 'Nexo'
+      assign mk_url = 'fisionexo.es'
+      assign mk_phone = '976 305 142'
+      assign mk_eyebrow = 'Fisioterapia en Zaragoza'
+      assign mk_title = 'Vuelve a moverte sin dolor'
+      assign mk_sub = 'Primera valoración incluida. Sesiones de 50 minutos con fisioterapeuta colegiado.'
+      assign mk_cta = 'Pedir cita'
+      assign mk_nav = 'Inicio,Tratamientos,Equipo,Contacto'
+      assign mk_rows = 'Sesión individual|50 min|40 €;;Punción seca|50 min|45 €;;Bono 5 sesiones|—|175 €'
+      assign mk_rows_title = 'Tratamientos'
+      assign mk_addr = 'C/ Gran Vía 22, Zaragoza'
+      assign mk_hours = 'Lun-Vie · 08:00-21:00'
+      assign mk_rating = '4,9'
+      assign mk_reviews = '187'
+
+    when 'taller'
+      assign mk_brand = '#d2622a'
+      assign mk_name = 'Talleres'
+      assign mk_name_b = 'Ramos'
+      assign mk_url = 'talleresramos.es'
+      assign mk_phone = '916 820 447'
+      assign mk_eyebrow = 'Taller mecánico en Getafe'
+      assign mk_title = 'Tu coche listo hoy mismo'
+      assign mk_sub = 'Mecánica rápida, pre-ITV y diagnosis. Presupuesto cerrado antes de tocar nada.'
+      assign mk_cta = 'Pedir cita'
+      assign mk_nav = 'Inicio,Servicios,Pre-ITV,Contacto'
+      assign mk_rows = 'Cambio de aceite y filtros|1 h|59 €;;Pre-ITV completa|45 min|35 €;;Diagnosis electrónica|30 min|25 €'
+      assign mk_rows_title = 'Servicios'
+      assign mk_addr = 'Pol. Los Ángeles, nave 12, Getafe'
+      assign mk_hours = 'Lun-Vie · 08:30-19:00'
+      assign mk_rating = '4,7'
+      assign mk_reviews = '341'
+
+    when 'restaurante'
+      assign mk_brand = '#127a5c'
+      assign mk_name = 'Casa'
+      assign mk_name_b = 'Marina'
+      assign mk_url = 'casamarina.es'
+      assign mk_phone = '944 275 613'
+      assign mk_eyebrow = 'Cocina de mercado en Bilbao'
+      assign mk_title = 'Producto de temporada, cada día'
+      assign mk_sub = 'Menú del día, carta y reservas para grupos. Terraza abierta todo el año.'
+      assign mk_cta = 'Reservar mesa'
+      assign mk_nav = 'Inicio,Carta,Menú del día,Reservas'
+      assign mk_rows = 'Menú del día|Lun a Vie|16,50 €;;Menú degustación|7 pases|38 €;;Menú de grupo|Desde 8 personas|28 €'
+      assign mk_rows_title = 'Nuestros menús'
+      assign mk_addr = 'C/ Ledesma 9, Bilbao'
+      assign mk_hours = 'Mar-Dom · 13:00-16:00 y 20:00-23:30'
+      assign mk_rating = '4,6'
+      assign mk_reviews = '509'
+
+    when 'electricista'
+      assign mk_brand = '#2f6f9e'
+      assign mk_name = 'Electro'
+      assign mk_name_b = 'Vega'
+      assign mk_url = 'electrovega.es'
+      assign mk_phone = '968 445 902'
+      assign mk_eyebrow = 'Electricista en Murcia'
+      assign mk_title = 'Urgencias en el día'
+      assign mk_sub = 'Boletines, averías y reformas eléctricas. Instalador autorizado.'
+      assign mk_cta = 'Llamar ahora'
+      assign mk_nav = 'Inicio,Servicios,Urgencias,Contacto'
+      assign mk_rows = 'Salida y diagnóstico|—|35 €;;Boletín eléctrico|48 h|90 €;;Cambio de cuadro|Medio día|180 €'
+      assign mk_rows_title = 'Servicios'
+      assign mk_addr = 'Murcia y área metropolitana'
+      assign mk_hours = 'Urgencias 24 h'
+      assign mk_rating = '4,8'
+      assign mk_reviews = '126'
+
+    else
+      assign mk_brand = '#3d5a80'
+      assign mk_name = 'Inmo'
+      assign mk_name_b = 'Costa'
+      assign mk_url = 'inmocosta.es'
+      assign mk_phone = '965 118 274'
+      assign mk_eyebrow = 'Inmobiliaria en Alicante'
+      assign mk_title = 'Vende tu casa sin sorpresas'
+      assign mk_sub = 'Valoración gratuita en 24 horas y acompañamiento hasta la firma.'
+      assign mk_cta = 'Valorar mi casa'
+      assign mk_nav = 'Inicio,Vender,Comprar,Contacto'
+      assign mk_rows = 'Valoración de tu vivienda|24 h|Gratis;;Reportaje fotográfico|Incluido|Gratis;;Gestión de la firma|Incluida|Gratis'
+      assign mk_rows_title = 'Cómo trabajamos'
+      assign mk_addr = 'Av. Óscar Esplá 30, Alicante'
+      assign mk_hours = 'Lun-Vie · 09:00-19:00'
+      assign mk_rating = '4,7'
+      assign mk_reviews = '73'
+  endcase
+
+  assign nav_items = mk_nav | split: ','
+  assign row_items = mk_rows | split: ';;'
+  assign is_phone = phone | default: false
+-%}
+
+<div class="qw-mock{% if is_phone %} qw-mock--phone{% endif %}" style="--mk-brand: {{ mk_brand }};" aria-hidden="true">
+  {%- unless is_phone -%}
+    <div class="qw-mock__chrome">
+      <div class="qw-mock__dots"><i></i><i></i><i></i></div>
+      <div class="qw-mock__url">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+        {{ mk_url }}
+      </div>
+    </div>
+  {%- endunless -%}
+
+  <div class="qw-mock__bar">
+    <p class="qw-mock__logo">{{ mk_name }} <b>{{ mk_name_b }}</b></p>
+    <nav class="qw-mock__nav">
+      {%- for item in nav_items -%}<i>{{ item }}</i>{%- endfor -%}
+    </nav>
+    <span class="qw-mock__cta">{{ mk_cta }}</span>
+  </div>
+
+  <div class="qw-mock__hero{% if image != blank %} has-photo{% endif %}">
+    {%- if image != blank -%}
+      {{ image | image_url: width: 900 | image_tag: class: 'qw-mock__photo', loading: 'lazy', widths: '400, 700, 900', sizes: '(max-width: 749px) 92vw, 620px', alt: '' }}
+    {%- endif -%}
+
+    <div class="qw-mock__hero-copy">
+      <p class="qw-mock__eyebrow">{{ mk_eyebrow }}</p>
+      <p class="qw-mock__title">{{ mk_title }}</p>
+      <p class="qw-mock__sub">{{ mk_sub }}</p>
+
+      <div class="qw-mock__btns">
+        <span class="qw-mock__btn">{{ mk_cta }}</span>
+        <span class="qw-mock__btn qw-mock__btn--wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.86.5 3.6 1.36 5.1L2 22l5.2-1.52a9.8 9.8 0 0 0 4.84 1.26h.01c5.43 0 9.84-4.4 9.84-9.84 0-5.44-4.41-9.9-9.85-9.9Zm5.76 14.02c-.24.68-1.4 1.3-1.94 1.34-.5.05-1.13.07-1.82-.11a16.6 16.6 0 0 1-1.65-.61c-2.9-1.26-4.8-4.2-4.94-4.4-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.3.58-.37.78-.37h.56c.18 0 .42-.07.66.5.24.6.83 2.03.9 2.18.08.15.13.32.03.52-.1.2-.15.32-.3.5l-.44.51c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.3 2.36 1.45.3.15.47.13.64-.08.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg>
+          WhatsApp
+        </span>
+      </div>
+
+      <div class="qw-mock__rating">
+        <span class="qw-mock__stars">
+          {%- for i in (1..5) -%}
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.6 2.9 5.9 6.5.95-4.7 4.58 1.11 6.47L12 17.44 6.19 20.5l1.11-6.47L2.6 9.45l6.5-.95L12 2.6Z"/></svg>
+          {%- endfor -%}
+        </span>
+        {{ mk_rating }} · {{ mk_reviews }} reseñas en Google
+      </div>
+    </div>
+
+    <div class="qw-mock__aside">
+      <p class="qw-mock__aside-title">Contacto</p>
+      <span class="qw-mock__aside-open"><i></i> Abierto ahora</span>
+      <div class="qw-mock__aside-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M12 7v5.3l3.4 2"/></svg>
+        <b>{{ mk_hours }}</b>
+      </div>
+      <div class="qw-mock__aside-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.4 3.5h3l1.5 3.8-2 1.3a10.4 10.4 0 0 0 4.5 4.5l1.3-2 3.8 1.5v3a1.9 1.9 0 0 1-2.1 1.9A15.6 15.6 0 0 1 4.5 5.6a1.9 1.9 0 0 1 1.9-2.1Z"/></svg>
+        <b>{{ mk_phone }}</b>
+      </div>
+      <span class="qw-mock__aside-cta">{{ mk_cta }}</span>
+    </div>
+  </div>
+
+  <div class="qw-mock__body">
+    <p class="qw-mock__h">{{ mk_rows_title }}</p>
+    <div class="qw-mock__rows">
+      {%- for row in row_items -%}
+        {%- assign cells = row | split: '|' -%}
+        <div class="qw-mock__row">
+          <b>{{ cells[0] }}</b>
+          <span>{{ cells[1] }}</span>
+          <em>{{ cells[2] }}</em>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="qw-mock__foot">
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      {{ mk_addr }}
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M12 7v5.3l3.4 2"/></svg>
+      {{ mk_hours }}
+    </span>
+  </div>
+
+  <span class="qw-mock__wa">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.86.5 3.6 1.36 5.1L2 22l5.2-1.52a9.8 9.8 0 0 0 4.84 1.26h.01c5.43 0 9.84-4.4 9.84-9.84 0-5.44-4.41-9.9-9.85-9.9Zm5.76 14.02c-.24.68-1.4 1.3-1.94 1.34-.5.05-1.13.07-1.82-.11a16.6 16.6 0 0 1-1.65-.61c-2.9-1.26-4.8-4.2-4.94-4.4-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.3.58-.37.78-.37h.56c.18 0 .42-.07.66.5.24.6.83 2.03.9 2.18.08.15.13.32.03.52-.1.2-.15.32-.3.5l-.44.51c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.3 2.36 1.45.3.15.47.13.64-.08.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg>
+  </span>
+</div>
