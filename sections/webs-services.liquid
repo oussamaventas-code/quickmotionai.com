@@ -1,0 +1,127 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="section qw-services" id="servicios">
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      {%- if s.eyebrow != blank -%}
+        <p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="t-h2" data-reveal>
+        {{ s.heading }}
+        {%- if s.heading_accent != blank -%}<span class="t-grad">{{ s.heading_accent }}</span>{%- endif -%}
+      </h2>
+      {%- if s.body != blank -%}
+        <p class="t-lead" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="qw-services__grid" data-stagger="60" data-stagger-max="9">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        <article class="qw-service" data-reveal {{ block.shopify_attributes }}>
+          <span class="qw-service__icon">
+            {%- case b.icon -%}
+              {%- when 'cart' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2.2l1.9 10.4a1.6 1.6 0 0 0 1.6 1.3h7.9a1.6 1.6 0 0 0 1.6-1.3L20 7.6H6.1"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>
+              {%- when 'search' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+              {%- when 'pin' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              {%- when 'calendar' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.8h17M8 3.2v3.4M16 3.2v3.4"/></svg>
+              {%- when 'automation' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2.5 4.8 13.2h6L10.6 21.5 19.2 10.8h-6l.2-8.3Z"/></svg>
+              {%- when 'whatsapp' -%}
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.86.5 3.6 1.36 5.1L2 22l5.2-1.52a9.8 9.8 0 0 0 4.84 1.26h.01c5.43 0 9.84-4.4 9.84-9.84 0-5.44-4.41-9.9-9.85-9.9Zm5.76 14.02c-.24.68-1.4 1.3-1.94 1.34-.5.05-1.13.07-1.82-.11a16.6 16.6 0 0 1-1.65-.61c-2.9-1.26-4.8-4.2-4.94-4.4-.15-.2-1.19-1.58-1.19-3.02 0-1.43.75-2.14 1.02-2.43.27-.3.58-.37.78-.37h.56c.18 0 .42-.07.66.5.24.6.83 2.03.9 2.18.08.15.13.32.03.52-.1.2-.15.32-.3.5l-.44.51c-.15.15-.3.31-.13.61.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.3 2.36 1.45.3.15.47.13.64-.08.17-.2.74-.86.94-1.16.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg>
+              {%- when 'shield' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 4.8 5.7v5.6c0 4.3 2.9 8.2 7.2 9.9 4.3-1.7 7.2-5.6 7.2-9.9V5.7L12 2.8Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
+              {%- when 'target' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+              {%- when 'megaphone' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5v3a1.8 1.8 0 0 0 1.8 1.8h1.4L19 20V4L7.2 8.7H5.8A1.8 1.8 0 0 0 4 10.5Z"/><path d="M8 15.6V20h3"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 4.8-9 4.8-9-4.8L12 3Z"/><path d="m3.5 12.2 8.5 4.5 8.5-4.5M3.5 16.6l8.5 4.5 8.5-4.5"/></svg>
+            {%- endcase -%}
+          </span>
+          <h3 class="qw-service__title">{{ b.title }}</h3>
+          {%- if b.text != blank -%}
+            <p class="qw-service__text">{{ b.text }}</p>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if s.cta_label != blank -%}
+      <div class="btn-row" style="justify-content: center; margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);" data-reveal="fade">
+        <a href="{{ s.cta_url | default: '#quiero-mi-web' }}" class="btn btn--ghost btn--lg" data-qw-cta="click_services">
+          {{ s.cta_label }}
+          {% render 'icon', name: 'arrow-right', size: 16 %}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Webs · Servicios",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Más allá de la web" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "No solo hacemos webs." },
+    { "type": "text", "id": "heading_accent", "label": "Parte destacada" },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "Cuando la web está en marcha, estos son los siguientes pasos que suelen pedirnos." },
+    { "type": "text", "id": "cta_label", "label": "Botón", "default": "Cuéntanos qué necesitas" },
+    { "type": "url", "id": "cta_url", "label": "Enlace del botón" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Servicio",
+      "limit": 12,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Tiendas online" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Vende tus productos desde tu propia web." },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "cart", "label": "Carrito" },
+            { "value": "search", "label": "Lupa" },
+            { "value": "pin", "label": "Ubicación" },
+            { "value": "calendar", "label": "Calendario" },
+            { "value": "automation", "label": "Rayo" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "shield", "label": "Escudo" },
+            { "value": "target", "label": "Diana" },
+            { "value": "megaphone", "label": "Megáfono" },
+            { "value": "layers", "label": "Capas" }
+          ],
+          "default": "layers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Webs · Servicios",
+      "blocks": [
+        { "type": "service", "settings": { "title": "Tiendas online", "text": "Vende tus productos desde tu propia web, con pagos y envíos.", "icon": "cart" } },
+        { "type": "service", "settings": { "title": "SEO local", "text": "Que te encuentren cuando buscan tu servicio en tu ciudad.", "icon": "search" } },
+        { "type": "service", "settings": { "title": "Google Business", "text": "Tu ficha al día: fotos, horarios, reseñas y datos correctos.", "icon": "pin" } },
+        { "type": "service", "settings": { "title": "Reservas y citas", "text": "Que el cliente reserve solo, sin llamarte ni esperar respuesta.", "icon": "calendar" } },
+        { "type": "service", "settings": { "title": "Automatizaciones", "text": "Avisos, recordatorios y respuestas que se envían solas.", "icon": "automation" } },
+        { "type": "service", "settings": { "title": "WhatsApp", "text": "Botón directo y mensajes ya escritos para que escribir cueste un toque.", "icon": "whatsapp" } },
+        { "type": "service", "settings": { "title": "Mantenimiento", "text": "Nos ocupamos de que la web siga funcionando y actualizada.", "icon": "shield" } },
+        { "type": "service", "settings": { "title": "Landing pages", "text": "Páginas de una sola idea, pensadas para convertir.", "icon": "target" } },
+        { "type": "service", "settings": { "title": "Webs para campañas", "text": "La página que necesita tu anuncio para no desperdiciar clics.", "icon": "megaphone" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

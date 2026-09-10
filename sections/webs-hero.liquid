@@ -1,0 +1,151 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'qm-webs.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<section class="qw-hero{% if s.show_gridlines %} gridlines{% endif %}" data-qw-hero>
+  <span class="halo halo--tl" style="--halo-color: var(--c-violet); --halo-opacity: 0.34;" aria-hidden="true"></span>
+  <span class="halo halo--tr" style="--halo-color: var(--c-cyan); --halo-opacity: 0.16;" aria-hidden="true"></span>
+
+  <div class="wrap qw-hero__inner">
+    <div class="qw-hero__copy">
+      {%- if s.badge != blank -%}
+        <span class="chip chip--violet" data-reveal="fade">
+          <span class="chip__dot chip__dot--pulse" aria-hidden="true"></span>
+          {{ s.badge }}
+        </span>
+      {%- endif -%}
+
+      <h1 class="t-h1 qw-hero__title" data-reveal style="--reveal-delay: 70ms">
+        {{ s.heading }}
+        {%- if s.heading_accent != blank -%}
+          <em class="t-grad">{{ s.heading_accent }}</em>
+        {%- endif -%}
+      </h1>
+
+      {%- if s.body != blank -%}
+        <p class="t-lead qw-hero__body" data-reveal style="--reveal-delay: 140ms">{{ s.body }}</p>
+      {%- endif -%}
+
+      <div class="btn-row qw-hero__cta" data-reveal="fade" style="--reveal-delay: 210ms">
+        {%- if s.cta_label != blank -%}
+          <a
+            href="{% if s.starter_variant_id != blank %}/cart/{{ s.starter_variant_id }}:1{% else %}{{ s.cta_url | default: '#quiero-mi-web' }}{% endif %}"
+            class="btn btn--primary btn--lg"
+            data-qw-cta="click_starter"
+            data-plan="starter"
+            {%- if s.starter_variant_id != blank %}
+              data-qw-buy="{{ s.starter_variant_id }}"
+            {%- endif %}
+          >
+            {{ s.cta_label }}
+            {% render 'icon', name: 'arrow-right', size: 16 %}
+          </a>
+        {%- endif -%}
+
+        {%- if s.cta2_label != blank -%}
+          <a href="{{ s.cta2_url | default: '#planes' }}" class="btn btn--ghost btn--lg" data-qw-cta="click_plans">
+            {{ s.cta2_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="qw-trust qw-hero__trust" data-reveal="fade" style="--reveal-delay: 280ms">
+          {%- for block in section.blocks -%}
+            <li class="qw-trust__item" {{ block.shopify_attributes }}>
+              {% render 'icon', name: 'check', size: 13 %}
+              {{ block.settings.text }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="qw-devices" data-reveal="scale" style="--reveal-delay: 160ms">
+      <div class="qw-devices__desktop">
+        {% render 'webs-mockup', kind: s.mockup_kind, image: s.mockup_image %}
+      </div>
+
+      <div class="qw-devices__phone" aria-hidden="true">
+        <span class="qw-devices__notch"></span>
+        {% render 'webs-mockup', kind: s.mockup_kind, phone: true %}
+      </div>
+
+      {%- if s.chip_a != blank -%}
+        <span class="qw-devices__chip qw-devices__chip--a">
+          {% render 'icon', name: 'check', size: 13 %}
+          {{ s.chip_a }}
+        </span>
+      {%- endif -%}
+      {%- if s.chip_b != blank -%}
+        <span class="qw-devices__chip qw-devices__chip--b">
+          {% render 'icon', name: 'bolt', size: 13 %}
+          {{ s.chip_b }}
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Webs · Hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Etiqueta superior", "default": "WEBS PARA NEGOCIOS · DESDE 49 €" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Tu negocio merece una web." },
+    { "type": "text", "id": "heading_accent", "label": "Segunda línea destacada", "default": "Créala desde 49 €." },
+    { "type": "textarea", "id": "body", "label": "Subtítulo", "default": "Te ayudamos a tener una presencia online profesional, adaptada a móvil y preparada para que tus clientes te encuentren y contacten contigo." },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta_label", "label": "Botón principal", "default": "Quiero mi web por 49 €" },
+    { "type": "url", "id": "cta_url", "label": "Enlace del botón principal (alternativo)", "info": "Se usa sólo si el ID de variante de abajo está vacío. Vacío = lleva al formulario de la propia página." },
+    { "type": "text", "id": "starter_variant_id", "label": "ID de variante del plan STARTER", "info": "Si lo rellenas, el botón compra directamente: añade esta variante al carrito y salta al checkout de Shopify. Lo encuentras en Productos → Web STARTER → variante, en la URL del admin." },
+    { "type": "text", "id": "cta2_label", "label": "Botón secundario", "default": "Ver planes" },
+    { "type": "url", "id": "cta2_url", "label": "Enlace del botón secundario", "info": "Vacío = baja hasta la sección de planes." },
+    { "type": "header", "content": "Maqueta" },
+    {
+      "type": "select",
+      "id": "mockup_kind",
+      "label": "Sector de la web mostrada",
+      "options": [
+        { "value": "peluqueria", "label": "Peluquería" },
+        { "value": "estetica", "label": "Centro de estética" },
+        { "value": "unas", "label": "Uñas" },
+        { "value": "fisio", "label": "Fisioterapia" },
+        { "value": "taller", "label": "Taller" },
+        { "value": "restaurante", "label": "Restaurante" },
+        { "value": "electricista", "label": "Electricista" },
+        { "value": "inmobiliaria", "label": "Inmobiliaria" }
+      ],
+      "default": "peluqueria"
+    },
+    { "type": "image_picker", "id": "mockup_image", "label": "Foto de la maqueta", "info": "Opcional. Si subes una foto real del sector, sustituye al fondo de color de la maqueta y gana mucho realismo." },
+    { "type": "text", "id": "chip_a", "label": "Pastilla flotante 1", "default": "Adaptada a móvil" },
+    { "type": "text", "id": "chip_b", "label": "Pastilla flotante 2", "default": "WhatsApp integrado" },
+    { "type": "header", "content": "Fondo" },
+    { "type": "checkbox", "id": "show_gridlines", "label": "Rejilla de fondo", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Indicador de confianza",
+      "limit": 5,
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Diseño adaptado a móvil" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Webs · Hero",
+      "blocks": [
+        { "type": "trust", "settings": { "text": "Diseño adaptado a móvil" } },
+        { "type": "trust", "settings": { "text": "WhatsApp" } },
+        { "type": "trust", "settings": { "text": "Entrega rápida" } },
+        { "type": "trust", "settings": { "text": "Sin permanencia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

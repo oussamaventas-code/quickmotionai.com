@@ -1,0 +1,224 @@
+{{ 'qm-webs.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'qm-webs.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign s = section.settings
+  assign sectors = s.sector_options | newline_to_br | split: '<br />'
+  assign plans = s.plan_options | newline_to_br | split: '<br />'
+  assign wa_digits = s.whatsapp | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')'
+-%}
+
+<section class="section qw-close" id="quiero-mi-web" data-qw-close>
+  <span class="halo halo--bl" style="--halo-color: var(--c-violet); --halo-opacity: 0.28;" aria-hidden="true"></span>
+
+  <div class="wrap qw-close__inner">
+    <div>
+      <div class="section-head">
+        {%- if s.eyebrow != blank -%}
+          <p class="t-label" data-reveal="fade">{{ s.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- comment -%}
+          La segunda línea va en blanco, no en degradado: a dos líneas el
+          degradado del tema se apaga hacia el final y el remate pierde fuerza.
+        {%- endcomment -%}
+        <h2 class="t-h2 qw-close__title" data-reveal>
+          {{ s.heading }}
+          {%- if s.heading_accent != blank -%}
+            <em>{{ s.heading_accent }}</em>
+          {%- endif -%}
+        </h2>
+      </div>
+
+      {%- if s.body != blank -%}
+        <p class="t-lead qw-close__body" data-reveal style="--reveal-delay: 80ms">{{ s.body }}</p>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="qw-close__points" data-stagger="70">
+          {%- for block in section.blocks -%}
+            <li class="qw-tick" data-reveal="fade" {{ block.shopify_attributes }}>
+              <span class="qw-tick__mark">{% render 'icon', name: 'check', size: 10 %}</span>
+              {{ block.settings.text }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if wa_digits != blank and s.wa_label != blank -%}
+        <div class="btn-row" style="margin-top: var(--s-7);" data-reveal="fade">
+          <a
+            href="https://wa.me/{{ wa_digits }}"
+            class="btn btn--ghost"
+            target="_blank"
+            rel="noopener"
+            data-qw-whatsapp="cta_final"
+          >
+            {% render 'icon', name: 'chat', size: 15 %}
+            {{ s.wa_label }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="qw-form" data-reveal="scale" style="--reveal-delay: 120ms">
+      {%- if wa_digits == blank and s.endpoint == blank -%}
+        {%- if request.design_mode -%}
+          <p class="qw-form__setup">
+            El formulario aún no tiene destino. Añade tu número de WhatsApp o una URL de destino en los ajustes de esta sección para empezar a recibir las solicitudes.
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+
+      <div class="qw-form__live">
+        {%- if s.form_title != blank -%}
+          <p class="qw-form__title">{{ s.form_title }}</p>
+        {%- endif -%}
+        {%- if s.form_hint != blank -%}
+          <p class="qw-form__hint">{{ s.form_hint }}</p>
+        {%- endif -%}
+
+        <form
+          data-qw-form
+          data-endpoint="{{ s.endpoint }}"
+          data-whatsapp="{{ wa_digits }}"
+          data-wa-intro="{{ s.wa_intro | escape }}"
+          novalidate
+        >
+          <div class="qw-form__pot" aria-hidden="true">
+            <label>No rellenar<input type="text" name="qw_website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <div class="qw-form__grid">
+            <label class="field">
+              <span class="field__label">{{ s.label_name }} <span class="field__req">*</span></span>
+              <input class="input" type="text" name="nombre" autocomplete="name" required placeholder="{{ s.ph_name }}">
+              <span class="field__error">{{ s.error_text }}</span>
+            </label>
+
+            <label class="field">
+              <span class="field__label">{{ s.label_business }} <span class="field__req">*</span></span>
+              <input class="input" type="text" name="negocio" autocomplete="organization" required placeholder="{{ s.ph_business }}">
+              <span class="field__error">{{ s.error_text }}</span>
+            </label>
+
+            <label class="field">
+              <span class="field__label">{{ s.label_sector }}</span>
+              <select class="select" name="sector">
+                <option value="">{{ s.ph_select }}</option>
+                {%- for row in sectors -%}
+                  {%- assign line = row | strip_newlines | strip -%}
+                  {%- if line != blank -%}
+                    <option value="{{ line | escape }}">{{ line }}</option>
+                  {%- endif -%}
+                {%- endfor -%}
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">{{ s.label_whatsapp }} <span class="field__req">*</span></span>
+              <input class="input" type="tel" name="whatsapp" autocomplete="tel" required inputmode="tel" placeholder="{{ s.ph_whatsapp }}">
+              <span class="field__error">{{ s.error_text }}</span>
+            </label>
+
+            <label class="field field--full">
+              <span class="field__label">{{ s.label_plan }}</span>
+              <select class="select" name="plan" data-qw-plan-field>
+                <option value="">{{ s.ph_select }}</option>
+                {%- for row in plans -%}
+                  {%- assign line = row | strip_newlines | strip -%}
+                  {%- if line != blank -%}
+                    {%- assign parts = line | split: '|' -%}
+                    {%- assign val = parts[0] | strip -%}
+                    {%- assign lab = parts[1] | default: val | strip -%}
+                    <option value="{{ val | escape }}">{{ lab }}</option>
+                  {%- endif -%}
+                {%- endfor -%}
+              </select>
+            </label>
+          </div>
+
+          <div class="qw-form__submit">
+            <button type="submit" class="btn btn--primary btn--lg btn--full">
+              {{ s.submit_label }}
+              {% render 'icon', name: 'arrow-right', size: 16 %}
+            </button>
+          </div>
+
+          {%- if s.legal != blank -%}
+            <p class="qw-form__legal">{{ s.legal }}</p>
+          {%- endif -%}
+        </form>
+      </div>
+
+      <div class="qw-form__done" role="status" aria-live="polite">
+        <span class="qw-form__check" aria-hidden="true">{% render 'icon', name: 'check', size: 26 %}</span>
+        <p class="qw-form__done-title">{{ s.done_title }}</p>
+        <p class="qw-form__done-text">{{ s.done_text }}</p>
+        {%- if s.done_cta_label != blank -%}
+          <div class="qw-form__done-cta">
+            <a href="{{ s.done_cta_url | default: '#planes' }}" class="btn btn--ghost">{{ s.done_cta_label }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Webs · CTA final",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta", "default": "Último paso" },
+    { "type": "text", "id": "heading", "label": "Titular", "default": "Tu negocio ya existe." },
+    { "type": "text", "id": "heading_accent", "label": "Segunda línea destacada", "default": "Ahora haz que también exista online." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Empieza con una web profesional desde 49 €. Cuéntanos cómo es tu negocio y te decimos exactamente qué necesitas." },
+    { "type": "header", "content": "Destino de las solicitudes" },
+    { "type": "text", "id": "whatsapp", "label": "Número de WhatsApp", "info": "Con prefijo de país y sin espacios, por ejemplo 34600123456. Al enviar el formulario se abre WhatsApp con los datos ya escritos." },
+    { "type": "text", "id": "wa_intro", "label": "Primera línea del mensaje", "default": "Hola, quiero mi web." },
+    { "type": "text", "id": "wa_label", "label": "Botón de WhatsApp", "default": "Prefiero escribir por WhatsApp" },
+    { "type": "url", "id": "endpoint", "label": "URL de destino (CRM, Make, n8n, backend)", "info": "Opcional. Si la rellenas, el formulario envía los datos en JSON por POST a esa dirección." },
+    { "type": "header", "content": "Formulario" },
+    { "type": "text", "id": "form_title", "label": "Título del formulario", "default": "Cuéntanos de tu negocio" },
+    { "type": "text", "id": "form_hint", "label": "Texto de apoyo", "default": "Menos de un minuto. Te respondemos el mismo día." },
+    { "type": "text", "id": "label_name", "label": "Etiqueta: nombre", "default": "Nombre" },
+    { "type": "text", "id": "ph_name", "label": "Ejemplo: nombre", "default": "Tu nombre" },
+    { "type": "text", "id": "label_business", "label": "Etiqueta: negocio", "default": "Negocio" },
+    { "type": "text", "id": "ph_business", "label": "Ejemplo: negocio", "default": "Nombre de tu negocio" },
+    { "type": "text", "id": "label_sector", "label": "Etiqueta: tipo de negocio", "default": "Tipo de negocio" },
+    { "type": "text", "id": "label_whatsapp", "label": "Etiqueta: WhatsApp", "default": "WhatsApp" },
+    { "type": "text", "id": "ph_whatsapp", "label": "Ejemplo: WhatsApp", "default": "600 123 456" },
+    { "type": "text", "id": "label_plan", "label": "Etiqueta: qué web necesitas", "default": "Qué tipo de web necesitas" },
+    { "type": "text", "id": "ph_select", "label": "Texto del desplegable vacío", "default": "Selecciona una opción" },
+    { "type": "textarea", "id": "sector_options", "label": "Tipos de negocio", "info": "Una línea por opción.", "default": "Peluquería\nCentro de estética\nUñas\nFisioterapia\nTaller\nRestaurante\nElectricista\nFontanería\nInmobiliaria\nEntrenador personal\nClínica\nOtro" },
+    { "type": "textarea", "id": "plan_options", "label": "Opciones de web", "info": "Una línea por opción, con el formato valor | texto visible. El valor debe coincidir con el del plan para que se preseleccione solo.", "default": "starter | STARTER — Una página, desde 49 €\npro | PRO — Hasta 5 páginas, 199 €\nbusiness | BUSINESS — Web completa, 499 €\nmantenimiento | Solo mantenimiento\nno-lo-se | Todavía no lo sé" },
+    { "type": "text", "id": "submit_label", "label": "Botón de envío", "default": "Quiero mi web" },
+    { "type": "text", "id": "error_text", "label": "Mensaje de error", "default": "Necesitamos este dato para poder responderte." },
+    { "type": "richtext", "id": "legal", "label": "Aviso legal del formulario", "default": "<p>Usamos tus datos solo para responderte sobre tu web. Nada de spam.</p>" },
+    { "type": "header", "content": "Confirmación" },
+    { "type": "text", "id": "done_title", "label": "Título", "default": "Recibido" },
+    { "type": "textarea", "id": "done_text", "label": "Texto", "default": "Ya tenemos tus datos. Te escribimos hoy mismo con una propuesta concreta para tu negocio." },
+    { "type": "text", "id": "done_cta_label", "label": "Botón", "default": "Ver los planes otra vez" },
+    { "type": "url", "id": "done_cta_url", "label": "Enlace del botón" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Punto de refuerzo",
+      "limit": 5,
+      "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Respuesta el mismo día" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Webs · CTA final",
+      "blocks": [
+        { "type": "point", "settings": { "text": "Respuesta el mismo día" } },
+        { "type": "point", "settings": { "text": "Presupuesto cerrado antes de empezar" } },
+        { "type": "point", "settings": { "text": "Sin permanencia ni cuotas ocultas" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
