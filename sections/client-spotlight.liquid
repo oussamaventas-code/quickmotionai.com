@@ -66,7 +66,7 @@
           <div class="vframe__meta">
             {%- if s.caption != blank -%}<p class="vframe__caption">{{ s.caption }}</p>{%- endif -%}
             {%- if s.metric_value != blank -%}
-              {% render 'metric-chip', value: s.metric_value, label: s.metric_label, color: s.metric_color | default: 'cyan' %}
+              {% render 'metric-chip', value: s.metric_value, label: s.metric_label, color: s.metric_color, default: 'cyan' %}
             {%- endif -%}
           </div>
 
@@ -253,3 +253,15 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'metric-chip', value: s.metric_value, label: s.metric_label, color:
+    s.metric_color | default: 'cyan' %}"
+  to: "{% render 'metric-chip', value: s.metric_value, label: s.metric_label, color:
+    s.metric_color, default: 'cyan' %}"
+  position: 2945..3057
+{% endcomment %}
